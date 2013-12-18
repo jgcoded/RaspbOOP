@@ -32,7 +32,7 @@ include_directories(
   ${INCLUDE_FILES_DIR}
   )
 
-add_library(${RASPBOOP-BOT_TARGET} ${LIB_TYPE} ${SOURCE_FILES}
+add_library(${RASPBOOP-BOT_TARGET} STATIC ${SOURCE_FILES}
   ${INCLUDE_FILES})
 
 target_link_libraries(${RASPBOOP-BOT_TARGET} ${X11_LIBRARIES}
