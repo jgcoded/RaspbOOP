@@ -22,6 +22,8 @@
 #ifndef RASPBOOP_SENSORS_SENSOR_H
 #define RASPBOOP_SENSORS_SENSOR_H
 
+#include "Raspboop.h"
+
 namespace raspboop
 {
 namespace sensors
