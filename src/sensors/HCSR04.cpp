@@ -19,22 +19,20 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * */
 
-#ifndef RASPBOOP_H
-#define RASPBOOP_H
+#include "raspboop/Raspboop.h"
 
 namespace raspboop
 {
+namespace sensors
+{
 
-/* Dependency includes */
-#include <wiringPi.h>
+HCSR04::HCSR04()
+{
+}
 
-/* Raspboop source */
-#include "raspboop/boards/L298N.h"
-#include "raspboop/sensors/Sensor.h"
-#include "raspboop/sensors/HCSR04.h"
-#include "raspboop/sensors/HCSR501.h"
+HCSR04::~HCSR04()
+{
+}
 
+} /* sensors */
 } /* raspboop */
-
-#endif /* RASPBOOP_H */
-
