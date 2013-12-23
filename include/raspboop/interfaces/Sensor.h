@@ -19,8 +19,8 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * */
 
-#ifndef RASPBOOP_SENSORS_SENSOR_H
-#define RASPBOOP_SENSORS_SENSOR_H
+#ifndef RASPBOOP_INTERFACES_SENSOR_H
+#define RASPBOOP_INTERFACES_SENSOR_H
 
 #include "raspboop/Raspboop.h"
 
@@ -41,4 +41,4 @@ public:
 } /* interfaces */
 } /* raspboop */
 
-#endif /* RASPBOOP_SENSORS_SENSOR_H */
+#endif /* RASPBOOP_INTERFACES_SENSOR_H */
