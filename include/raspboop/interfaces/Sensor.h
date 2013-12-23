@@ -29,7 +29,7 @@ namespace raspboop
 namespace interfaces
 {
 
-class Sensor
+class Sensor : public GPIOConsumer
 {
 
 public:
