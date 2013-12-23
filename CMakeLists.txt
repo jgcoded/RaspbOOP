@@ -19,8 +19,8 @@ set_target_properties(${WIRINGPI} PROPERTIES IMPORTED_LOCATION
   /usr/local/lib/libwiringPi.so)
 
 set(RASPBOOP-BOT_FILES
-  interfaces/GPIOConsumer.h
-  interfaces/Sensor.h
+  interfaces/GPIOConsumer
+  interfaces/Sensor
   boards/L298N
   sensors/HCSR04
   sensors/HCSR501
