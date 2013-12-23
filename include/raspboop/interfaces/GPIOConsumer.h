@@ -32,6 +32,9 @@ namespace interfaces
 class GPIOConsumer
 {
 
+public:
+    GPIOConsumer();
+    ~GPIOConsumer();
 
 }; /* GPIOConsumer */
 
