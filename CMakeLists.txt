@@ -5,8 +5,8 @@ project(RaspbOOP-Bot)
 set(RaspbOOP-Bot_VERSION_MAJOR 0)
 set(RaspbOOP-BOT_VERSION_MINOR 0)
 
-set(SRC_FILES_DIR ${RASPBOOP-BOT_SOURCE_DIR}/src)
-set(INCLUDE_FILES_DIR ${RASPBOOP-BOT_SOURCE_DIR}/include)
+set(SRC_FILES_DIR ${RASPBOOP-BOT_SOURCE_DIR}/src/)
+set(INCLUDE_FILES_DIR ${RASPBOOP-BOT_SOURCE_DIR}/include/raspboop/)
 set(CMAKE_INCLUSION ${RASPBOOP-BOT_CMAKE_DIR}/cmake)
 
 set(RASPOOP-BOT_TARGET RaspOOP-Bot)
@@ -18,13 +18,19 @@ set(RASPOOP-BOT_TARGET RaspOOP-Bot)
 find_library(WIRINGPI_LIB wiringPi)
 
 set(RASBPOOP-BOT_FILES
-
+  boards/L298N
+  sensors/HCSR04
+  sensors/HCSR501
 )
 
 foreach(rasbpoop_file ${RASBPOOP-BOT_FILES})
   list(APPEND SOURCE_FILES ${SRC_FILES_DIR}/${raspboop_file}.cpp)
   list(APPEND INCLUDE_FILES ${INCLUDE_FILES_DIR}/${raspboop_file}.h)
 endforeach()
+
+# Append common header to INCLUDE_FILES
+
+# Append interfaces to INCLUDE_FILES
 
 include_directories(
   ${X11_INCLUDE_DIR}
