@@ -22,7 +22,7 @@
 #ifndef RASPBOOP_INTERFACES_GPIOCONSUMER_H
 #define RASPBOOP_INTERFACES_GPIOCONSUMER_H
 
-#include "Raspboop.h"
+#include "raspboop/Raspboop.h"
 
 namespace raspboop
 {

@@ -22,7 +22,7 @@
 #ifndef RASPBOOP_SENSORS_HCSR501_H
 #define RASPBOOP_SENSORS_HCSR501_H
 
-#include "Raspboop.h"
+#include "raspboop/Raspboop.h"
 
 namespace raspboop
 {

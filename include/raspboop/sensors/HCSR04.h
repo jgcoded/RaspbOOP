@@ -22,7 +22,7 @@
 #ifndef RASPBOOP_SENSORS_HCSR04
 #define RASPBOOP_SENSORS_HCSR04
 
-#include "Raspboop.h"
+#include "raspboop/Raspboop.h"
 
 namespace raspboop
 {

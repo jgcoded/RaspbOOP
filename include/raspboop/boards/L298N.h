@@ -22,7 +22,7 @@
 #ifndef RASPBOOP_BOARDS_L298N_BOARD
 #define RASPBOOP_BOARDS_L298N_BOARD
 
-#include "Raspboop.h"
+#include "raspboop/Raspboop.h"
 
 namespace raspboop
 {
