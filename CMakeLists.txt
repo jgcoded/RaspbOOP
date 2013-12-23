@@ -19,19 +19,20 @@ set_target_properties(${WIRINGPI} PROPERTIES IMPORTED_LOCATION
   /usr/local/lib/libwiringPi.so)
 
 set(RASPBOOP-BOT_FILES
+  interfaces/GPIOConsumer.h
+  interfaces/Sensor.h
   boards/L298N
   sensors/HCSR04
   sensors/HCSR501
 )
 
+# Append common header to INCLUDE_FILES
+list(APPEND INCLUDE_FILES ${INCLUDE_FILES_DIR}/Raspboop.h)
+
 foreach(raspboop_file ${RASPBOOP-BOT_FILES})
   list(APPEND SOURCE_FILES ${SRC_FILES_DIR}/${raspboop_file}.cpp)
   list(APPEND INCLUDE_FILES ${INCLUDE_FILES_DIR}/${raspboop_file}.h)
 endforeach()
-
-# Append common header to INCLUDE_FILES
-
-# Append interfaces to INCLUDE_FILES
 
 include_directories(
   ${X11_INCLUDE_DIR}
