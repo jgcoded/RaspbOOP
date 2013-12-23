@@ -26,7 +26,7 @@
 
 namespace raspboop
 {
-namespace sensors
+namespace interfaces
 {
 
 class Sensor
@@ -38,7 +38,7 @@ public:
 
 }; /* Sensor */
 
-} /* sensors */
+} /* interfaces */
 } /* raspboop */
 
 #endif /* RASPBOOP_SENSORS_SENSOR_H */
