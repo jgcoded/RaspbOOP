@@ -36,7 +36,7 @@ endforeach()
 include_directories(
   ${X11_INCLUDE_DIR}
   ${X11_LIBRARIES_DIR}
-  ${INCLUDE_FILES_DIR}
+  ${CMAKE_SOURCE_DIR}/include
   )
 
 add_library(${RASPBOOP-BOT_TARGET} STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
