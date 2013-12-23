@@ -14,8 +14,10 @@ set(RASPOOP-BOT_TARGET RaspOOP-Bot)
 ####################################
 # Require wiringPi
 ####################################
-
-find_library(WIRINGPI_LIB wiringPi)
+set(WIRINGPI wiringPi)
+add_library(${WIRINGPI} SHARED IMPORTED)
+set_target_properties(${WIRINGPI} PROPERTIES IMPORTED_LOCATION
+  /usr/local/lib/libwiringPi.so)
 
 set(RASBPOOP-BOT_FILES
   boards/L298N
@@ -42,4 +44,4 @@ add_library(${RASPBOOP-BOT_TARGET} STATIC ${SOURCE_FILES}
   ${INCLUDE_FILES})
 
 target_link_libraries(${RASPBOOP-BOT_TARGET} ${X11_LIBRARIES}
-  ${WIRINGPI_LIB})
+  ${WIRINGPI})
