@@ -36,7 +36,7 @@ public:
 	HCSR501();
 	~HCSR501();
 
-} /* HCSR501 */
+}; /* HCSR501 */
 
 } /* sensors */
 } /* raspboop */
