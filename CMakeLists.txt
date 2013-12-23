@@ -1,15 +1,14 @@
 cmake_minimum_required (VERSION 2.8)
-project(RaspbOOP-Bot)
+project(Raspboop)
 
 # Version
-set(RaspbOOP-Bot_VERSION_MAJOR 0)
-set(RaspbOOP-BOT_VERSION_MINOR 0)
+set(RASPBOOP-BOT_VERSION_MAJOR 0)
+set(RASPBOOP-BOT_VERSION_MINOR 0)
 
-set(SRC_FILES_DIR ${RASPBOOP-BOT_SOURCE_DIR}/src/)
-set(INCLUDE_FILES_DIR ${RASPBOOP-BOT_SOURCE_DIR}/include/raspboop/)
-set(CMAKE_INCLUSION ${RASPBOOP-BOT_CMAKE_DIR}/cmake)
+set(SRC_FILES_DIR ${CMAKE_SOURCE_DIR}/src/)
+set(INCLUDE_FILES_DIR ${CMAKE_SOURCE_DIR}/include/raspboop/)
 
-set(RASPOOP-BOT_TARGET RaspOOP-Bot)
+set(RASPBOOP-BOT_TARGET raspboop)
 
 ####################################
 # Require wiringPi
@@ -19,13 +18,13 @@ add_library(${WIRINGPI} SHARED IMPORTED)
 set_target_properties(${WIRINGPI} PROPERTIES IMPORTED_LOCATION
   /usr/local/lib/libwiringPi.so)
 
-set(RASBPOOP-BOT_FILES
+set(RASPBOOP-BOT_FILES
   boards/L298N
   sensors/HCSR04
   sensors/HCSR501
 )
 
-foreach(rasbpoop_file ${RASBPOOP-BOT_FILES})
+foreach(raspboop_file ${RASPBOOP-BOT_FILES})
   list(APPEND SOURCE_FILES ${SRC_FILES_DIR}/${raspboop_file}.cpp)
   list(APPEND INCLUDE_FILES ${INCLUDE_FILES_DIR}/${raspboop_file}.h)
 endforeach()
@@ -40,8 +39,6 @@ include_directories(
   ${INCLUDE_FILES_DIR}
   )
 
-add_library(${RASPBOOP-BOT_TARGET} STATIC ${SOURCE_FILES}
-  ${INCLUDE_FILES})
+add_library(${RASPBOOP-BOT_TARGET} STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
 
-target_link_libraries(${RASPBOOP-BOT_TARGET} ${X11_LIBRARIES}
-  ${WIRINGPI})
+target_link_libraries(${RASPBOOP-BOT_TARGET} ${X11_LIBRARIES} ${WIRINGPI})
