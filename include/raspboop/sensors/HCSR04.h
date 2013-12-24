@@ -42,8 +42,6 @@ public:
 
     HCSR04();
 
-    void Trigger();
-
     virtual void Sense();
 
     float GetDistance() const
