@@ -72,7 +72,7 @@ void HCSR04::Sense()
 	digitalWrite(TriggerPin, HIGH);
 	// HCSR04 manual states to wait 10 micros when triggered
 	delayMicroseconds(10);
-	digitalWrite(TRIG, LOW);
+	digitalWrite(TriggerPin, LOW);
 
 	while(digitalRead(EchoPin) == 0)
 		EchoStart = (float)micros();
