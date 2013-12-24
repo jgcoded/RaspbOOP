@@ -33,7 +33,13 @@ class HCSR04 : public raspboop::abstracts::Sensor
 {
 
 public:
+
     HCSR04();
+
+    virtual void ReadValue();
+
+    virtual void ReleasePins();
+
     ~HCSR04();
 
 };
