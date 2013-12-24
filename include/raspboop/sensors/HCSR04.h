@@ -44,7 +44,7 @@ public:
 
     void Trigger();
 
-    virtual void ReadValue();
+    virtual void Sense();
 
     virtual void ReleasePins();
 

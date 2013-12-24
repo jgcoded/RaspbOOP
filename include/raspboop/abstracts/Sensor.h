@@ -42,7 +42,7 @@ public:
 
     Sensor();
 
-    virtual void ReadValue()=0;
+    virtual void Sense()=0;
 
     ~Sensor()=0;
 
