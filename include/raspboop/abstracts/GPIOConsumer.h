@@ -34,7 +34,7 @@ class GPIOConsumer
 
 protected:
 
-	void ConsumePin(int Pin, int Mode);
+	void ConsumePin(int Pin, int Mode) const;
 
 public:
 

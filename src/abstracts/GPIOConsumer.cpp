@@ -30,8 +30,9 @@ GPIOConsumer::GPIOConsumer()
 {
 }
 
-void GPIOConsumer::ConsumePin(int Pin, int Mode)
+void GPIOConsumer::ConsumePin(int Pin, int Mode) const
 {
+	pinMode(Pin, Mode);
 }
 
 } /* abstracts */
