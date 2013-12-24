@@ -40,7 +40,7 @@ public:
 
     GPIOConsumer();
 
-    void ReleasePins();
+    virtual void ReleasePins()=0;
     
     virtual ~GPIOConsumer()=0;
 
