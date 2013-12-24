@@ -22,9 +22,6 @@
 #ifndef RASPBOOP_H
 #define RASPBOOP_H
 
-namespace raspboop
-{
-
 /* Dependency includes */
 #include <wiringPi.h>
 
@@ -34,8 +31,6 @@ namespace raspboop
 #include "raspboop/boards/L298N.h"
 #include "raspboop/sensors/HCSR04.h"
 #include "raspboop/sensors/HCSR501.h"
-
-} /* raspboop */
 
 #endif /* RASPBOOP_H */
 
