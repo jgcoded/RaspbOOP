@@ -32,8 +32,6 @@ namespace controls
 class GPIOManager
 {
 
-	friend class raspboop::abstracts::GPIOConsumer;
-
 	map<int, int> GPIO;
 
 	int ReservePin(int Pin, int Mode);
