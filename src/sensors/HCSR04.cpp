@@ -77,7 +77,7 @@ void HCSR04::Sense()
 	while(digitalRead(EchoPin) == 0)
 		EchoStart = (float)micros();
 
-	while(digitalRead(Echo))
+	while(digitalRead(EchoPin))
 		EchoEnd = (float)micros();
 
 	Distance = (EchoEnd - EchoStart) * .017f;
