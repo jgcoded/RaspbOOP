@@ -30,9 +30,5 @@ Sensor::Sensor()
 {
 }
 
-Sensor::~Sensor()
-{
-}
-
 } /* abstracts */
 } /* raspboop */

@@ -38,7 +38,7 @@ public:
 
     virtual void ReadValue()=0;
 
-    ~Sensor();
+    ~Sensor()=0;
 
 }; /* Sensor */
 
