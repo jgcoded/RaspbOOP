@@ -32,14 +32,21 @@ namespace controls
 class GPIOManager
 {
 
+	map<int, int> GPIO;
+
+	void ReservePin(int Pin, int Mode);
+
 public:
+
 	GPIOManager();
+
+	int IsPinSet(int Pin);
+
 	~GPIOManager();
 
 }; /* GPIOManager */
 
 } /* controls */
 } /* raspboop */
-
 
 #endif /* RASPBOOP_CONTROLS_GPIOMANAGER_H */

@@ -26,6 +26,8 @@
 #include <map>
 #include <vector>
 
+using std::map;
+
 /* Dependency includes */
 #include <wiringPi.h>
 
