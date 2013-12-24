@@ -40,6 +40,8 @@ public:
 
     HCSR04();
 
+    void Trigger();
+
     virtual void ReadValue();
 
     virtual void ReleasePins();
