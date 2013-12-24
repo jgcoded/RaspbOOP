@@ -30,6 +30,9 @@ HCSR04::HCSR04()
 {
 	EchoPin = -1;
 	TriggerPin = -1;
+	EchoStart = 0;
+	EchoEnd = 0;
+	Distance = 0;
 }
 
 HCSR04::~HCSR04()
