@@ -32,6 +32,12 @@ namespace abstracts
 class Sensor : public GPIOConsumer
 {
 
+protected:
+
+	void SetOutputPin(int Pin);
+
+	void SetInputPin(int Pin);
+
 public:
 
     Sensor();

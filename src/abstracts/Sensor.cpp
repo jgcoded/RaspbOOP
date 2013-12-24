@@ -30,5 +30,15 @@ Sensor::Sensor()
 {
 }
 
+void Sensor::SetOutputPin(int Pin)
+{
+	ConsumePin(Pin, OUTPUT);
+}
+
+void Sensor::SetInputPin(int Pin)
+{
+	ConsumePin(Pin, INPUT);
+}
+
 } /* abstracts */
 } /* raspboop */
