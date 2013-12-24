@@ -33,7 +33,11 @@ class Sensor : public GPIOConsumer
 {
 
 public:
+
     Sensor();
+
+    virtual void ReadValue()=0;
+
     ~Sensor();
 
 }; /* Sensor */
