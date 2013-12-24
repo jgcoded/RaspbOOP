@@ -61,6 +61,28 @@ HCSR04* HCSR04::Create(int ECHO, int TRIG)
 	return H;
 }
 
+void HCSR04::Sense()
+{
+	// Pins are not set, should notify user
+	if(EchoPin == -1 || TriggerPin == -1)
+		return;
+
+	EchoStart = EchoEnd = 0;
+
+	digitalWrite(TriggerPin, HIGH);
+	// HCSR04 manual states to wait 10 micros when triggered
+	delayMicroseconds(10);
+	digitalWrite(TRIG, LOW);
+
+	while(digitalRead(EchoPin) == 0)
+		EchoStart = (float)micros();
+
+	while(digitalRead(Echo))
+		EchoEnd = (float)micros();
+
+	Distance = (EchoEnd - EchoStart) * .017f;
+}
+
 HCSR04::~HCSR04()
 {
 }
