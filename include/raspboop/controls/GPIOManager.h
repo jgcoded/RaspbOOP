@@ -32,7 +32,7 @@ namespace controls
 class GPIOManager
 {
 
-	friend class GPIOConsumer;
+	friend class raspboop::abstracts::GPIOConsumer;
 
 	map<int, int> GPIO;
 
@@ -42,7 +42,7 @@ public:
 
 	GPIOManager();
 
-	int IsPinSet(int Pin) const;
+	int IsPinSet(int Pin);
 
 	~GPIOManager();
 
