@@ -10,6 +10,7 @@ set(MODULES
   abstracts/Sensor
   sensors/HCSR04
   sensors/HCSR501
+  controls/GPIOManager
 )
 
 set(HEADERS

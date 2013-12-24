@@ -19,22 +19,27 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * */
 
-#ifndef RASPBOOP_H
-#define RASPBOOP_H
+#ifndef RASPBOOP_CONTROLS_GPIOMANAGER_H
+#define RASPBOOP_CONTROLS_GPIOMANAGER_H
 
-/* System includes */
-#include <map>
-#include <vector>
+#include "raspboop/Raspboop.h"
 
-/* Dependency includes */
-#include <wiringPi.h>
+namespace raspboop
+{
+namespace controls
+{
 
-/* Raspboop source */
-#include "raspboop/abstracts/GPIOConsumer.h"
-#include "raspboop/abstracts/Sensor.h"
-#include "raspboop/boards/L298N.h"
-#include "raspboop/sensors/HCSR04.h"
-#include "raspboop/sensors/HCSR501.h"
-#include "raspboop/controls/GPIOManager.h"
+class GPIOManager
+{
 
-#endif /* RASPBOOP_H */
+public:
+	GPIOManager();
+	~GPIOManager();
+
+}; /* GPIOManager */
+
+} /* controls */
+} /* raspboop */
+
+
+#endif /* RASPBOOP_CONTROLS_GPIOMANAGER_H */
