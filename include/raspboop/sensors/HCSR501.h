@@ -29,7 +29,7 @@ namespace raspboop
 namespace sensors
 {
 
-class HCSR501 : public Sensor
+class HCSR501 : public raspboop::interfaces::Sensor
 {
 
 public:
