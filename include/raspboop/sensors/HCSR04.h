@@ -33,8 +33,10 @@ class HCSR04 : public raspboop::abstracts::Sensor
 {
 
 	int EchoPin;
-
 	int TriggerPin;
+	float EchoStart;
+	float EchoEnd;
+	float Distance;
 
 public:
 
