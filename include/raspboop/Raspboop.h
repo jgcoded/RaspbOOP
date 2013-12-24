@@ -25,6 +25,7 @@
 /* System includes */
 #include <map>
 #include <vector>
+#include <cstdlib>
 
 using std::map;
 
