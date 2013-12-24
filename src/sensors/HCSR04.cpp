@@ -83,6 +83,11 @@ void HCSR04::Sense()
 	Distance = (EchoEnd - EchoStart) * .017f;
 }
 
+void HCSR04::ReleasePins()
+{
+	digitalWrite(TriggerPin, LOW);
+}
+
 HCSR04::~HCSR04()
 {
 }
