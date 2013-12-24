@@ -35,6 +35,12 @@ HCSR04::HCSR04()
 	Distance = 0;
 }
 
+HCSR04* HCSR04::Create(int ECHO, int TRIG)
+{
+
+	return NULL;
+}
+
 HCSR04::~HCSR04()
 {
 }
