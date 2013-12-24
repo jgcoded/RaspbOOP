@@ -30,8 +30,14 @@ GPIOManager::GPIOManager()
 {
 }
 
-void GPIOManager::ReservePin(int Pin, int Mode)
+int GPIOManager::ReservePin(int Pin, int Mode)
 {
+	if(IsPinSet(Pin) != -1)
+		return -1;
+
+	GPIO.insert(std::pair<int, int>(Pin, Mode));
+
+	return 1;
 }
 
 int GPIOManager::IsPinSet(int Pin)

@@ -36,7 +36,7 @@ class GPIOManager
 
 	map<int, int> GPIO;
 
-	void ReservePin(int Pin, int Mode);
+	int ReservePin(int Pin, int Mode);
 
 public:
 
