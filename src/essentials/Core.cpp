@@ -24,7 +24,7 @@
 namespace raspboop
 {
 
-int Init(PinScheme Scheme)
+int Init(int Scheme)
 {
 
 	// Setup wiringPi

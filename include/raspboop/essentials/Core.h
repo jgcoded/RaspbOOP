@@ -35,7 +35,7 @@ enum PinScheme
 	SYS = 3
 };
 
-int Init(PinScheme Scheme);
+int Init(int Scheme);
 
 int Deinit();
 

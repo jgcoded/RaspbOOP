@@ -25,5 +25,6 @@
 int main(int argc, char* argv[])
 {
 
+	raspboop::Init(raspboop::WIRING);
 
 }
