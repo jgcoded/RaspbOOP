@@ -32,7 +32,12 @@ namespace abstracts
 class GPIOConsumer
 {
 
+protected:
+
+	void ConsumePin(int Pin, int Mode);
+
 public:
+
     GPIOConsumer();
 
     void ReleasePins();

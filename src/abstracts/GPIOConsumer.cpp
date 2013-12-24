@@ -30,5 +30,9 @@ GPIOConsumer::GPIOConsumer()
 {
 }
 
+void GPIOConsumer::ConsumePin(int Pin, int Mode)
+{
+}
+
 } /* abstracts */
 } /* raspboop */
