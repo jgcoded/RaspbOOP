@@ -40,5 +40,9 @@ void Sensor::SetInputPin(int Pin)
 	ConsumePin(Pin, INPUT);
 }
 
+Sensor::~Sensor()
+{
+}
+
 } /* abstracts */
 } /* raspboop */
