@@ -5,41 +5,48 @@ project(Raspboop)
 set(RASPBOOP-BOT_VERSION_MAJOR 0)
 set(RASPBOOP-BOT_VERSION_MINOR 0)
 
-set(SRC_FILES_DIR ${CMAKE_SOURCE_DIR}/src/)
-set(INCLUDE_FILES_DIR ${CMAKE_SOURCE_DIR}/include/raspboop/)
-
-set(RASPBOOP-BOT_TARGET raspboop)
+set(RASPBOOP_TARGET raspboop)
 
 ####################################
 # Require wiringPi
 ####################################
-set(WIRINGPI wiringPi)
-add_library(${WIRINGPI} SHARED IMPORTED)
+
+find_library(WIRINGPI_DIR wiringPi)
+
+add_library(wiringPi SHARED IMPORTED)
 set_target_properties(${WIRINGPI} PROPERTIES IMPORTED_LOCATION
-  /usr/local/lib/libwiringPi.so)
+  ${WIRINGPI_DIR})
+  
+option(BUILD_SHARED_LIBS
+    "Build Raspboop as a shared library." ON)
 
-set(RASPBOOP-BOT_FILES
-  interfaces/GPIOConsumer
-  interfaces/Sensor
-  boards/L298N
-  sensors/HCSR04
-  sensors/HCSR501
-)
+option(RASPBOOP_BUILD_TESTS "Build the Raspboop tests " ON)
 
-# Append common header to INCLUDE_FILES
-list(APPEND INCLUDE_FILES ${INCLUDE_FILES_DIR}/Raspboop.h)
+# Unix setup
 
-foreach(raspboop_file ${RASPBOOP-BOT_FILES})
-  list(APPEND SOURCE_FILES ${SRC_FILES_DIR}/${raspboop_file}.cpp)
-  list(APPEND INCLUDE_FILES ${INCLUDE_FILES_DIR}/${raspboop_file}.h)
-endforeach()
-
+find_package(X11 REQUIRED)
 include_directories(
   ${X11_INCLUDE_DIR}
   ${X11_LIBRARIES_DIR}
+)
+
+set(RASPBOOP_LIBRARIES
+  ${X11_LIBRARIES}
+  wiringPi
+)
+
+# Raspboop include/lib paths
+
+include_directories(
   ${CMAKE_SOURCE_DIR}/include
-  )
+)
 
-add_library(${RASPBOOP-BOT_TARGET} STATIC ${SOURCE_FILES} ${INCLUDE_FILES})
+link_directories(${CMAKE_SOURCE_DIR}/include)
 
-target_link_libraries(${RASPBOOP-BOT_TARGET} ${X11_LIBRARIES} ${WIRINGPI})
+# Raspboop CMake Subdirectories
+
+add_subdirectory(src)
+
+if(RASPBOOP_BUILD_TESTS)
+  add_subdirectory(test)
+endif()
