@@ -46,6 +46,11 @@ public:
 
     virtual void Sense();
 
+    float GetDistance() const
+	{
+		return Distance;
+	}
+
     virtual void ReleasePins();
 
     static HCSR04* Create(int ECHO, int TRIG);
