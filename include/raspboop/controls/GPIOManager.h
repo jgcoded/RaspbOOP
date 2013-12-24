@@ -42,7 +42,7 @@ public:
 
 	GPIOManager();
 
-	int IsPinSet(int Pin);
+	int IsPinSet(int Pin) const;
 
 	~GPIOManager();
 
