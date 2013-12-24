@@ -22,6 +22,10 @@
 #ifndef RASPBOOP_H
 #define RASPBOOP_H
 
+/* System includes */
+#include <map>
+#include <vector>
+
 /* Dependency includes */
 #include <wiringPi.h>
 
@@ -33,4 +37,3 @@
 #include "raspboop/sensors/HCSR501.h"
 
 #endif /* RASPBOOP_H */
-
