@@ -38,7 +38,27 @@ HCSR04::HCSR04()
 HCSR04* HCSR04::Create(int ECHO, int TRIG)
 {
 
-	return NULL;
+	// Using the same pins. Should notify user
+	if(ECHO == TRIG)
+		return NULL;
+
+	HCSR04* H = (HCSR04*)malloc(sizeof(HCSR04));
+
+	// Not enough memory. Should notify user
+	if(H == NULL)
+		return NULL;
+
+	new(H) HCSR04;
+
+	H->EchoPin = ECHO;
+	H->TriggerPin = TRIG;
+
+	H->SetInputPin(ECHO);
+	H->SetOutputPin(TRIG);
+
+	digitalWrite(TRIG, LOW);
+
+	return H;
 }
 
 HCSR04::~HCSR04()
