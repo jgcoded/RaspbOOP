@@ -32,7 +32,7 @@ GPIOManager::GPIOManager()
 
 int GPIOManager::ReservePin(int Pin, int Mode)
 {
-	if(IsPinSet(Pin) != -1)
+	if(GPIO.count(Pin) != 0)
 		return -1;
 
 	GPIO.insert(std::pair<int, int>(Pin, Mode));
