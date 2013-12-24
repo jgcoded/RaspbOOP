@@ -11,11 +11,7 @@ set(RASPBOOP_TARGET raspboop)
 # Require wiringPi
 ####################################
 
-find_library(WIRINGPI_DIR wiringPi)
-
-add_library(wiringPi SHARED IMPORTED)
-set_target_properties(${WIRINGPI} PROPERTIES IMPORTED_LOCATION
-  ${WIRINGPI_DIR})
+find_library(WIRINGPI wiringPi)
   
 option(BUILD_SHARED_LIBS
     "Build Raspboop as a shared library." ON)
@@ -32,7 +28,7 @@ include_directories(
 
 set(RASPBOOP_LIBRARIES
   ${X11_LIBRARIES}
-  wiringPi
+  ${WIRINGPI}
 )
 
 # Raspboop include/lib paths

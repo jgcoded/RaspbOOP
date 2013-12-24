@@ -8,5 +8,5 @@ set(TESTS
 
 foreach(test ${TESTS})
   add_executable(${test} ${test}.cpp)
-  target_link_libraries(${test} raspboop)
+  target_link_libraries(${test} raspboop ${RASPBOOP_LIBRARIES})
 endforeach(test)

@@ -23,3 +23,4 @@ foreach(module ${MODULES})
 endforeach(module)
 
 add_library(raspboop ${MODULES} ${HEADERS})
+target_link_libraries(raspboop ${RASPBOOP_LIBRARIES})
