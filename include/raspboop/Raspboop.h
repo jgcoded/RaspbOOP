@@ -33,6 +33,7 @@ using std::map;
 #include <wiringPi.h>
 
 /* Raspboop source */
+#include "raspboop/essentials/Core.h"
 #include "raspboop/abstracts/GPIOConsumer.h"
 #include "raspboop/abstracts/Sensor.h"
 #include "raspboop/boards/L298N.h"

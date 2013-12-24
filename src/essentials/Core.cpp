@@ -24,12 +24,35 @@
 namespace raspboop
 {
 
-int Init()
+int Init(PinScheme Scheme)
 {
+
+	// Setup wiringPi
+	switch(Scheme)
+	{
+		case GPIO:
+			wiringPiSetupGpio();
+		break;
+
+		case PHYS:
+			wiringPiSetupPhys();
+		break;
+
+		case SYS:
+			wiringPiSetupSys();
+		break;
+
+		default:
+			wiringPiSetup();
+	}
+
+	return 1;
 }
 
 int Deinit()
 {
+	/* nothing to deinit so far */
+	return 1;
 }
 
 } /* raspboop */

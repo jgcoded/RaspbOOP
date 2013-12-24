@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 2.8)
 # Raspboop Modules
 
 set(MODULES
+  essentials/Core
   boards/L298N
   abstracts/GPIOConsumer
   abstracts/Sensor

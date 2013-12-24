@@ -27,7 +27,15 @@
 namespace raspboop
 {
 
-int Init();
+enum PinScheme
+{
+	WIRING = 0,
+	GPIO = 1,
+	PHYS = 2,
+	SYS = 3
+};
+
+int Init(PinScheme Scheme);
 
 int Deinit();
 
