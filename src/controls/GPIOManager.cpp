@@ -30,6 +30,14 @@ GPIOManager::GPIOManager()
 {
 }
 
+void GPIOManager::ReservePin(int Pin, int Mode)
+{
+}
+
+int IsPinSet(int Pin)
+{
+}
+
 GPIOManager::~GPIOManager()
 {
 }
