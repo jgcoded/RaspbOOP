@@ -32,6 +32,10 @@ namespace sensors
 class HCSR04 : public raspboop::abstracts::Sensor
 {
 
+	int EchoPin;
+
+	int TriggerPin;
+
 public:
 
     HCSR04();
@@ -39,6 +43,8 @@ public:
     virtual void ReadValue();
 
     virtual void ReleasePins();
+
+    static HCSR04* Create(int ECHO, int TRIG);
 
     ~HCSR04();
 
