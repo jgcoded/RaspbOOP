@@ -30,9 +30,5 @@ GPIOConsumer::GPIOConsumer()
 {
 }
 
-GPIOConsumer::~GPIOConsumer()
-{
-}
-
 } /* abstracts */
 } /* raspboop */

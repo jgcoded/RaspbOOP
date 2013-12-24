@@ -34,7 +34,8 @@ class GPIOConsumer
 
 public:
     GPIOConsumer();
-    ~GPIOConsumer();
+    
+    virtual ~GPIOConsumer()=0;
 
 }; /* GPIOConsumer */
 
