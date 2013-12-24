@@ -28,6 +28,8 @@ namespace sensors
 
 HCSR04::HCSR04()
 {
+	EchoPin = -1;
+	TriggerPin = -1;
 }
 
 HCSR04::~HCSR04()
