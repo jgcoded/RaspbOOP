@@ -34,6 +34,8 @@ class GPIOConsumer
 
 public:
     GPIOConsumer();
+
+    void ReleasePins();
     
     virtual ~GPIOConsumer()=0;
 
