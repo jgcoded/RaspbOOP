@@ -30,8 +30,8 @@
 #include <wiringPi.h>
 
 /* Raspboop source */
-#include "raspboop/interfaces/GPIOConsumer.h"
-#include "raspboop/interfaces/Sensor.h"
+#include "raspboop/abstracts/GPIOConsumer.h"
+#include "raspboop/abstracts/Sensor.h"
 #include "raspboop/boards/L298N.h"
 #include "raspboop/sensors/HCSR04.h"
 #include "raspboop/sensors/HCSR501.h"

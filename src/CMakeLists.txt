@@ -6,8 +6,8 @@ cmake_minimum_required(VERSION 2.8)
 
 set(MODULES
   boards/L298N
-  interfaces/GPIOConsumer
-  interfaces/Sensor
+  abstracts/GPIOConsumer
+  abstracts/Sensor
   sensors/HCSR04
   sensors/HCSR501
 )

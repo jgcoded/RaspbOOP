@@ -19,26 +19,20 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * */
 
-#ifndef RASPBOOP_INTERFACES_SENSOR_H
-#define RASPBOOP_INTERFACES_SENSOR_H
-
 #include "raspboop/Raspboop.h"
 
 namespace raspboop
 {
-namespace interfaces
+namespace abstracts
 {
 
-class Sensor : public GPIOConsumer
+Sensor::Sensor()
 {
+}
 
-public:
-    Sensor();
-    ~Sensor();
+Sensor::~Sensor()
+{
+}
 
-}; /* Sensor */
-
-} /* interfaces */
+} /* abstracts */
 } /* raspboop */
-
-#endif /* RASPBOOP_INTERFACES_SENSOR_H */

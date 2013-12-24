@@ -29,7 +29,7 @@ namespace raspboop
 namespace sensors
 {
 
-class HCSR04 : public raspboop::interfaces::Sensor
+class HCSR04 : public raspboop::abstracts::Sensor
 {
 
 public:
