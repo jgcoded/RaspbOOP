@@ -34,8 +34,12 @@ void GPIOManager::ReservePin(int Pin, int Mode)
 {
 }
 
-int IsPinSet(int Pin)
+int GPIOManager::IsPinSet(int Pin)
 {
+	if(GPIO.count(Pin) == 0)
+		return -1;
+
+	return GPIO[Pin];
 }
 
 GPIOManager::~GPIOManager()
