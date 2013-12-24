@@ -32,6 +32,8 @@ namespace controls
 class GPIOManager
 {
 
+	friend class GPIOConsumer;
+
 	map<int, int> GPIO;
 
 	void ReservePin(int Pin, int Mode);
