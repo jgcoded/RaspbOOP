@@ -32,22 +32,32 @@ int main(int argc, char* argv[])
 #define TRIG 4
 #define ECHO 5
 
-	raspboop::Init(raspboop::WIRING);
+    raspboop::Init(raspboop::WIRING);
 
-	HCSR04* DistanceSensor = HCSR04::Create(ECHO, TRIG);
-	HCSR501* InfraredSensor = HCSR501::Create(SIG);
+    bool ShouldRun = true;
+    HCSR04* DistanceSensor = HCSR04::Create(ECHO, TRIG);
+    HCSR501* InfraredSensor = HCSR501::Create(SIG);
 
-	while(true)
-	{
+    while(ShouldRun)
+    {
 
-		InfraredSensor->Sense();
-		DistanceSensor->Sense();
+        InfraredSensor->Sense();
+        DistanceSensor->Sense();
 
-		printf("Motion Detected: %d", InfraredSensor->IsSignalled());
-		printf("Distance: %0.2f cm", DistanceSensor->GetDistance());
+        int Motion = InfraredSensor->IsSignalled();
+        float Distance = DistanceSensor->GetDistance();
 
-		delay(1000);
-	}
+        printf("Motion Detected: %d", Motion);
+        printf("Distance: %0.2f centimeters", Distance);
 
-	return 0;
+        if(Distance < 20.0f)
+            ShouldRun = false;
+        else
+            delay(1000);
+    }
+
+    delete InfraredSensor;
+    delete DistanceSensor;
+
+    return 0;
 }
