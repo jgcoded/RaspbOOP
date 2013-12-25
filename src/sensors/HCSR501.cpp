@@ -28,6 +28,7 @@ namespace sensors
 
 HCSR501::HCSR501()
 {
+	SignalPin = -1;
 }
 
 HCSR501* HCSR501::Create(int SIGNAL)
