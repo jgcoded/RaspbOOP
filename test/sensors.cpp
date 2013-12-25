@@ -22,9 +22,32 @@
 #include <stdio.h>
 #include <raspboop/Raspboop.h>
 
+using raspboop::HCSR04;
+using raspboop::HCSR501;
+
 int main(int argc, char* argv[])
 {
 
+#define SIG 6
+#define TRIG 4
+#define ECHO 5
+
 	raspboop::Init(raspboop::WIRING);
 
+	HCSR04* DistanceSensor = HCSR04::Create(ECHO, TRIG);
+	HCSR501* InfraredSensor = HCSR501::Create(SIG);
+
+	while(true)
+	{
+
+		InfraredSensor->Sense();
+		DistanceSensor->Sense();
+
+		printf("Motion Detected: %d", InfraredSensor->IsSignalled());
+		printf("Distance: %0.2f cm", DistanceSensor->GetDistance());
+
+		delay(1000);
+	}
+
+	return 0;
 }
