@@ -33,12 +33,15 @@ class HCSR501 : public raspboop::abstracts::Sensor
 {
 
 	int SignalPin;
+	bool IsSignalled;
 
 public:
 
 	HCSR501();
 
 	static HCSR501* Create(int SIGNAL);
+
+	virtual void Sense();
 
 	virtual void ReleasePins();
 
