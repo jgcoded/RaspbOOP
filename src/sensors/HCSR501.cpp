@@ -48,6 +48,10 @@ HCSR501* HCSR501::Create(int SIGNAL)
 	return H;
 }
 
+void HCSR501::ReleasePins()
+{
+}
+
 HCSR501::~HCSR501()
 {
 }

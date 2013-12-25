@@ -40,6 +40,8 @@ public:
 
 	static HCSR501* Create(int SIGNAL);
 
+	virtual void ReleasePins();
+
 	~HCSR501();
 
 }; /* HCSR501 */
