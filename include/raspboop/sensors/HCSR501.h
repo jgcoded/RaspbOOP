@@ -32,8 +32,14 @@ namespace sensors
 class HCSR501 : public raspboop::abstracts::Sensor
 {
 
+	int SignalPin;
+
 public:
+
 	HCSR501();
+
+	static HCSR501* Create(int SIGNAL);
+
 	~HCSR501();
 
 }; /* HCSR501 */

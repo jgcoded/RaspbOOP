@@ -30,6 +30,10 @@ HCSR501::HCSR501()
 {
 }
 
+HCSR501* HCSR501::Create(int SIGNAL)
+{
+}
+
 HCSR501::~HCSR501()
 {
 }
