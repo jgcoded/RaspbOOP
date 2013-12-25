@@ -33,7 +33,7 @@ class HCSR501 : public raspboop::abstracts::Sensor
 {
 
 	int SignalPin;
-	bool IsSignalled;
+	bool Signalled;
 
 public:
 
@@ -44,6 +44,11 @@ public:
 	virtual void Sense();
 
 	virtual void ReleasePins();
+
+	bool IsSignalled() const
+	{
+		return IsSignalled();
+	}
 
 	~HCSR501();
 

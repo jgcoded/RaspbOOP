@@ -29,7 +29,7 @@ namespace sensors
 HCSR501::HCSR501()
 {
 	SignalPin = -1;
-	IsSignalled = false;
+	Signalled = false;
 }
 
 HCSR501* HCSR501::Create(int SIGNAL)
@@ -51,7 +51,7 @@ HCSR501* HCSR501::Create(int SIGNAL)
 
 void HCSR501::Sense()
 {
-	IsSignalled = digitalRead(SignalPin);
+	Signalled = digitalRead(SignalPin);
 }
 
 void HCSR501::ReleasePins()
