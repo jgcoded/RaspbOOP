@@ -1,7 +1,9 @@
 RaspbOOP-Bot
 ===========
 
-A Raspberry Pi powered robot library with a code base dedicated to employing Object oriented programming practices geared towards abstracting electronic components, boards, and sensors - anything that can be interfaced through the Raspberry Pi's GPIO pins.
+A Raspberry Pi powered robot library with a code base dedicated to employing Object oriented programming practices geared towards abstracting electronic components, boards, and sensors - anything that can be interfaced through the Raspberry Pi's GPIO pins. 
+
+Raspboop takes advantage of, and abstracts over, the amazing [WiringPi library](http://www.wiringpi.com) for its ease of use and stability.
 
 
 An Example
@@ -55,8 +57,8 @@ int main(int argc, char* argv[])
 Building & Contributing
 =======================
 
-RaspbOOP-Bot uses _CMake_ to generate the necessary build files. You can also generate build files for your preferred IDE/Compiler.
+RaspbOOP-Bot uses **CMake** to generate the necessary build files. You can also generate build files for your preferred IDE/Compiler.
 
-You will also need a _Raspberry Pi_, although it is recommended to develop on your preferred *nix platform, and then test new code on the Raspberry Pi.
+You will also need a **Raspberry Pi**, although it is recommended to develop on your preferred *nix platform, and then test new code on the Raspberry Pi.
 
-You will also need git.
+You will also need **git**.
