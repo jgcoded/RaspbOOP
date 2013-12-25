@@ -23,8 +23,6 @@
 
 namespace raspboop
 {
-namespace abstracts
-{
 
 Sensor::Sensor()
 {
@@ -44,5 +42,4 @@ Sensor::~Sensor()
 {
 }
 
-} /* abstracts */
 } /* raspboop */

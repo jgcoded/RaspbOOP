@@ -26,8 +26,6 @@
 
 namespace raspboop
 {
-namespace abstracts
-{
 
 class Sensor : public GPIOConsumer
 {
@@ -48,7 +46,6 @@ public:
 
 }; /* Sensor */
 
-} /* abstracts */
 } /* raspboop */
 
 #endif /* RASPBOOP_INTERFACES_SENSOR_H */

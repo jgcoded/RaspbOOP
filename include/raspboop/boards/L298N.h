@@ -26,8 +26,6 @@
 
 namespace raspboop
 {
-namespace boards
-{
 
 /* *
  * There are many variations of this board. A form of accepting
@@ -42,8 +40,6 @@ public:
 
 }; /* L298N */
 
-} /* boards */
 } /* raspboop */
-
 
 #endif /* RASPBOOP_BOARDS_L298N */

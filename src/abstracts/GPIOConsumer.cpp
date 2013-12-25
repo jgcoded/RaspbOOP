@@ -23,8 +23,6 @@
 
 namespace raspboop
 {
-namespace abstracts
-{
 
 GPIOConsumer::GPIOConsumer()
 {
@@ -39,5 +37,4 @@ GPIOConsumer::~GPIOConsumer()
 {
 }
 
-} /* abstracts */
 } /* raspboop */

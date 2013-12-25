@@ -26,8 +26,6 @@
 
 namespace raspboop
 {
-namespace controls
-{
 
 class GPIOManager
 {
@@ -46,7 +44,6 @@ public:
 
 }; /* GPIOManager */
 
-} /* controls */
 } /* raspboop */
 
 #endif /* RASPBOOP_CONTROLS_GPIOMANAGER_H */

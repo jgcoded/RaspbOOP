@@ -26,10 +26,8 @@
 
 namespace raspboop
 {
-namespace sensors
-{
 
-class HCSR501 : public raspboop::abstracts::Sensor
+class HCSR501 : public Sensor
 {
 
 	int SignalPin;
@@ -47,14 +45,13 @@ public:
 
 	bool IsSignalled() const
 	{
-		return IsSignalled();
+		return Signalled;
 	}
 
 	~HCSR501();
 
 }; /* HCSR501 */
 
-} /* sensors */
 } /* raspboop */
 
 #endif /* RASPBOOP_SENSORS_HCSR501_H */

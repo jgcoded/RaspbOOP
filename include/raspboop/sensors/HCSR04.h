@@ -19,17 +19,15 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 * */
 
-#ifndef RASPBOOP_SENSORS_HCSR04
-#define RASPBOOP_SENSORS_HCSR04
+#ifndef RASPBOOP_SENSORS_HCSR04_H
+#define RASPBOOP_SENSORS_HCSR04_H
 
 #include "raspboop/Raspboop.h"
 
 namespace raspboop
 {
-namespace sensors
-{
 
-class HCSR04 : public raspboop::abstracts::Sensor
+class HCSR04 : public Sensor
 {
 
 	int EchoPin;
@@ -57,8 +55,6 @@ public:
 
 };
 
-} /* sensors */
 } /* raspboop */
 
-
-#endif /* RASPBOOP_SENSORS_HCSR04 */
+#endif /* RASPBOOP_SENSORS_HCSR04_H */

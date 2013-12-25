@@ -23,8 +23,6 @@
 
 namespace raspboop
 {
-namespace controls
-{
 
 GPIOManager::GPIOManager()
 {
@@ -52,5 +50,4 @@ GPIOManager::~GPIOManager()
 {
 }
 
-} /* controls */
 } /* raspboop */

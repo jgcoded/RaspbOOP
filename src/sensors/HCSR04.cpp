@@ -23,8 +23,6 @@
 
 namespace raspboop
 {
-namespace sensors
-{
 
 HCSR04::HCSR04()
 {
@@ -92,5 +90,4 @@ HCSR04::~HCSR04()
 {
 }
 
-} /* sensors */
 } /* raspboop */

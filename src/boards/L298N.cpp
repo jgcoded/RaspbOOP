@@ -23,9 +23,6 @@
 
 namespace raspboop
 {
-namespace boards
-{
-
 
 L298N::L298N()
 {
@@ -35,5 +32,4 @@ L298N::~L298N()
 {
 }
 
-} /* boards */
 } /* raspboop */
