@@ -47,8 +47,8 @@ int main(int argc, char* argv[])
         int Motion = InfraredSensor->IsSignalled();
         float Distance = DistanceSensor->GetDistance();
 
-        printf("Motion Detected: %d", Motion);
-        printf("Distance: %0.2f centimeters", Distance);
+        printf("Motion Detected: %d\n", Motion);
+        printf("Distance: %0.2f centimeters\n\n", Distance);
 
         if(Distance < 20.0f)
             ShouldRun = false;
