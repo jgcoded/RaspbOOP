@@ -31,7 +31,7 @@ namespace raspboop
  * There are many variations of this board. A form of accepting
  * these differences will be applied to this class.
  * */
-class L298N
+class L298N : public GPIOConsumer
 {
 
 public:
