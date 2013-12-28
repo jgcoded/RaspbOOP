@@ -57,8 +57,15 @@ void L298N::UseSoftPWM()
 			// error occurred
 			printf("Software PWM creation error: %d\n", errno);
 		}
-
 	}
+}
+
+void L298N::SetPWMValue(int IN, int Value)
+{
+}
+
+void L298N::SetPinValue(int IN, int Value)
+{
 }
 
 void L298N::ReleasePins()

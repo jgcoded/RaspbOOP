@@ -44,6 +44,10 @@ public:
 
 	void UseSoftPWM();
 
+	void SetPWMValue(int IN, int Value);
+
+	void SetPinValue(int IN, int Value);
+
 	virtual void ReleasePins();
 
 	~L298N();
