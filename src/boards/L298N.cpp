@@ -28,6 +28,10 @@ L298N::L298N()
 {
 }
 
+L298N* L298N::Create(int IN1, int IN2, int IN3, int IN4)
+{
+}
+
 void L298N::ReleasePins()
 {
 }
