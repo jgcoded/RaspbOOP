@@ -34,6 +34,8 @@ namespace raspboop
 class L298N : public GPIOConsumer
 {
 
+	int Pins[4];
+
 public:
 
 	L298N();

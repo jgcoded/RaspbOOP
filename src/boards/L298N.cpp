@@ -30,6 +30,24 @@ L298N::L298N()
 
 L298N* L298N::Create(int IN1, int IN2, int IN3, int IN4)
 {
+
+	L298N* L = (L298N*)malloc(sizeof(L298N));
+
+	// Not enough memory. Should notify user
+	if(L == NULL)
+		return NULL;
+
+	L->Pins[0] = IN1;
+	L->Pins[1] = IN2;
+	L->Pins[3] = IN3;
+	L->Pins[4] = IN4;
+
+	ConsumePin(IN1, OUTPUT);
+	ConsumePin(IN2, OUTPUT);
+	ConsumePin(IN3, OUTPUT);
+	ConsumePin(IN4, OUTPUT);
+
+	return L;
 }
 
 void L298N::ReleasePins()
