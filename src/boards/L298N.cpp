@@ -52,6 +52,8 @@ L298N* L298N::Create(int IN1, int IN2, int IN3, int IN4)
 
 void L298N::ReleasePins()
 {
+	for(int i = 0; i < 4; ++i)
+		digitalWrite(Pins[i], LOW);
 }
 
 L298N::~L298N()
