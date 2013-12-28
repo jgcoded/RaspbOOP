@@ -27,11 +27,13 @@
 #include <vector>
 #include <cstdlib>
 #include <pthread.h>
+#include <errno.h>
 
 using std::map;
 
 /* Dependency includes */
 #include <wiringPi.h>
+#include <softPwm.h>
 
 /* Raspboop source */
 #include "raspboop/essentials/Core.h"
