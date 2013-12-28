@@ -55,7 +55,7 @@ void L298N::UseSoftPWM()
 	for(int i = 0; i < 4; ++i) {
 		if(softPwmCreate(Pins[i], 0, 100) != 0) {
 			// error occurred
-			
+			printf("Software PWM creation error: %d\n", errno);
 		}
 
 	}
