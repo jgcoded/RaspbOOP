@@ -35,7 +35,11 @@ class L298N : public GPIOConsumer
 {
 
 public:
+
 	L298N();
+
+	virtual void ReleasePins();
+
 	~L298N();
 
 }; /* L298N */
