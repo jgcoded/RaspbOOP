@@ -50,6 +50,17 @@ L298N* L298N::Create(int IN1, int IN2, int IN3, int IN4)
 	return L;
 }
 
+void L298N::UseSoftPWM()
+{
+	for(int i = 0; i < 4; ++i) {
+		if(softPwmCreate(Pins[i], 0, 100) != 0) {
+			// error occurred
+			
+		}
+
+	}
+}
+
 void L298N::ReleasePins()
 {
 	for(int i = 0; i < 4; ++i)

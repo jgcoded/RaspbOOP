@@ -42,6 +42,8 @@ public:
 
 	static L298N* Create(int IN1, int IN2, int IN3, int IN4);
 
+	void UseSoftPWM();
+
 	virtual void ReleasePins();
 
 	~L298N();
