@@ -29,6 +29,7 @@ include_directories(
 set(RASPBOOP_LIBRARIES
   ${X11_LIBRARIES}
   ${WIRINGPI}
+  pthread
 )
 
 # Raspboop include/lib paths
