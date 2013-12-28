@@ -28,6 +28,10 @@ L298N::L298N()
 {
 }
 
+void L298N::ReleasePins()
+{
+}
+
 L298N::~L298N()
 {
 }
