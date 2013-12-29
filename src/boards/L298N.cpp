@@ -73,6 +73,12 @@ void L298N::SetPWMValue(int IN, int Value)
 
 void L298N::SetPinValue(int IN, int Value)
 {
+	if(IN < 1 || IN > 4)
+		return;
+
+	int index = IN -1;
+
+	digitalWrite(Pins[index], Value);
 }
 
 void L298N::ReleasePins()
