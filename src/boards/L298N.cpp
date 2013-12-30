@@ -39,8 +39,8 @@ L298N* L298N::Create(int IN1, int IN2, int IN3, int IN4)
 
 	L->Pins[0] = IN1;
 	L->Pins[1] = IN2;
-	L->Pins[3] = IN3;
-	L->Pins[4] = IN4;
+	L->Pins[2] = IN3;
+	L->Pins[3] = IN4;
 
 	L->ConsumePin(IN1, OUTPUT);
 	L->ConsumePin(IN2, OUTPUT);
