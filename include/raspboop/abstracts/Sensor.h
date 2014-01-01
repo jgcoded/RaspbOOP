@@ -78,7 +78,7 @@ public:
      */
     virtual void Sense()=0;
 
-    ~Sensor()=0;
+    virtual ~Sensor()=0;
 
 }; /* Sensor */
 
