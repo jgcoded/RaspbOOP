@@ -5,6 +5,10 @@ A Raspberry Pi powered robot library with a code base dedicated to employing Obj
 
 Raspboop takes advantage of, and abstracts over, the amazing [WiringPi library](http://www.wiringpi.com) for its ease of use and stability.
 
+Documentation
+-------------
+
+An integral part of Raspboop is documentation. [Checkout out this doc page](http://jgcoded.github.io/RaspbOOP-Bot/doc/html/classraspboop_1_1HCSR04.html#details) to get an idea of how Raspboop will make developing with sensors, boards, or any peripheral device that much easier.
 
 An Example
 ==========
