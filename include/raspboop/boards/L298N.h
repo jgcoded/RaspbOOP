@@ -41,7 +41,7 @@ namespace raspboop
  * 		- If the voltage in the 12V terminal is greater than 12V,
  *		  then you can use the 5V terminal as a power source.
  *
- *            Stat           | Value
+ *     Quick Stats           | Value
  *---------------------------|-----------
  * Maximum input voltage     | **46V**
  * Continuous output current | **2 Amps**
