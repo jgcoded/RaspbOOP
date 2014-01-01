@@ -1,0 +1,99 @@
+\hypertarget{classraspboop_1_1Sensor}{\section{raspboop\-:\-:Sensor Class Reference}
+\label{classraspboop_1_1Sensor}\index{raspboop\-::\-Sensor@{raspboop\-::\-Sensor}}
+}
+
+
+An abstract class for devices that can interface with the world.  
+
+
+
+
+{\ttfamily \#include $<$Sensor.\-h$>$}
+
+Inheritance diagram for raspboop\-:\-:Sensor\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classraspboop_1_1Sensor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classraspboop_1_1Sensor_ab854a10682373803a310c078bb71aacf}{Sense} ()=0
+\begin{DoxyCompactList}\small\item\em Performs the sensor's sensing operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classraspboop_1_1Sensor_a893f7ad09018028fdb9e10f0bcbeccf9}{Set\-Output\-Pin} (int Pin)
+\begin{DoxyCompactList}\small\item\em Set an output pin for the sensor. \end{DoxyCompactList}\item 
+void \hyperlink{classraspboop_1_1Sensor_ad0b3f0fa153803108613e3c3da574571}{Set\-Input\-Pin} (int Pin)
+\begin{DoxyCompactList}\small\item\em Set an input pin for the sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An abstract class for devices that can interface with the world. 
+
+Sensors can sense the world and provide valuable data about the state of the current environment.
+
+Most sensors require an output, or a trigger, G\-P\-I\-O pin that tells the sensor when to sense. An example of this type of sensor is the \hyperlink{classraspboop_1_1HCSR04}{H\-C\-S\-R04} ultrasonic distance sensor. However, there are sensors that persistently report its value back to a G\-P\-I\-O pin. An example of this type of sensor is the \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} passive infrared sensor.
+
+In both cases, there is a need for either an output pin and/or an input pin. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classraspboop_1_1Sensor_ab854a10682373803a310c078bb71aacf}{\index{raspboop\-::\-Sensor@{raspboop\-::\-Sensor}!Sense@{Sense}}
+\index{Sense@{Sense}!raspboop::Sensor@{raspboop\-::\-Sensor}}
+\subsubsection[{Sense}]{\setlength{\rightskip}{0pt plus 5cm}virtual void raspboop\-::\-Sensor\-::\-Sense (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classraspboop_1_1Sensor_ab854a10682373803a310c078bb71aacf}
+
+
+Performs the sensor's sensing operation. 
+
+This method will retrieve a value from the environment by performing G\-P\-I\-O operations on the input and output pins of the sensor. The value from the sensor will be available through an accessor method. 
+
+Implemented in \hyperlink{classraspboop_1_1HCSR04_ab25ac4ca02a3a3e3b00d0df95c58f447}{raspboop\-::\-H\-C\-S\-R04}, and \hyperlink{classraspboop_1_1HCSR501_ade0ae21c1bda3dabec68e0476d92520a}{raspboop\-::\-H\-C\-S\-R501}.
+
+\hypertarget{classraspboop_1_1Sensor_ad0b3f0fa153803108613e3c3da574571}{\index{raspboop\-::\-Sensor@{raspboop\-::\-Sensor}!Set\-Input\-Pin@{Set\-Input\-Pin}}
+\index{Set\-Input\-Pin@{Set\-Input\-Pin}!raspboop::Sensor@{raspboop\-::\-Sensor}}
+\subsubsection[{Set\-Input\-Pin}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-Sensor\-::\-Set\-Input\-Pin (
+\begin{DoxyParamCaption}
+\item[{int}]{Pin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classraspboop_1_1Sensor_ad0b3f0fa153803108613e3c3da574571}
+
+
+Set an input pin for the sensor. 
+
+Consumes a pin to be designated as an input. This is usually the pin that will be receiving data from the sensor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Pin} & The pin to designate as in input \\
+\hline
+\end{DoxyParams}
+\hypertarget{classraspboop_1_1Sensor_a893f7ad09018028fdb9e10f0bcbeccf9}{\index{raspboop\-::\-Sensor@{raspboop\-::\-Sensor}!Set\-Output\-Pin@{Set\-Output\-Pin}}
+\index{Set\-Output\-Pin@{Set\-Output\-Pin}!raspboop::Sensor@{raspboop\-::\-Sensor}}
+\subsubsection[{Set\-Output\-Pin}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-Sensor\-::\-Set\-Output\-Pin (
+\begin{DoxyParamCaption}
+\item[{int}]{Pin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classraspboop_1_1Sensor_a893f7ad09018028fdb9e10f0bcbeccf9}
+
+
+Set an output pin for the sensor. 
+
+Consumes a pin to be designated as an output. This is usually the pin that triggers sensing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Pin} & The pin to designate as an output \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/abstracts/Sensor.\-h\item 
+src/abstracts/Sensor.\-cpp\end{DoxyCompactItemize}

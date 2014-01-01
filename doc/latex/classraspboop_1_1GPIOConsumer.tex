@@ -1,0 +1,77 @@
+\hypertarget{classraspboop_1_1GPIOConsumer}{\section{raspboop\-:\-:G\-P\-I\-O\-Consumer Class Reference}
+\label{classraspboop_1_1GPIOConsumer}\index{raspboop\-::\-G\-P\-I\-O\-Consumer@{raspboop\-::\-G\-P\-I\-O\-Consumer}}
+}
+
+
+Abstract class for all G\-P\-I\-O pin utilizers.  
+
+
+
+
+{\ttfamily \#include $<$G\-P\-I\-O\-Consumer.\-h$>$}
+
+Inheritance diagram for raspboop\-:\-:G\-P\-I\-O\-Consumer\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classraspboop_1_1GPIOConsumer}
+\end{center}
+\end{figure}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classraspboop_1_1GPIOConsumer_a066938a39a4f34ed2cfee05a593008e6}{Consume\-Pin} (int Pin, int Mode) const 
+\begin{DoxyCompactList}\small\item\em Reserves a pin and sets its mode. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classraspboop_1_1GPIOConsumer_a97b06b9afddfb338fb87cb7338c910de}{Release\-Pins} ()=0
+\begin{DoxyCompactList}\small\item\em Sets the mode of all pins to an inactive state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstract class for all G\-P\-I\-O pin utilizers. 
+
+If a class will interface with the Raspberry Pi's G\-P\-I\-O pins, then it must inherit from this class. This is to ensure that all children will be forced to use the {\ttfamily \hyperlink{classraspboop_1_1GPIOConsumer_a97b06b9afddfb338fb87cb7338c910de}{Release\-Pins()}} method, which sets the value of any active pins to an inactive state.
+
+Also, the {\ttfamily \hyperlink{classraspboop_1_1GPIOConsumer_a066938a39a4f34ed2cfee05a593008e6}{Consume\-Pin()}} method provides a layer of abstraction over the wiring\-Pi {\ttfamily pin\-Mode()} method. In the future, this method will be a friend of the \hyperlink{classraspboop_1_1GPIOManager}{G\-P\-I\-O\-Manager} class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classraspboop_1_1GPIOConsumer_a066938a39a4f34ed2cfee05a593008e6}{\index{raspboop\-::\-G\-P\-I\-O\-Consumer@{raspboop\-::\-G\-P\-I\-O\-Consumer}!Consume\-Pin@{Consume\-Pin}}
+\index{Consume\-Pin@{Consume\-Pin}!raspboop::GPIOConsumer@{raspboop\-::\-G\-P\-I\-O\-Consumer}}
+\subsubsection[{Consume\-Pin}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-G\-P\-I\-O\-Consumer\-::\-Consume\-Pin (
+\begin{DoxyParamCaption}
+\item[{int}]{Pin, }
+\item[{int}]{Mode}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}}}\label{classraspboop_1_1GPIOConsumer_a066938a39a4f34ed2cfee05a593008e6}
+
+
+Reserves a pin and sets its mode. 
+
+Uses wiring\-Pi's {\itshape pin\-Mode()} method to set the value of the {\itshape Pin} to the {\itshape Mode} parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Pin} & the G\-P\-I\-O pin to set \\
+\hline
+{\em Mode} & The Mode the Pin will be set to \\
+\hline
+\end{DoxyParams}
+\hypertarget{classraspboop_1_1GPIOConsumer_a97b06b9afddfb338fb87cb7338c910de}{\index{raspboop\-::\-G\-P\-I\-O\-Consumer@{raspboop\-::\-G\-P\-I\-O\-Consumer}!Release\-Pins@{Release\-Pins}}
+\index{Release\-Pins@{Release\-Pins}!raspboop::GPIOConsumer@{raspboop\-::\-G\-P\-I\-O\-Consumer}}
+\subsubsection[{Release\-Pins}]{\setlength{\rightskip}{0pt plus 5cm}virtual void raspboop\-::\-G\-P\-I\-O\-Consumer\-::\-Release\-Pins (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{classraspboop_1_1GPIOConsumer_a97b06b9afddfb338fb87cb7338c910de}
+
+
+Sets the mode of all pins to an inactive state. 
+
+All children must call this method when it becomes out of scope, preferably in the destructor. This is necessary so that there are never any G\-P\-I\-O pins unnecessarily set to {\itshape H\-I\-G\-H} 
+
+Implemented in \hyperlink{classraspboop_1_1HCSR04_a194e41e6234c6c81bb9b022dc16b98ac}{raspboop\-::\-H\-C\-S\-R04}, \hyperlink{classraspboop_1_1L298N_a5ed5847ed8db5835fbf5e4f960a374e9}{raspboop\-::\-L298\-N}, and \hyperlink{classraspboop_1_1HCSR501_aa8609b3c9529ff3863d47010fc9e78d0}{raspboop\-::\-H\-C\-S\-R501}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/abstracts/G\-P\-I\-O\-Consumer.\-h\item 
+src/abstracts/G\-P\-I\-O\-Consumer.\-cpp\end{DoxyCompactItemize}

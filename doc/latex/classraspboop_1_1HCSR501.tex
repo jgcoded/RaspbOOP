@@ -1,0 +1,166 @@
+\hypertarget{classraspboop_1_1HCSR501}{\section{raspboop\-:\-:H\-C\-S\-R501 Class Reference}
+\label{classraspboop_1_1HCSR501}\index{raspboop\-::\-H\-C\-S\-R501@{raspboop\-::\-H\-C\-S\-R501}}
+}
+
+
+Passive infrared sensor for motion detection.  
+
+
+
+
+{\ttfamily \#include $<$H\-C\-S\-R501.\-h$>$}
+
+Inheritance diagram for raspboop\-:\-:H\-C\-S\-R501\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classraspboop_1_1HCSR501}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classraspboop_1_1HCSR501_aeb198c632522d10e5319184ac85c303e}{H\-C\-S\-R501} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} Constructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classraspboop_1_1HCSR501_ade0ae21c1bda3dabec68e0476d92520a}{Sense} ()
+\begin{DoxyCompactList}\small\item\em Performs the sensor's sensing operation. \end{DoxyCompactList}\item 
+bool \hyperlink{classraspboop_1_1HCSR501_a06f7b6c117ee5acf76592a3f89159a3e}{Is\-Signalled} () const 
+\begin{DoxyCompactList}\small\item\em Get the value obtained from \hyperlink{classraspboop_1_1HCSR501_ade0ae21c1bda3dabec68e0476d92520a}{Sense()} \end{DoxyCompactList}\item 
+\hypertarget{classraspboop_1_1HCSR501_a8a25051cf0c8ae1700b933419749366d}{\hyperlink{classraspboop_1_1HCSR501_a8a25051cf0c8ae1700b933419749366d}{$\sim$\-H\-C\-S\-R501} ()}\label{classraspboop_1_1HCSR501_a8a25051cf0c8ae1700b933419749366d}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} $\ast$ \hyperlink{classraspboop_1_1HCSR501_ad2a07d3f130362206c5fbcce92d41294}{Create} (int S\-I\-G\-N\-A\-L)
+\begin{DoxyCompactList}\small\item\em Create a usable \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classraspboop_1_1HCSR501_aa8609b3c9529ff3863d47010fc9e78d0}{Release\-Pins} ()
+\begin{DoxyCompactList}\small\item\em Sets the mode of all pins to an inactive state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Passive infrared sensor for motion detection. 
+
+The \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} is a passive infrared sensor used for motion detection applications. There are 5 main pins that you will need to be familiar with\-:
+
+
+\begin{DoxyItemize}
+\item 5\-V input
+\item Signal
+\item Gnd
+\item retriggering pin
+\item non-\/retriggering pin
+\end{DoxyItemize}
+
+\subsection*{Helpful information }
+
+There are two modes to the sensor\-: retriggering, and non-\/retriggering. In retriggering mode, signal outputs high as long as motion is detected. In non-\/retriggering mode, signal will output as H\-I\-G\-H only every second or so that motion is detected.
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Quick Stats }&{\bf Value  }\\\cline{1-2}
+Vcc &{\bfseries 5-\/16\-V} \\\cline{1-2}
+Logical voltage &{\bfseries 3\-V3} \\\cline{1-2}
+Sensing range &{\bfseries 7 meters} \\\cline{1-2}
+\end{TabularC}
+\subsubsection*{External Links }
+
+\href{http://www.ladyada.net/media/
+sensors/PIRSensor-V1.2.pdf}{\tt Parallax P\-I\-R datasheet}
+
+\href{http://elecfreaks.com/store/download/
+datasheet/sensor/DYP-ME003/Specification.pdf}{\tt Elec Freaks datasheet}
+
+\href{http://
+www.ladyada.net/learn/sensors/pir.html}{\tt P\-I\-R motion sensors tutorial by Lady\-Ada.\-net}
+
+\href{http://robotic-controls.com/learn/sensors/pir-sensor-hc-sr501}{\tt Supplementary Arduino code and tutorial} 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classraspboop_1_1HCSR501_aeb198c632522d10e5319184ac85c303e}{\index{raspboop\-::\-H\-C\-S\-R501@{raspboop\-::\-H\-C\-S\-R501}!H\-C\-S\-R501@{H\-C\-S\-R501}}
+\index{H\-C\-S\-R501@{H\-C\-S\-R501}!raspboop::HCSR501@{raspboop\-::\-H\-C\-S\-R501}}
+\subsubsection[{H\-C\-S\-R501}]{\setlength{\rightskip}{0pt plus 5cm}raspboop\-::\-H\-C\-S\-R501\-::\-H\-C\-S\-R501 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classraspboop_1_1HCSR501_aeb198c632522d10e5319184ac85c303e}
+
+
+\hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} Constructor. 
+
+Initializes private variables to unused values 
+
+\subsection{Member Function Documentation}
+\hypertarget{classraspboop_1_1HCSR501_ad2a07d3f130362206c5fbcce92d41294}{\index{raspboop\-::\-H\-C\-S\-R501@{raspboop\-::\-H\-C\-S\-R501}!Create@{Create}}
+\index{Create@{Create}!raspboop::HCSR501@{raspboop\-::\-H\-C\-S\-R501}}
+\subsubsection[{Create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf H\-C\-S\-R501} $\ast$ raspboop\-::\-H\-C\-S\-R501\-::\-Create (
+\begin{DoxyParamCaption}
+\item[{int}]{S\-I\-G\-N\-A\-L}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classraspboop_1_1HCSR501_ad2a07d3f130362206c5fbcce92d41294}
+
+
+Create a usable \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} object. 
+
+To properly create an object in raspboop, you must use its factory \hyperlink{classraspboop_1_1HCSR501_ad2a07d3f130362206c5fbcce92d41294}{Create()} method. The factory method initializes the \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501}'s Signal pin using the \hyperlink{classraspboop_1_1Sensor_ad0b3f0fa153803108613e3c3da574571}{Set\-Input\-Pin()} method from \hyperlink{classraspboop_1_1Sensor}{Sensor}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em S\-I\-G\-N\-A\-L} & The input pin which will read the value from the sensor\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to an \hyperlink{classraspboop_1_1HCSR501}{H\-C\-S\-R501} object with all pins initialized 
+\end{DoxyReturn}
+\hypertarget{classraspboop_1_1HCSR501_a06f7b6c117ee5acf76592a3f89159a3e}{\index{raspboop\-::\-H\-C\-S\-R501@{raspboop\-::\-H\-C\-S\-R501}!Is\-Signalled@{Is\-Signalled}}
+\index{Is\-Signalled@{Is\-Signalled}!raspboop::HCSR501@{raspboop\-::\-H\-C\-S\-R501}}
+\subsubsection[{Is\-Signalled}]{\setlength{\rightskip}{0pt plus 5cm}bool raspboop\-::\-H\-C\-S\-R501\-::\-Is\-Signalled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{classraspboop_1_1HCSR501_a06f7b6c117ee5acf76592a3f89159a3e}
+
+
+Get the value obtained from \hyperlink{classraspboop_1_1HCSR501_ade0ae21c1bda3dabec68e0476d92520a}{Sense()} 
+
+\begin{DoxyReturn}{Returns}
+A boolean value determining the signal pin's value 
+\end{DoxyReturn}
+\hypertarget{classraspboop_1_1HCSR501_aa8609b3c9529ff3863d47010fc9e78d0}{\index{raspboop\-::\-H\-C\-S\-R501@{raspboop\-::\-H\-C\-S\-R501}!Release\-Pins@{Release\-Pins}}
+\index{Release\-Pins@{Release\-Pins}!raspboop::HCSR501@{raspboop\-::\-H\-C\-S\-R501}}
+\subsubsection[{Release\-Pins}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-H\-C\-S\-R501\-::\-Release\-Pins (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classraspboop_1_1HCSR501_aa8609b3c9529ff3863d47010fc9e78d0}
+
+
+Sets the mode of all pins to an inactive state. 
+
+All children must call this method when it becomes out of scope, preferably in the destructor. This is necessary so that there are never any G\-P\-I\-O pins unnecessarily set to {\itshape H\-I\-G\-H} 
+
+Implements \hyperlink{classraspboop_1_1GPIOConsumer_a97b06b9afddfb338fb87cb7338c910de}{raspboop\-::\-G\-P\-I\-O\-Consumer}.
+
+\hypertarget{classraspboop_1_1HCSR501_ade0ae21c1bda3dabec68e0476d92520a}{\index{raspboop\-::\-H\-C\-S\-R501@{raspboop\-::\-H\-C\-S\-R501}!Sense@{Sense}}
+\index{Sense@{Sense}!raspboop::HCSR501@{raspboop\-::\-H\-C\-S\-R501}}
+\subsubsection[{Sense}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-H\-C\-S\-R501\-::\-Sense (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classraspboop_1_1HCSR501_ade0ae21c1bda3dabec68e0476d92520a}
+
+
+Performs the sensor's sensing operation. 
+
+This method will retrieve a value from the environment by performing G\-P\-I\-O operations on the input and output pins of the sensor. The value from the sensor will be available through an accessor method. 
+
+Implements \hyperlink{classraspboop_1_1Sensor_ab854a10682373803a310c078bb71aacf}{raspboop\-::\-Sensor}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/sensors/H\-C\-S\-R501.\-h\item 
+src/sensors/H\-C\-S\-R501.\-cpp\end{DoxyCompactItemize}

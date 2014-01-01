@@ -1,0 +1,180 @@
+\hypertarget{classraspboop_1_1L298N}{\section{raspboop\-:\-:L298\-N Class Reference}
+\label{classraspboop_1_1L298N}\index{raspboop\-::\-L298\-N@{raspboop\-::\-L298\-N}}
+}
+
+
+\hyperlink{classraspboop_1_1L298N}{L298\-N} Motor controller.  
+
+
+
+
+{\ttfamily \#include $<$L298\-N.\-h$>$}
+
+Inheritance diagram for raspboop\-:\-:L298\-N\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classraspboop_1_1L298N}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classraspboop_1_1L298N_a02313609416e301b2d9591ec1032c7e6}{Use\-Soft\-P\-W\-M} ()
+\begin{DoxyCompactList}\small\item\em Sets the input pins to software P\-W\-M mode. \end{DoxyCompactList}\item 
+void \hyperlink{classraspboop_1_1L298N_a0db4bc15c28818ed54e80f65f9f25d72}{Set\-P\-W\-M\-Value} (int I\-N, int Value)
+\begin{DoxyCompactList}\small\item\em Sets a pin's software P\-W\-M value. \end{DoxyCompactList}\item 
+void \hyperlink{classraspboop_1_1L298N_a18137a4b8e3ba274cf6bf72e896f7563}{Set\-Pin\-Value} (int I\-N, int Value)
+\begin{DoxyCompactList}\small\item\em Set a pin's value to either H\-I\-G\-H or L\-O\-W. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classraspboop_1_1L298N_a5ed5847ed8db5835fbf5e4f960a374e9}{Release\-Pins} ()
+\begin{DoxyCompactList}\small\item\em Sets the mode of all pins to an inactive state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classraspboop_1_1L298N}{L298\-N} $\ast$ \hyperlink{classraspboop_1_1L298N_a57ef1c025baf2584f326722196c1a35b}{Create} (int I\-N1, int I\-N2, int I\-N3, int I\-N4)
+\begin{DoxyCompactList}\small\item\em Creates a pointer to an \hyperlink{classraspboop_1_1L298N}{L298\-N} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classraspboop_1_1L298N}{L298\-N} Motor controller. 
+
+This class is meant to support the \hyperlink{classraspboop_1_1L298N}{L298\-N} motor controller board. In most cases, the Enable A, B, and 5\-V pins are connected by default through jumpers on most model \#236 board.
+
+\subsection*{Helpful information }
+
+
+\begin{DoxyItemize}
+\item This board is able to control two motors at the same time.
+\item Do not input a voltage into the 5\-V terminal
+\begin{DoxyItemize}
+\item If the voltage in the 12\-V terminal is greater than 12\-V, then you can use the 5\-V terminal as a power source.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Quick Stats }&{\bf Value  }\\\cline{1-2}
+Maximum input voltage &{\bfseries 46\-V} \\\cline{1-2}
+Continuous output current &{\bfseries 2 Amps} \\\cline{1-2}
+Maximum output current &{\bfseries 3 Amps} \\\cline{1-2}
+Logical voltage &{\bfseries 5\-V} \\\cline{1-2}
+Max Logical current &{\bfseries 36 m\-A} \\\cline{1-2}
+Maximum output &{\bfseries 25 W} \\\cline{1-2}
+\end{TabularC}
+\subsubsection*{External links }
+
+\href{http://www.st.com/st-web-ui/static/active/en/
+ resource/technical/document/datasheet/CD00000240.pdf}{\tt Datasheet}
+
+\href{http://zapterra.com/systems/articles/electronics/
+ l298-motor-driver-tutorial-arduino/}{\tt Blog post\-:} Very informative and detailed blog post. Recommended if you need an introduction to the chip. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classraspboop_1_1L298N_a57ef1c025baf2584f326722196c1a35b}{\index{raspboop\-::\-L298\-N@{raspboop\-::\-L298\-N}!Create@{Create}}
+\index{Create@{Create}!raspboop::L298N@{raspboop\-::\-L298\-N}}
+\subsubsection[{Create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf L298\-N} $\ast$ raspboop\-::\-L298\-N\-::\-Create (
+\begin{DoxyParamCaption}
+\item[{int}]{I\-N1, }
+\item[{int}]{I\-N2, }
+\item[{int}]{I\-N3, }
+\item[{int}]{I\-N4}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classraspboop_1_1L298N_a57ef1c025baf2584f326722196c1a35b}
+
+
+Creates a pointer to an \hyperlink{classraspboop_1_1L298N}{L298\-N} object. 
+
+To properly create an object in raspboop, you must use its factory \hyperlink{classraspboop_1_1L298N_a57ef1c025baf2584f326722196c1a35b}{Create()} method. The factory method initializes the \hyperlink{classraspboop_1_1L298N}{L298\-N}'s pins using the \hyperlink{classraspboop_1_1GPIOConsumer_a066938a39a4f34ed2cfee05a593008e6}{Consume\-Pin()} method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\-N1} & The board's I\-N1 pin \\
+\hline
+{\em I\-N2} & The board's I\-N2 pin \\
+\hline
+{\em I\-N3} & The board's I\-N3 pin \\
+\hline
+{\em I\-N4} & The board's I\-N4 pin\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to an \hyperlink{classraspboop_1_1L298N}{L298\-N} object with all pins ready to operate. 
+\end{DoxyReturn}
+\hypertarget{classraspboop_1_1L298N_a5ed5847ed8db5835fbf5e4f960a374e9}{\index{raspboop\-::\-L298\-N@{raspboop\-::\-L298\-N}!Release\-Pins@{Release\-Pins}}
+\index{Release\-Pins@{Release\-Pins}!raspboop::L298N@{raspboop\-::\-L298\-N}}
+\subsubsection[{Release\-Pins}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-L298\-N\-::\-Release\-Pins (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classraspboop_1_1L298N_a5ed5847ed8db5835fbf5e4f960a374e9}
+
+
+Sets the mode of all pins to an inactive state. 
+
+All children must call this method when it becomes out of scope, preferably in the destructor. This is necessary so that there are never any G\-P\-I\-O pins unnecessarily set to {\itshape H\-I\-G\-H} 
+
+Implements \hyperlink{classraspboop_1_1GPIOConsumer_a97b06b9afddfb338fb87cb7338c910de}{raspboop\-::\-G\-P\-I\-O\-Consumer}.
+
+\hypertarget{classraspboop_1_1L298N_a18137a4b8e3ba274cf6bf72e896f7563}{\index{raspboop\-::\-L298\-N@{raspboop\-::\-L298\-N}!Set\-Pin\-Value@{Set\-Pin\-Value}}
+\index{Set\-Pin\-Value@{Set\-Pin\-Value}!raspboop::L298N@{raspboop\-::\-L298\-N}}
+\subsubsection[{Set\-Pin\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-L298\-N\-::\-Set\-Pin\-Value (
+\begin{DoxyParamCaption}
+\item[{int}]{I\-N, }
+\item[{int}]{Value}
+\end{DoxyParamCaption}
+)}}\label{classraspboop_1_1L298N_a18137a4b8e3ba274cf6bf72e896f7563}
+
+
+Set a pin's value to either H\-I\-G\-H or L\-O\-W. 
+
+This is equivalent to calling wiring\-Pi's digital\-Write() method
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\-N} & Value of 1 $\sim$ 4 that represents the physical I\-N pin on the board \\
+\hline
+{\em Value} & A value of H\-I\-G\-H(1) or L\-O\-W(0) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classraspboop_1_1L298N_a0db4bc15c28818ed54e80f65f9f25d72}{\index{raspboop\-::\-L298\-N@{raspboop\-::\-L298\-N}!Set\-P\-W\-M\-Value@{Set\-P\-W\-M\-Value}}
+\index{Set\-P\-W\-M\-Value@{Set\-P\-W\-M\-Value}!raspboop::L298N@{raspboop\-::\-L298\-N}}
+\subsubsection[{Set\-P\-W\-M\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-L298\-N\-::\-Set\-P\-W\-M\-Value (
+\begin{DoxyParamCaption}
+\item[{int}]{I\-N, }
+\item[{int}]{Value}
+\end{DoxyParamCaption}
+)}}\label{classraspboop_1_1L298N_a0db4bc15c28818ed54e80f65f9f25d72}
+
+
+Sets a pin's software P\-W\-M value. 
+
+This method uses wiring\-Pi's \href{http://wiringpi.com/reference/
+software-pwm-library/}{\tt software P\-W\-M library} to set the software P\-W\-M on the pin to a value. You must first call the Use\-Soft\-Pwm() method before using this method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\-N} & Value of 1 $\sim$ 4 that represents the physical I\-N pin on the board \\
+\hline
+{\em Value} & A value from 0 to 100 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classraspboop_1_1L298N_a02313609416e301b2d9591ec1032c7e6}{\index{raspboop\-::\-L298\-N@{raspboop\-::\-L298\-N}!Use\-Soft\-P\-W\-M@{Use\-Soft\-P\-W\-M}}
+\index{Use\-Soft\-P\-W\-M@{Use\-Soft\-P\-W\-M}!raspboop::L298N@{raspboop\-::\-L298\-N}}
+\subsubsection[{Use\-Soft\-P\-W\-M}]{\setlength{\rightskip}{0pt plus 5cm}void raspboop\-::\-L298\-N\-::\-Use\-Soft\-P\-W\-M (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classraspboop_1_1L298N_a02313609416e301b2d9591ec1032c7e6}
+
+
+Sets the input pins to software P\-W\-M mode. 
+
+Uses wiring\-Pi's \href{http://wiringpi.com/
+reference/software-pwm-library/}{\tt software P\-W\-M library} to set the pins provided in the \hyperlink{classraspboop_1_1L298N_a57ef1c025baf2584f326722196c1a35b}{Create()} factory method to a software P\-W\-M mode
+
+{\bfseries Note\-:} Software P\-W\-M operates on seperate threads, and each thread consumes about 0.\-5\% C\-P\-U, according to the wiring\-Pi reference. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/boards/L298\-N.\-h\item 
+src/boards/L298\-N.\-cpp\end{DoxyCompactItemize}
