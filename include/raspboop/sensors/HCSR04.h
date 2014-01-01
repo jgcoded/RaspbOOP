@@ -95,7 +95,7 @@ public:
 
 	/* \brief HCSR04 Constructor
 	 *
-	 * Initialized all private member variables to unused values.
+	 * Initializes all private member variables to unused values.
 	 */
     HCSR04();
 
