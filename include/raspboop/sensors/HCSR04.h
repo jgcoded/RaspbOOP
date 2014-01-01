@@ -111,8 +111,6 @@ public:
 		return Distance;
 	}
 
-    virtual void ReleasePins();
-
     /*! \brief Create a usable HCSR04 object
      *
      * To properly create an object in raspboop, you must use its
@@ -131,6 +129,10 @@ public:
     /*! \brief HCSR04 Destructor
      */
     ~HCSR04();
+
+protected:
+
+	    virtual void ReleasePins();
 
 };
 

@@ -100,8 +100,6 @@ public:
 
 	virtual void Sense();
 
-	virtual void ReleasePins();
-
 	/*! \brief Get the value obtained from Sense()
 	 *
 	 * \return A boolean value determining the 
@@ -115,6 +113,10 @@ public:
 	/*! \brief HCSR501 destructor
 	 */
 	~HCSR501();
+
+protected:
+
+	virtual void ReleasePins();
 
 }; /* HCSR501 */
 
