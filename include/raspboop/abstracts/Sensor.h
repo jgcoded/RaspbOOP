@@ -27,7 +27,7 @@
 namespace raspboop
 {
 
-/*! An abstract class for devices that can interface with the world
+/*! \brief An abstract class for devices that can interface with the world
  *
  * Sensors can sense the world and provide valuable data about the
  * state of the current environment. 
