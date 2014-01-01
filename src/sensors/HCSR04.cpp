@@ -88,6 +88,7 @@ void HCSR04::ReleasePins()
 
 HCSR04::~HCSR04()
 {
+	ReleasePins();
 }
 
 } /* raspboop */

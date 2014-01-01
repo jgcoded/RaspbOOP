@@ -58,6 +58,7 @@ void HCSR501::ReleasePins()
 
 HCSR501::~HCSR501()
 {
+	ReleasePins();
 }
 
 } /* raspboop */
