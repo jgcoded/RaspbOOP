@@ -53,17 +53,17 @@ protected:
 	 */
 	void ConsumePin(int Pin, int Mode) const;
 
-public:
-
-    GPIOConsumer();
-
-    /*! \brief Sets the mode of all pins to an inactive state
+	 /*! \brief Sets the mode of all pins to an inactive state
      *
      * All children must call this method when it becomes out of scope,
      * preferably in the destructor. This is necessary so that there are
      * never any GPIO pins unnecessarily set to *HIGH*
      */
     virtual void ReleasePins()=0;
+
+public:
+
+    GPIOConsumer();
     
     virtual ~GPIOConsumer()=0;
 
