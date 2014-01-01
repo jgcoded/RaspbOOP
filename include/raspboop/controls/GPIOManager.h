@@ -27,6 +27,10 @@
 namespace raspboop
 {
 
+/*! \brief Manages the use of GPIO pins. **Unimplemented**
+ *
+ * This class is not finished. 
+ */
 class GPIOManager
 {
 
