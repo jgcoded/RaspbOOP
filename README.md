@@ -66,3 +66,8 @@ RaspbOOP-Bot uses **CMake** to generate the necessary build files. You can also 
 You will also need a **Raspberry Pi**, although it is recommended to develop on your preferred *nix platform, and then test new code on the Raspberry Pi.
 
 You will also need **git**.
+
+Licensing
+=========
+Unless otherwise stated, all files in this directory and all subsequent subdirectories relative to the path of this README are licensed under
+***The MIT License (MIT)***. A copy of THE MIT License (MIT) can be found in the same directory as the README.
