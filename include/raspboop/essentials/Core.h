@@ -14,7 +14,6 @@ enum PinScheme
 {
 	WIRING = 0,
 	GPIO = 1,
-	PHYS = 2,
 	SYS = 3
 };
 

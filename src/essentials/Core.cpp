@@ -13,10 +13,6 @@ int Init(int Scheme)
 			wiringPiSetupGpio();
 		break;
 
-		case PHYS:
-			wiringPiSetupPhys();
-		break;
-
 		case SYS:
 			wiringPiSetupSys();
 		break;
