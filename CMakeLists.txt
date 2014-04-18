@@ -6,12 +6,6 @@ set(RASPBOOP-BOT_VERSION_MAJOR 0)
 set(RASPBOOP-BOT_VERSION_MINOR 0)
 
 set(RASPBOOP_TARGET raspboop)
-
-####################################
-# Require wiringPi
-####################################
-
-find_library(WIRINGPI wiringPi)
   
 option(BUILD_SHARED_LIBS
     "Build Raspboop as a shared library." ON)
@@ -20,11 +14,16 @@ option(RASPBOOP_BUILD_TESTS "Build the Raspboop tests " ON)
 
 # Unix setup
 
+set(CMAKE_CXX_FLAGS "-std=c++0x")
+
 find_package(X11 REQUIRED)
 include_directories(
   ${X11_INCLUDE_DIR}
   ${X11_LIBRARIES_DIR}
 )
+
+# Get dependencies (wiringPi)
+add_subdirectory(deps)
 
 set(RASPBOOP_LIBRARIES
   ${X11_LIBRARIES}
@@ -32,13 +31,13 @@ set(RASPBOOP_LIBRARIES
   pthread
 )
 
-# Raspboop include/lib paths
+
+# Raspboop include paths
 
 include_directories(
+  ${CMAKE_SOURCE_DIR}/deps/WiringPi-master/wiringPi
   ${CMAKE_SOURCE_DIR}/include
 )
-
-link_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Raspboop CMake Subdirectories
 
