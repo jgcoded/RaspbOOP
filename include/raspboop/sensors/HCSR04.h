@@ -64,18 +64,18 @@ namespace raspboop
 class HCSR04 : public Sensor
 {
 
-	int EchoPin;
-	int TriggerPin;
-	float EchoStart;
-	float EchoEnd;
-	float Distance;
+    int EchoPin;
+    int TriggerPin;
+    float EchoStart;
+    float EchoEnd;
+    float Distance;
 
 public:
 
-	/* \brief HCSR04 Constructor
-	 *
-	 * Initializes all private member variables to unused values.
-	 */
+    /* \brief HCSR04 Constructor
+     *
+     * Initializes all private member variables to unused values.
+     */
     HCSR04();
 
     virtual void Sense();
@@ -85,23 +85,20 @@ public:
      * \return A float representing the distance sensed in
      *		   centimeters
      */
-    float GetDistance() const
-	{
-		return Distance;
-	}
+    float GetDistance() const { return Distance; }
 
     /*! \brief Create a usable HCSR04 object
      *
      * To properly create an object in raspboop, you must use its
-	 * factory Create() method. The factory method initializes
-	 * the HCSR04's pins using the SetInputPin() and 
-	 * SetOutputPin() methods inherited from Sensor.
-	 *
-	 * \param ECHO The input pin designated to read the sensors ECHO
-	 * 		  output
-	 * \param TRIG The output pin that initiates sensing
-	 *
-	 * \return A pointer to an HCSR04 object with all pins initialized
+     * factory Create() method. The factory method initializes
+     * the HCSR04's pins using the SetInputPin() and 
+     * SetOutputPin() methods inherited from Sensor.
+     *
+     * \param ECHO The input pin designated to read the sensors ECHO
+     * 		  output
+     * \param TRIG The output pin that initiates sensing
+     *
+     * \return A pointer to an HCSR04 object with all pins initialized
      */
     static HCSR04* Create(int ECHO, int TRIG);
 

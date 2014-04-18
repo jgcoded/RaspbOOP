@@ -7,15 +7,18 @@ Sensor::Sensor()
 {
 }
 
+
 void Sensor::SetOutputPin(int Pin)
 {
-	ConsumePin(Pin, OUTPUT);
+    ConsumePin(Pin, OUTPUT);
 }
+
 
 void Sensor::SetInputPin(int Pin)
 {
-	ConsumePin(Pin, INPUT);
+    ConsumePin(Pin, INPUT);
 }
+
 
 Sensor::~Sensor()
 {

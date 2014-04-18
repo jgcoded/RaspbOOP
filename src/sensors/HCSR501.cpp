@@ -5,31 +5,34 @@ namespace raspboop
 
 HCSR501::HCSR501()
 {
-	SignalPin = -1;
-	Signalled = false;
+    SignalPin = -1;
+    Signalled = false;
 }
+
 
 HCSR501* HCSR501::Create(int SIGNAL)
 {
-	HCSR501* H = (HCSR501*)malloc(sizeof(HCSR501));
+    HCSR501* H = (HCSR501*)malloc(sizeof(HCSR501));
 
-	// Not enough memory. Should notify user
-	if(H == NULL)
-		return NULL;
+    // Not enough memory. Should notify user
+    if(H == NULL)
+            return NULL;
 
-	new(H) HCSR501;
+    new(H) HCSR501;
 
-	H->SignalPin = SIGNAL;
+    H->SignalPin = SIGNAL;
 
-	H->SetInputPin(SIGNAL);
+    H->SetInputPin(SIGNAL);
 
-	return H;
+    return H;
 }
+
 
 void HCSR501::Sense()
 {
-	Signalled = digitalRead(SignalPin);
+    Signalled = digitalRead(SignalPin);
 }
+
 
 HCSR501::~HCSR501()
 {

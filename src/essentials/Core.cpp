@@ -6,28 +6,28 @@ namespace raspboop
 int Init(int Scheme)
 {
 
-	// Setup wiringPi
-	switch(Scheme)
-	{
-		case GPIO:
-			wiringPiSetupGpio();
-		break;
+    // Setup wiringPi
+    switch(Scheme)
+    {
+        case GPIO:
+            wiringPiSetupGpio();
+        break;
 
-		case SYS:
-			wiringPiSetupSys();
-		break;
+        case SYS:
+            wiringPiSetupSys();
+        break;
 
-		default:
-			wiringPiSetup();
-	}
+        default:
+            wiringPiSetup();
+    }
 
-	return 1;
+    return 1;
 }
 
 int Deinit()
 {
-	/* nothing to deinit so far */
-	return 1;
+    /* nothing to deinit so far */
+    return 1;
 }
 
 } /* raspboop */

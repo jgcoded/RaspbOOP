@@ -13,17 +13,17 @@ namespace raspboop
 class GPIOManager : public GPIOConsumer
 {
 
-	vector<GPIOConsumer*> ConsumerList;
+    vector<GPIOConsumer*> ConsumerList;
         
 public:
 
-	GPIOManager();
+    GPIOManager();
 
-	bool IsPinSet(int Pin);
-        
-        int AddConsumer(GPIOConsumer* Consumer);
+    bool IsPinSet(int Pin);
 
-	~GPIOManager();
+    int AddConsumer(GPIOConsumer* Consumer);
+
+    ~GPIOManager();
 
 }; /* GPIOManager */
 

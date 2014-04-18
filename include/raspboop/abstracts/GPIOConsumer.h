@@ -46,7 +46,7 @@ public:
 
     GPIOConsumer();
     
-    vector<int> GetPins() const;
+    vector<int> GetPins() const { return Pins; }
     
     virtual ~GPIOConsumer()=0;
 

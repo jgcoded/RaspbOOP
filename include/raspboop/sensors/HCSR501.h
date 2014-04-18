@@ -51,47 +51,47 @@ namespace raspboop
 class HCSR501 : public Sensor
 {
 
-	int SignalPin;
-	bool Signalled;
+    int SignalPin;
+    bool Signalled;
 
 public:
 
-	/*! \brief HCSR501 Constructor 
-	 * 
-	 * Initializes private variables to unused values
-	 */
-	HCSR501();
+    /*! \brief HCSR501 Constructor 
+     * 
+     * Initializes private variables to unused values
+     */
+    HCSR501();
 
-	/*! \brief Create a usable HCSR501 object
-	 *
-	 * To properly create an object in raspboop, you must use its
-	 * factory Create() method. The factory method initializes
-	 * the HCSR501's Signal pin using the SetInputPin() method
-	 * from Sensor.
-	 *
-	 * \param SIGNAL The input pin which will read the value from
-	 *		  		 the sensor
-	 *
-	 * \return A pointer to an HCSR501 object with all pins
-	 *		   initialized
-	 */
-	static HCSR501* Create(int SIGNAL);
+    /*! \brief Create a usable HCSR501 object
+     *
+     * To properly create an object in raspboop, you must use its
+     * factory Create() method. The factory method initializes
+     * the HCSR501's Signal pin using the SetInputPin() method
+     * from Sensor.
+     *
+     * \param SIGNAL The input pin which will read the value from
+     *		  		 the sensor
+     *
+     * \return A pointer to an HCSR501 object with all pins
+     *		   initialized
+     */
+    static HCSR501* Create(int SIGNAL);
 
-	virtual void Sense();
+    virtual void Sense();
 
-	/*! \brief Get the value obtained from Sense()
-	 *
-	 * \return A boolean value determining the 
-	 * 		   signal pin's value
-	 */
-	bool IsSignalled() const
-	{
-		return Signalled;
-	}
+    /*! \brief Get the value obtained from Sense()
+     *
+     * \return A boolean value determining the 
+     * 		   signal pin's value
+     */
+    bool IsSignalled() const
+    {
+            return Signalled;
+    }
 
-	/*! \brief HCSR501 destructor
-	 */
-	~HCSR501();
+    /*! \brief HCSR501 destructor
+     */
+    ~HCSR501();
 
 }; /* HCSR501 */
 

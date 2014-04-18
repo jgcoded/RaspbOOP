@@ -10,7 +10,6 @@
 #include <errno.h>
 #include <algorithm>
 
-using std::map;
 using std::vector;
 
 /* Dependency includes */

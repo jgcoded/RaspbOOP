@@ -26,23 +26,23 @@ class Sensor : public GPIOConsumer
 
 protected:
 
-	/*! \brief Set an output pin for the sensor
-	 *
-	 * Consumes a pin to be designated as an output. This is usually
-	 * the pin that triggers sensing.
-	 *
-	 * \param Pin The pin to designate as an output
-	 */
-	void SetOutputPin(int Pin);
+    /*! \brief Set an output pin for the sensor
+     *
+     * Consumes a pin to be designated as an output. This is usually
+     * the pin that triggers sensing.
+     *
+     * \param Pin The pin to designate as an output
+     */
+    void SetOutputPin(int Pin);
 
-	/*! \brief Set an input pin for the sensor
-	 *
-	 * Consumes a pin to be designated as an input. This is usually
-	 * the pin that will be receiving data from the sensor.
-	 *
-	 * \param Pin The pin to designate as in input
-	 */
-	void SetInputPin(int Pin);
+    /*! \brief Set an input pin for the sensor
+     *
+     * Consumes a pin to be designated as an input. This is usually
+     * the pin that will be receiving data from the sensor.
+     *
+     * \param Pin The pin to designate as in input
+     */
+    void SetInputPin(int Pin);
 
 public:
 

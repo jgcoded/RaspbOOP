@@ -7,6 +7,7 @@ GPIOManager::GPIOManager()
 {
 }
 
+
 int GPIOManager::AddConsumer(GPIOConsumer* Consumer)
 {
     if(Consumer == NULL)
@@ -15,13 +16,14 @@ int GPIOManager::AddConsumer(GPIOConsumer* Consumer)
     vector<int> ConsumerPins = Consumer->GetPins();
     
     for(const int& ConsumerPin : ConsumerPins)
-            if(IsPinSet(ConsumerPin))
-                return -1;
+        if(IsPinSet(ConsumerPin))
+            return 0;
     
     ConsumerList.push_back(Consumer);
     
     return 1;
 }
+
 
 bool GPIOManager::IsPinSet(int Pin)
 {   
@@ -44,6 +46,7 @@ bool GPIOManager::IsPinSet(int Pin)
         
     return false;
 }
+
 
 GPIOManager::~GPIOManager()
 {
