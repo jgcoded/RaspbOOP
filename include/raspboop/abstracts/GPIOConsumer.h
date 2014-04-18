@@ -19,30 +19,34 @@ namespace raspboop
  */
 class GPIOConsumer
 {
-
-protected:
-
-	/*! \brief Reserves a pin and sets its mode
-	 *
-	 * Uses wiringPi's *pinMode()* method to set the value of the *Pin* to
-	 * the *Mode* parameter.
-	 *
-	 * \param Pin the GPIO pin to set
-	 * \param Mode The Mode the Pin will be set to
-	 */
-	void ConsumePin(int Pin, int Mode) const;
-
-	 /*! \brief Sets the mode of all pins to an inactive state
+    
+    vector<int> Pins;
+    
+    /*! \brief Sets the mode of all pins to an inactive state
      *
      * All children must call this method when it becomes out of scope,
      * preferably in the destructor. This is necessary so that there are
      * never any GPIO pins unnecessarily set to *HIGH*
      */
-    virtual void ReleasePins()=0;
+    virtual void ReleasePins() const;
+    
+protected:
+
+    /*! \brief Reserves a pin and sets its mode
+     *
+     * Uses wiringPi's *pinMode()* method to set the value of the *Pin* to
+     * the *Mode* parameter.
+     *
+     * \param Pin the GPIO pin to set
+     * \param Mode The Mode the Pin will be set to
+     */
+    void ConsumePin(int Pin, int Mode);
 
 public:
 
     GPIOConsumer();
+    
+    vector<int> GetPins() const;
     
     virtual ~GPIOConsumer()=0;
 

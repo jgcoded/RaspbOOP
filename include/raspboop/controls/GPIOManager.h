@@ -10,18 +10,18 @@ namespace raspboop
  *
  * This class is not finished. 
  */
-class GPIOManager
+class GPIOManager : public GPIOConsumer
 {
 
-	map<int, int> GPIO;
-
-	int ReservePin(int Pin, int Mode);
-
+	vector<GPIOConsumer*> ConsumerList;
+        
 public:
 
 	GPIOManager();
 
-	int IsPinSet(int Pin);
+	bool IsPinSet(int Pin);
+        
+        int AddConsumer(GPIOConsumer* Consumer);
 
 	~GPIOManager();
 

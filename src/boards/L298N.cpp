@@ -60,12 +60,6 @@ void L298N::SetPinValue(int IN, int Value)
 	digitalWrite(Pins[index], Value);
 }
 
-void L298N::ReleasePins()
-{
-	for(int i = 0; i < 4; ++i)
-		digitalWrite(Pins[i], LOW);
-}
-
 L298N::~L298N()
 {
 }

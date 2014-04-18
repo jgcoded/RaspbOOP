@@ -20,8 +20,6 @@ int main(int argc, char* argv[])
 	Controller->SetPWMValue(1, 50);
 	Controller->SetPWMValue(4, 50);
 
-	Controller->ReleasePins();
-
 	delete Controller;
 
 	return 0;

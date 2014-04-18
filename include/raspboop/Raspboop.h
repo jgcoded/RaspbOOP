@@ -8,8 +8,10 @@
 #include <cstdlib>
 #include <pthread.h>
 #include <errno.h>
+#include <algorithm>
 
 using std::map;
+using std::vector;
 
 /* Dependency includes */
 #include <wiringPi.h>

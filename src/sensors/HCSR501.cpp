@@ -31,13 +31,8 @@ void HCSR501::Sense()
 	Signalled = digitalRead(SignalPin);
 }
 
-void HCSR501::ReleasePins()
-{
-}
-
 HCSR501::~HCSR501()
 {
-	ReleasePins();
 }
 
 } /* raspboop */

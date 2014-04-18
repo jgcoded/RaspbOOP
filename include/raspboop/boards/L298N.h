@@ -102,8 +102,6 @@ public:
 	 */
 	void SetPinValue(int IN, int Value);
 
-	virtual void ReleasePins();
-
 	~L298N();
 
 }; /* L298N */

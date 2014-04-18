@@ -93,10 +93,6 @@ public:
 	 */
 	~HCSR501();
 
-protected:
-
-	virtual void ReleasePins();
-
 }; /* HCSR501 */
 
 } /* raspboop */

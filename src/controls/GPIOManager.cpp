@@ -7,22 +7,42 @@ GPIOManager::GPIOManager()
 {
 }
 
-int GPIOManager::ReservePin(int Pin, int Mode)
+int GPIOManager::AddConsumer(GPIOConsumer* Consumer)
 {
-	if(GPIO.count(Pin) != 0)
-		return -1;
-
-	GPIO.insert(std::pair<int, int>(Pin, Mode));
-
-	return 1;
+    if(Consumer == NULL)
+        return 0;
+            
+    vector<int> ConsumerPins = Consumer->GetPins();
+    
+    for(const int& ConsumerPin : ConsumerPins)
+            if(IsPinSet(ConsumerPin))
+                return -1;
+    
+    ConsumerList.push_back(Consumer);
+    
+    return 1;
 }
 
-int GPIOManager::IsPinSet(int Pin)
-{
-	if(GPIO.count(Pin) == 0)
-		return -1;
-
-	return GPIO[Pin];
+bool GPIOManager::IsPinSet(int Pin)
+{   
+    std::vector<int>::iterator 
+        Begin = GetPins().begin(),
+        End = GetPins().end();
+    
+    if(std::find(Begin, End, Pin) == End)
+        return true;
+    
+    /* Also check the children of manager*/
+    for (const GPIOConsumer* Consumer : ConsumerList)
+    {
+        Begin = Consumer->GetPins().begin();
+        End = Consumer->GetPins().end();
+        
+        if(std::find(Begin, End, Pin) == End)
+            return true;
+    }
+        
+    return false;
 }
 
 GPIOManager::~GPIOManager()
