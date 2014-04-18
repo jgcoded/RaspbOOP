@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <raspboop/Raspboop.h>
 
 using raspboop::HCSR04;
