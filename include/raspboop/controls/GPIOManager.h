@@ -18,10 +18,14 @@ class GPIOManager : public GPIOConsumer
 public:
 
     GPIOManager();
+    
+    static GPIOManager* Create();
 
-    bool IsPinSet(int Pin);
+    bool IsPinSet(int Pin) const;
 
     int AddConsumer(GPIOConsumer* Consumer);
+    
+    int ConsumePin(int Pin, int Mode);
 
     ~GPIOManager();
 
