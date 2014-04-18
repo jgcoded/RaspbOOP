@@ -12,25 +12,25 @@ namespace raspboop
  */
 enum PinScheme
 {
-	WIRING = 0,
-	GPIO = 1,
-	SYS = 3
+    WIRING = 0,
+    GPIO = 1,
+    SYS = 2
 };
 
 /*! \brief Initializes Raspboop and its dependencies
  *
  * Initializes raspboop and wiringPi. The pin numbering
  * scheme used depends on the value passed into the
- * Scheme parameter. 
+ * Scheme parameter.
  *
  * see PinScheme for the available schemes, and visit
  * the [wiringPi reference](http://wiringpi.com/reference/
  * setup/) for a detailed description of the implications
- * of a pin scheme.
+ * of a pin scheme. The default pin scheme is Wiring.
  *
  * \param Scheme The pin scheme to use.
  */
-int Init(int Scheme);
+int Init(int Scheme = 0);
 
 /*! \todo Implement Deinit() method */
 int Deinit();
