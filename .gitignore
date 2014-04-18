@@ -2,3 +2,6 @@ build/*
 doc/*
 deps/*
 nbproject/*
+
+# Don't ignore CMakeLists
+!*/CMakeLists.txt
