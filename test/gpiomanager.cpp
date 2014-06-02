@@ -1,27 +1,23 @@
 #include "raspboop/Raspboop.h"
 
+using raspboop::WiringPiPins;
 using raspboop::GPIOManager;
 using raspboop::HCSR04;
-using raspboop::HCSR501;
 
 int main(int argc, char* argv[])
 {
     
-#define SIG 6
-#define TRIG 4
-#define ECHO 5
-#define MISC 7
-    
     raspboop::Init();
     
     GPIOManager* manager = GPIOManager::Create();
+    HCSR04* DistanceSensor = HCSR04::Create(WiringPiPins::GPIO0,
+                                           WiringPiPins::GPIO1);
     
-    manager->AddConsumer(HCSR04::Create(TRIG, ECHO));
-    manager->AddConsumer(HCSR501::Create(SIG));
+    manager->AddConsumer(DistanceSensor);
     
-    manager->ConsumePin(MISC, INPUT);
+    manager->ConsumePin(WiringPiPins::GPIO3, INPUT);
     
-    // We only need to delete manager
+    // We only need to delete manager; manager deletes other consumers
     delete manager;
     
     return 0;

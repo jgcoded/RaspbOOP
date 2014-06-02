@@ -2,19 +2,17 @@
 
 using raspboop::HCSR04;
 using raspboop::HCSR501;
+using raspboop::WiringPiPins;
 
 int main(int argc, char* argv[])
 {
-
-#define SIG 6
-#define TRIG 4
-#define ECHO 5
-
-    raspboop::Init(raspboop::WIRING);
+    raspboop::Init();
 
     bool ShouldRun = true;
-    HCSR04* DistanceSensor = HCSR04::Create(ECHO, TRIG);
-    HCSR501* InfraredSensor = HCSR501::Create(SIG);
+    HCSR04* DistanceSensor = HCSR04::Create(WiringPiPins::GPIO0,
+                                            WiringPiPins::GPIO1);
+    
+    HCSR501* InfraredSensor = HCSR501::Create(WiringPiPins::GPIO2);
 
     while(ShouldRun)
     {
