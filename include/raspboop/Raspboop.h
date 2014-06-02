@@ -17,6 +17,7 @@ using std::vector;
 #include <softPwm.h>
 
 /* Raspboop source */
+#include "raspboop/essentials/Pins.h"
 #include "raspboop/essentials/Core.h"
 #include "raspboop/abstracts/GPIOConsumer.h"
 #include "raspboop/abstracts/Sensor.h"
