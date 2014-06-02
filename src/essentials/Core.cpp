@@ -3,17 +3,17 @@
 namespace raspboop
 {
 
-int Init(int Scheme)
+int Init(PinScheme Scheme)
 {
 
     // Setup wiringPi
     switch(Scheme)
     {
-        case GPIO:
+        case PinScheme::GPIO:
             wiringPiSetupGpio();
         break;
 
-        case SYS:
+        case PinScheme::SYS:
             wiringPiSetupSys();
         break;
 
