@@ -16,6 +16,7 @@ set(MODULES
 
 set(HEADERS
   ${CMAKE_SOURCE_DIR}/include/raspboop/Raspboop
+  ${CMAKE_SOURCE_DIR}/include/raspboop/data/Pack
   ${CMAKE_SOURCE_DIR}/include/raspboop/essentials/Pins
 )
 
