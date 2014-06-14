@@ -20,9 +20,14 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/include/raspboop/essentials/Pins
 )
 
+set(INTERFACES
+  ${CMAKE_SOURCE_DIR}/include/raspboop/interfaces/Commandable
+  ${CMAKE_SOURCE_DIR}/include/raspboop/interfaces/Serializable
+)
+
 foreach(module ${MODULES})
   list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/raspboop/${module})
 endforeach(module)
 
-add_library(raspboop ${MODULES} ${HEADERS})
+add_library(raspboop ${MODULES} ${INTERFACES} ${HEADERS})
 target_link_libraries(raspboop ${RASPBOOP_LIBRARIES})
