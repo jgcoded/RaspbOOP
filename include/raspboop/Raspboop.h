@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <map>
 #include <vector>
-#include <cstdlib>
+#include <stdint.h>
 #include <pthread.h>
 #include <errno.h>
 #include <algorithm>
@@ -17,6 +17,10 @@ using std::vector;
 #include <softPwm.h>
 
 /* Raspboop source */
+#include "raspboop/interfaces/Commandable.h"
+#include "raspboop/interfaces/Serializable.h"
+#include "raspboop/data/Command.h"
+#include "raspboop/data/RBPPacket.h"
 #include "raspboop/essentials/Pins.h"
 #include "raspboop/essentials/Core.h"
 #include "raspboop/abstracts/GPIOConsumer.h"

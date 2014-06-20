@@ -6,6 +6,8 @@ cmake_minimum_required(VERSION 2.8)
 
 set(MODULES
   essentials/Core
+  data/Command
+  data/RBPPacket
   boards/L298N
   abstracts/GPIOConsumer
   abstracts/Sensor
