@@ -1,5 +1,5 @@
-#ifndef SERIALIZABLE_H
-#define	SERIALIZABLE_H
+#ifndef RASPBOOP_INTERFACES_SERIALIZABLE_H
+#define	RASPBOOP_INTERFACES_SERIALIZABLE_H
 
 namespace raspboop
 {
@@ -10,12 +10,14 @@ public:
     
     Serializable();
     
+    virtual unsigned char* Serialize()=0;
+    
     virtual ~Serializable()=0;
     
 private:
 
 };
 
-}
+} /* raspboop */
 
-#endif	/* SERIALIZABLE_H */
+#endif	/* RASPBOOP_INTERFACES_SERIALIZABLE_H */

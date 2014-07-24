@@ -18,7 +18,6 @@ set(MODULES
 
 set(HEADERS
   ${CMAKE_SOURCE_DIR}/include/raspboop/Raspboop
-  ${CMAKE_SOURCE_DIR}/include/raspboop/data/Pack
   ${CMAKE_SOURCE_DIR}/include/raspboop/essentials/Pins
 )
 
@@ -31,5 +30,9 @@ foreach(module ${MODULES})
   list(APPEND HEADERS ${CMAKE_SOURCE_DIR}/include/raspboop/${module})
 endforeach(module)
 
-add_library(raspboop ${MODULES} ${INTERFACES} ${HEADERS})
+foreach(interface ${INTERFACES})
+  list(APPEND HEADERS ${interface})
+endforeach(interface)
+
+add_library(raspboop ${HEADERS} ${MODULES})
 target_link_libraries(raspboop ${RASPBOOP_LIBRARIES})

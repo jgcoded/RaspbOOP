@@ -17,10 +17,7 @@ using std::vector;
 #include <softPwm.h>
 
 /* Raspboop source */
-#include "raspboop/interfaces/Commandable.h"
-#include "raspboop/interfaces/Serializable.h"
-#include "raspboop/data/Command.h"
-#include "raspboop/data/RBPPacket.h"
+
 #include "raspboop/essentials/Pins.h"
 #include "raspboop/essentials/Core.h"
 #include "raspboop/abstracts/GPIOConsumer.h"
@@ -29,5 +26,9 @@ using std::vector;
 #include "raspboop/sensors/HCSR04.h"
 #include "raspboop/sensors/HCSR501.h"
 #include "raspboop/controls/GPIOManager.h"
+#include "raspboop/data/RBPPacket.h"
+#include "raspboop/data/Command.h"
+#include "raspboop/interfaces/Commandable.h"
+#include "raspboop/interfaces/Serializable.h"
 
 #endif /* RASPBOOP_H */

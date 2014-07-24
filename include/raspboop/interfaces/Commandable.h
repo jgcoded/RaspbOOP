@@ -1,5 +1,7 @@
-#ifndef COMMANDABLE_H
-#define	COMMANDABLE_H
+#ifndef RASPBOOP_INTERFACES_COMMANDABLE_H
+#define	RASPBOOP_INTERFACES_COMMANDABLE_H
+
+#include "raspboop/Raspboop.h"
 
 namespace raspboop
 {
@@ -10,12 +12,16 @@ public:
     
     Commandable();
     
+    virtual void AcceptCommand(const struct CommandData* data)=0;
+    
+    virtual RBPPacketData* ToRBPPacketData();
+    
     virtual ~Commandable()=0;
     
 private:
 
 };
 
-}
+} /* raspboop */
 
-#endif	/* COMMANDABLE_H */
+#endif	/* RASPBOOP_INTERFACES_COMMANDABLE_H */
