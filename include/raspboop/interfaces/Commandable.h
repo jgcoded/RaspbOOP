@@ -14,7 +14,7 @@ public:
     
     virtual void AcceptCommand(const struct CommandData* data)=0;
     
-    virtual RBPPacketData* ToRBPPacketData();
+    virtual struct RBPPacketData* ToRBPPacketData();
     
     virtual ~Commandable()=0;
     
