@@ -1,6 +1,5 @@
 #include "raspboop/data/RBPPacket.h"
-#include <iostream>
-using namespace std;
+
 namespace raspboop
 {
     
