@@ -6,32 +6,24 @@
 namespace raspboop
 {
     
-struct CommandData
-{
-    int componentId;
-    int commandId;
-    vector<float> commandParameters;
-};
-    
 class Command {
     
 public:
     
     Command();
     
-    Command(int componentId, int commandId, vector<float> commandParameters);
-
-    Command(const Command& orig);
+    static Command* CreateCommand(int8_t componentId, int8_t commandId, 
+                                               vector<float> commandParameters);
     
     void SetCommandParameters(vector<float> commandParameters);
 
     vector<float> GetCommandParameters() const;
 
-    void SetCommandId(int commandId);
+    void SetCommandId(int8_t commandId);
 
     int GetCommandId() const;
 
-    void SetComponentId(int componentId);
+    void SetComponentId(int8_t componentId);
 
     int GetComponentId() const;
     
@@ -39,7 +31,9 @@ public:
     
 private:
 
-    CommandData data;
+    int8_t componentId;
+    int8_t commandId;
+    vector<float> commandParameters;
     
 };
 

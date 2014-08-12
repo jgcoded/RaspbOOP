@@ -5,14 +5,6 @@
 
 namespace raspboop
 {
-    
-struct RBPPacketData {
-    uint8_t transactionID;
-    uint8_t packetLength;
-    uint8_t packetType;
-    uint8_t checksum;
-    unsigned char* data;
-};
 
 class RBPPacket {
 
@@ -20,19 +12,24 @@ public:
     
     RBPPacket();
     
-    ~RBPPacket();
+    static Command* DecodeDataToCommand(unsigned char* data);
     
+    static void Packint8(unsigned char* buffer, int8_t i);
+    
+    static int8_t Unpackint8(unsigned char* buffer);
+    
+    static void Packint32(unsigned char* buffer, int32_t i);
+    
+    static int32_t Unpackint32(unsigned char* buffer);
+    
+    static uint64_t Pack754(long double f, unsigned bits, unsigned expbits);
+    
+    static long double Unpack754(uint64_t i, unsigned bits, unsigned expbits);
+    
+    ~RBPPacket();
+        
 private:
     
-    void Packint32(unsigned char* buffer, unsigned long i);
-    
-    int32_t Unpackint32(unsigned char* buffer);
-    
-    uint64_t Pack754(long double f, unsigned bits, unsigned expbits);
-    
-    long double Unpack754(uint64_t i, unsigned bits, unsigned expbits);
-    
-    RBPPacketData data;
 };
 
 } /* raspboop */

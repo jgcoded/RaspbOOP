@@ -26,9 +26,10 @@ using std::vector;
 #include "raspboop/sensors/HCSR04.h"
 #include "raspboop/sensors/HCSR501.h"
 #include "raspboop/controls/GPIOManager.h"
-#include "raspboop/data/RBPPacket.h"
+#include "raspboop/interfaces/Serializable.h"
 #include "raspboop/data/Command.h"
 #include "raspboop/interfaces/Commandable.h"
-#include "raspboop/interfaces/Serializable.h"
+#include "raspboop/data/RBPPacket.h"
+
 
 #endif /* RASPBOOP_H */

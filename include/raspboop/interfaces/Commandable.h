@@ -6,16 +6,16 @@
 namespace raspboop
 {
 
+class Command;
+    
 class Commandable {
 
 public:
     
     Commandable();
     
-    virtual void AcceptCommand(const struct CommandData* data)=0;
-    
-    virtual struct RBPPacketData* ToRBPPacketData();
-    
+    virtual void AcceptCommand(const Command& data)=0;
+
     virtual ~Commandable()=0;
     
 private:

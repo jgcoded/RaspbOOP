@@ -1,22 +1,55 @@
 #include "raspboop/data/RBPPacket.h"
-
+#include <iostream>
+using namespace std;
 namespace raspboop
 {
     
-#define pack754_32(f) (pack754((f), 32, 8))
-#define pack754_64(f) (pack754((f), 64, 11))
-#define unpack754_32(i) (unpack754((i), 32, 8))
-#define unpack754_64(i) (unpack754((i), 64, 11))
+#define pack754_32(f) (Pack754((f), 32, 8))
+#define pack754_64(f) (Pack754((f), 64, 11))
+#define unpack754_32(i) (Unpack754((i), 32, 8))
+#define unpack754_64(i) (Unpack754((i), 64, 11))
 
 RBPPacket::RBPPacket() 
 {
-    data.transactionID = -1;
-    data.packetLength = -1;
-    data.packetType = -1;
-    data.checksum = -1;
+
 }
 
-void RBPPacket::Packint32(unsigned char* buffer, unsigned long i)
+Command* RBPPacket::DecodeDataToCommand(unsigned char* data)
+{
+    int8_t componentId;
+    int8_t commandId;
+    vector<float> cmdParams;
+    int index = 0;
+    
+    cmdParams.reserve(4);
+    
+    componentId = Unpackint8(data);
+    index++;
+    
+    commandId = Unpackint8(data + index);
+    index++;
+    
+    while(data[index] != '\0')
+    {
+        int32_t fparam = Unpackint32(data + index);
+        cmdParams.push_back(unpack754_32(fparam));
+        index += 4;
+    }
+    
+    return Command::CreateCommand(componentId, commandId, cmdParams);
+}
+
+ void RBPPacket::Packint8(unsigned char* buffer, int8_t i)
+ {
+     *buffer++ = (i >> 0) & 0xff;
+ }
+    
+ int8_t RBPPacket::Unpackint8(unsigned char* buffer)
+ {
+     return *buffer++;
+ }
+
+void RBPPacket::Packint32(unsigned char* buffer, int32_t i)
 {
     *buffer++ = i >> 24;
     *buffer++ = i >> 16;
