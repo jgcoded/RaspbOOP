@@ -18,21 +18,20 @@ Command* RBPPacket::DecodeDataToCommand(unsigned char* data)
     int8_t componentId;
     int8_t commandId;
     vector<float> cmdParams;
-    int index = 0;
     
     cmdParams.reserve(4);
     
     componentId = Unpackint8(data);
-    index++;
+    data++;
     
-    commandId = Unpackint8(data + index);
-    index++;
+    commandId = Unpackint8(data);
+    data++;
     
-    while(data[index] != '\0')
+    while(*data != '\0')
     {
-        int32_t fparam = Unpackint32(data + index);
+        int32_t fparam = Unpackint32(data);
         cmdParams.push_back(unpack754_32(fparam));
-        index += 4;
+        data += 4;
     }
     
     return Command::CreateCommand(componentId, commandId, cmdParams);
