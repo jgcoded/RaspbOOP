@@ -5,7 +5,6 @@
 #include <stdio.h>
 
 using raspboop::RBPPacket;
-using raspboop::RBPPacketData;
 using raspboop::Command;
 
 using namespace std;
