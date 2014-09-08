@@ -12,11 +12,21 @@ class RBPServer
 public:
     
     RBPServer();
+    
+    static RBPServer* Create();
+    
+    void PrintData();
+
+    int ReceivePacketData();
+
+    unsigned char* GetBuffer() { return buffer; }
+    
     ~RBPServer();
     
 private:
-    
-    
+
+    int sockfd;
+    unsigned char buffer[1024];
     
 };
 
