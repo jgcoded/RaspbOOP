@@ -1,5 +1,7 @@
 #include "raspboop/data/Command.h"
 
+using std::vector;
+
 namespace rbp
 {
 
@@ -10,7 +12,7 @@ Command::Command() : mCommandId(-1),
 }
 
 Command::Command(int8_t componentId, int8_t commandId,
-                    vector<float> commandParameters) :
+                    std::vector<float> commandParameters) :
                  mCommandId(commandId),
                  mComponentId(componentId),
                  mCommandParameters(commandParameters)

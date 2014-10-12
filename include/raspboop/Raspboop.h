@@ -1,18 +1,8 @@
 #ifndef RASPBOOP_H
 #define RASPBOOP_H
 
-/* System includes */
-#include <stdio.h>
-#include <map>
-#include <vector>
-#include <stdint.h>
-#include <pthread.h>
-#include <errno.h>
-#include <algorithm>
-
-using std::vector;
-
 /* Dependency includes */
+#include <pthread.h>
 #include <wiringPi.h>
 #include <softPwm.h>
 

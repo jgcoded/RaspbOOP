@@ -1,16 +1,16 @@
 #include "raspboop/Raspboop.h"
 #include <cstring>
-#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <exception>
-#include <stdexcept>
 #include <thread>
-#include <iostream>
 
 #define PORT "9034"
+
+using std::int8_t;
+using std::int32_t;
 
 namespace rbp
 {
@@ -92,7 +92,7 @@ void Server::ServerThread()
     socklen_t addr_len = sizeof(their_addr);
     unsigned char header[5];
     int bytesRead;
-    vector<unsigned char> buffer(20);
+    std::vector<unsigned char> buffer(20);
 
     while(!mStopServer)
     {

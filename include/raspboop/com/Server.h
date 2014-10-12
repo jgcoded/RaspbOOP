@@ -1,10 +1,11 @@
 #ifndef RASPBOOP_COM_SERVER_H
 #define RASPBOOP_COM_SERVER_H
 
+#include "raspboop/Raspboop.h"
 #include <functional>
 #include <atomic>
 #include <mutex>
-#include "raspboop/Raspboop.h"
+#include <vector>
 
 namespace rbp
 {
@@ -31,7 +32,7 @@ private:
     void ServerThread();
 
     int mSockfd;
-    vector<std::function<void(Command&&)>> mCallbacks;
+    std::vector<std::function<void(Command&&)>> mCallbacks;
     std::atomic<bool> mServerRunning;
     std::atomic<bool> mStopServer;
     std::mutex mServerMutex;

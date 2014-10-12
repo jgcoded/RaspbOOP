@@ -2,6 +2,7 @@
 #define RASPBOOP_ABSTRACTS_GPIOCONSUMER_H
 
 #include "raspboop/Raspboop.h"
+#include <vector>
 
 namespace rbp
 {
@@ -19,7 +20,7 @@ namespace rbp
  */
 class GPIOConsumer
 {
-    vector<int> mPins;
+    std::vector<int> mPins;
 
     /*! \brief Sets the mode of all pins to an inactive state
      *
@@ -45,7 +46,7 @@ public:
 
     GPIOConsumer();
 
-    vector<int> GetPins() const { return mPins; }
+    std::vector<int> GetPins() const { return mPins; }
 
     virtual ~GPIOConsumer()=0;
 
