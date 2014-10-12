@@ -131,4 +131,4 @@ public:
 
 } /* rbp */
 
-#endif	/* RASPBOOP_ESSENTIALS_PINS_H */
+#endif	/* RASPBOOP_ESSENTIALS_TYPES_H */
