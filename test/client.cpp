@@ -14,44 +14,45 @@
 #include <cstring>
 #include <algorithm>
 
-using raspboop::RBPPacket;
-using raspboop::Command;
-
+using namespace raspboop;
 using namespace std;
+
+#define SIZE (sizeof(int8_t) + sizeof(int32_t) \
+            + sizeof(int8_t)*2 + sizeof(float)*2)
 
 #define SERVERPORT "9034"    // the port users will be connecting to
 
 void PackTestBuffer(unsigned char* data)
 {
+    // First create a test buffer that simulates incoming data
+    int8_t startOfPacket = 0x55;
+    int32_t packetLength = sizeof(int8_t)*2 + sizeof(float)*2;
     int8_t componentId = 1;
     int8_t commandId = 2;
-    
-    // some floats that accompany the command
-    int32_t f1 = RBPPacket::Pack754(5.4f, 32, 8);
-    int32_t f2 = RBPPacket::Pack754(-7.3f, 32, 8);
-    
+    float f1 = 5.4f;
+    float f2 = -7.3f;
+
+    memset(data, 0, sizeof(unsigned char) * SIZE);
+
     //pack the buffer
-    RBPPacket::Packint8(data, 0x55);
-    RBPPacket::Packint32(data + 1, 10);
-    RBPPacket::Packint8(data + 5, componentId);
-    RBPPacket::Packint8(data + 6, commandId);
-    RBPPacket::Packint32(data + 7, f1);
-    RBPPacket::Packint32(data + 11, f2);
+    rbpbufset(data, &startOfPacket, sizeof(int8_t));
+    rbpbufset(data, &packetLength, sizeof(int32_t));
+    rbpbufset(data, &componentId, sizeof(int8_t));
+    rbpbufset(data, &commandId, sizeof(int8_t));
+    rbpbufset(data, &f1, sizeof(float));
+    rbpbufset(data, &f2, sizeof(float));
 }
 
 int main(int argc, char *argv[])
 {
-#define SIZE 15
-    
     int sockfd;
     struct addrinfo hints, *servinfo, *p;
     int rv;
     int numbytes;
-    
+
     unsigned char data[SIZE];
     memset(data, 0, sizeof(unsigned char) * SIZE);
-    data[SIZE - 1] = '\0';
-    
+
     PackTestBuffer(data);
 
     if (argc != 2) {

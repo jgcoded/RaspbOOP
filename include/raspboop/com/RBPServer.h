@@ -18,7 +18,7 @@ public:
 
     void Initialize();
 
-    void AddCallback(std::function<void(Command*)> callback);
+    void AddCallback(std::function<void(Command&&)> callback);
 
     void Start();
 
@@ -31,7 +31,7 @@ private:
     void ServerThread();
 
     int mSockfd;
-    vector<std::function<void(Command*)>> mCallbacks;
+    vector<std::function<void(Command&&)>> mCallbacks;
     std::atomic<bool> mServerRunning;
     std::atomic<bool> mStopServer;
     std::mutex mServerMutex;

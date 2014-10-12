@@ -29,5 +29,6 @@ using std::vector;
 #include "raspboop/interfaces/Serializable.h"
 #include "raspboop/data/Command.h"
 #include "raspboop/interfaces/Commandable.h"
+#include "raspboop/com/RBPServer.h"
 
 #endif /* RASPBOOP_H */

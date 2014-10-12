@@ -34,7 +34,7 @@ static void* rbpbufset(unsigned char*& dest, const void* source, size_t size)
 }
 
 /** \brief Advances the source pointer by size */
-static void* rbpbufget(void* dest, unsigned char* source, size_t size)
+static void* rbpbufget(void* dest, unsigned char*& source, size_t size)
 {
     void* v = std::memcpy(dest, source, size);
     source += size;

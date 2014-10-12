@@ -61,7 +61,7 @@ void RBPServer::Initialize()
     freeaddrinfo(servinfo);
 }
 
-void RBPServer::AddCallback(std::function<void(Command*)> callback)
+void RBPServer::AddCallback(std::function<void(Command&&)> callback)
 {
     if(callback)
     {
@@ -100,21 +100,30 @@ void RBPServer::ServerThread()
         if(bytesRead == -1)
             throw std::runtime_error("Receive error: header");
 
-        int8_t startOfPacket = RBPPacket::Unpackint8(header);
-        int32_t packetSize = RBPPacket::Unpackint32(header +1);
+        int8_t startOfPacket;
+        int32_t packetSize;
+        unsigned char* p = header;
 
-        buffer.resize(packetSize);
+        rbpbufget(&startOfPacket, p, sizeof(int8_t));
 
-        bytesRead = recvfrom(mSockfd, buffer.data(), packetSize, 0, (struct sockaddr*)&their_addr, &addr_len);
+        if(startOfPacket != 0x55)
+            throw std::logic_error("Invalid start of packet");
+
+        rbpbufget(&packetSize, p, sizeof(int32_t));
+
+        if(packetSize <= 0 || packetSize > 1024)
+            throw std::length_error("Invalid incoming packet size");
+
+        buffer.resize(packetSize + 5);
+
+        bytesRead = recvfrom(mSockfd, buffer.data(), packetSize + 5, 0, (struct sockaddr*)&their_addr, &addr_len);
         if(bytesRead == -1)
             throw std::runtime_error("Receive error: buffer");
-
-        Command* cmd = RBPPacket::DecodeDataToCommand(buffer.data());
 
         {
             std::lock_guard<std::mutex> lock(mServerMutex);
             for(auto& callback : mCallbacks)
-                callback(cmd);
+                callback(Command::DecodeDataToCommand(buffer.data() + 5));
         }
 
         buffer.clear();
@@ -131,6 +140,8 @@ void RBPServer::Stop()
 
 RBPServer::~RBPServer()
 {
+    mStopServer = true;
+
     if(mSockfd > 0)
         close(mSockfd);
 }
