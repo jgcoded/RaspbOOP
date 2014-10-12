@@ -4,7 +4,7 @@
 #include "raspboop/Raspboop.h"
 #include <cstring>
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief Initializes Raspboop and its dependencies
@@ -18,9 +18,9 @@ namespace raspboop
  * setup/) for a detailed description of the implications
  * of a pin scheme. The default pin scheme is Wiring.
  *
- * \param Scheme The pin scheme to use.
+ * \param scheme The pin scheme to use.
  */
-int Init(PinScheme Scheme = PinScheme::WIRING);
+int Init(PinScheme scheme = PinScheme::WIRING);
 
 /*! \todo Implement Deinit() method */
 int Deinit();
@@ -41,6 +41,6 @@ static void* rbpbufget(void* dest, unsigned char*& source, size_t size)
     return v;
 }
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_ESSENTIALS_CORE_H */

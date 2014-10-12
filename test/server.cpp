@@ -2,12 +2,11 @@
 #include <raspboop/Raspboop.h>
 
 using namespace std;
-using raspboop::RBPServer;
-using raspboop::Command;
+using namespace rbp;
 
 int main(int argc, char* argv[])
 {
-    RBPServer server;
+    Server server;
 
     server.Initialize();
     server.Start();

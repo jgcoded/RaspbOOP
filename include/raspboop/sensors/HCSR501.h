@@ -3,13 +3,13 @@
 
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief Passive infrared sensor for motion detection
  *
  * The HCSR501 is a passive infrared sensor used for motion detection
- * applications. There are 5 main pins that you will need to be 
+ * applications. There are 5 main pins that you will need to be
  * familiar with:
  *
  * - 5V input
@@ -35,7 +35,7 @@ namespace raspboop
  *
  * External Links
  * --------------
- * 
+ *
  * [Parallax PIR datasheet](http://www.ladyada.net/media/
  * sensors/PIRSensor-V1.2.pdf)
  *
@@ -56,8 +56,8 @@ class HCSR501 : public Sensor
 
 public:
 
-    /*! \brief HCSR501 Constructor 
-     * 
+    /*! \brief HCSR501 Constructor
+     *
      * Initializes private variables to unused values
      */
     HCSR501();
@@ -69,19 +69,19 @@ public:
      * the HCSR501's Signal pin using the SetInputPin() method
      * from Sensor.
      *
-     * \param SIGNAL The input pin which will read the value from
+     * \param signal The input pin which will read the value from
      *		  		 the sensor
      *
      * \return A pointer to an HCSR501 object with all pins
      *		   initialized
      */
-    static HCSR501* Create(int SIGNAL);
+    static HCSR501* Create(int signal);
 
     virtual void Sense();
 
     /*! \brief Get the value obtained from Sense()
      *
-     * \return A boolean value determining the 
+     * \return A boolean value determining the
      * 		   signal pin's value
      */
     bool IsSignalled() const
@@ -95,6 +95,6 @@ public:
 
 }; /* HCSR501 */
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_SENSORS_HCSR501_H */

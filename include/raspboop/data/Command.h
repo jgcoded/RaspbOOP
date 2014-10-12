@@ -3,7 +3,7 @@
 
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 class Command {
@@ -39,6 +39,6 @@ private:
 
 };
 
-} /* raspboop */
+} /* rbp */
 
 #endif	/* RASPBOOP_DATA_COMMAND_H */

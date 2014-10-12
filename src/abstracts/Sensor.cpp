@@ -1,6 +1,6 @@
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 Sensor::Sensor()
@@ -8,15 +8,15 @@ Sensor::Sensor()
 }
 
 
-void Sensor::SetOutputPin(int Pin)
+void Sensor::SetOutputPin(int pin)
 {
-    ConsumePin(Pin, OUTPUT);
+    ConsumePin(pin, OUTPUT);
 }
 
 
-void Sensor::SetInputPin(int Pin)
+void Sensor::SetInputPin(int pin)
 {
-    ConsumePin(Pin, INPUT);
+    ConsumePin(pin, INPUT);
 }
 
 
@@ -24,4 +24,4 @@ Sensor::~Sensor()
 {
 }
 
-} /* raspboop */
+} /* rbp */

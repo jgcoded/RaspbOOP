@@ -3,7 +3,7 @@
 
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief L298N Motor controller
@@ -54,15 +54,15 @@ public:
      * factory Create() method. The factory method initializes
      * the L298N's pins using the ConsumePin() method.
      *
-     * \param IN1 The board's IN1 pin
-     * \param IN2 The board's IN2 pin
-     * \param IN3 The board's IN3 pin
-     * \param IN4 The board's IN4 pin
-     * 
+     * \param in1 The board's IN1 pin
+     * \param in2 The board's IN2 pin
+     * \param in3 The board's IN3 pin
+     * \param in4 The board's IN4 pin
+     *
      * \return A pointer to an L298N object with all pins
      * 		   ready to operate.
      */
-    static L298N* Create(int IN1, int IN2, int IN3, int IN4);
+    static L298N* Create(int in1, int in2, int in3, int in4);
 
     /*! \brief Sets the input pins to software PWM mode
      *
@@ -79,7 +79,7 @@ public:
 
     /*! \brief Sets a pin's software PWM value
      *
-     * This method uses wiringPi's 
+     * This method uses wiringPi's
      * [software PWM library](http://wiringpi.com/reference/
      * software-pwm-library/) to set the software
      * PWM on the pin to a value. You must first call the
@@ -89,7 +89,7 @@ public:
      *			 IN pin on the board
      * \param Value A value from 0 to 100
      */
-    void SetPWMValue(int IN, int Value);
+    void SetPWMValue(int in, int value);
 
     /*! \brief Set a pin's value to either HIGH or LOW
      *
@@ -100,12 +100,12 @@ public:
      *			 IN pin on the board
      * \param Value A value of HIGH(1) or LOW(0)
      */
-    void SetPinValue(int IN, int Value);
+    void SetPinValue(int in, int value);
 
     ~L298N();
 
 }; /* L298N */
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_BOARDS_L298N_H */

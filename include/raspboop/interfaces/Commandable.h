@@ -3,25 +3,25 @@
 
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 class Command;
-    
+
 class Commandable {
 
 public:
-    
+
     Commandable();
-    
+
     virtual void AcceptCommand(const Command& data)=0;
 
     virtual ~Commandable()=0;
-    
+
 private:
 
 };
 
-} /* raspboop */
+} /* rbp */
 
 #endif	/* RASPBOOP_INTERFACES_COMMANDABLE_H */

@@ -3,7 +3,7 @@
 
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief Abstract class for all GPIO pin utilizers
@@ -19,9 +19,9 @@ namespace raspboop
  */
 class GPIOConsumer
 {
-    
+
     vector<int> Pins;
-    
+
     /*! \brief Sets the mode of all pins to an inactive state
      *
      * All children must call this method when it becomes out of scope,
@@ -29,7 +29,7 @@ class GPIOConsumer
      * never any GPIO pins unnecessarily set to *HIGH*
      */
     virtual void ReleasePins() const;
-    
+
 protected:
 
     /*! \brief Reserves a pin and sets its mode
@@ -40,18 +40,18 @@ protected:
      * \param Pin the GPIO pin to set
      * \param Mode The Mode the Pin will be set to
      */
-    void ConsumePin(int Pin, int Mode);
+    void ConsumePin(int pin, int mode);
 
 public:
 
     GPIOConsumer();
-    
+
     vector<int> GetPins() const { return Pins; }
-    
+
     virtual ~GPIOConsumer()=0;
 
 }; /* GPIOConsumer */
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_ABSTRACTS_GPIOCONSUMER_H */

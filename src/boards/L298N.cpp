@@ -1,6 +1,6 @@
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 L298N::L298N()
@@ -8,7 +8,7 @@ L298N::L298N()
 }
 
 
-L298N* L298N::Create(int IN1, int IN2, int IN3, int IN4)
+L298N* L298N::Create(int in1, int in2, int in3, int in4)
 {
 
     L298N* L = (L298N*)malloc(sizeof(L298N));
@@ -16,18 +16,18 @@ L298N* L298N::Create(int IN1, int IN2, int IN3, int IN4)
     // Not enough memory. Should notify user
     if(L == NULL)
         return NULL;
-    
+
     new (L) L298N;
 
-    L->Pins[0] = IN1;
-    L->Pins[1] = IN2;
-    L->Pins[2] = IN3;
-    L->Pins[3] = IN4;
+    L->Pins[0] = in1;
+    L->Pins[1] = in2;
+    L->Pins[2] = in3;
+    L->Pins[3] = in4;
 
-    L->ConsumePin(IN1, OUTPUT);
-    L->ConsumePin(IN2, OUTPUT);
-    L->ConsumePin(IN3, OUTPUT);
-    L->ConsumePin(IN4, OUTPUT);
+    L->ConsumePin(in1, OUTPUT);
+    L->ConsumePin(in2, OUTPUT);
+    L->ConsumePin(in3, OUTPUT);
+    L->ConsumePin(in4, OUTPUT);
 
     return L;
 }
@@ -41,26 +41,26 @@ void L298N::UseSoftPWM()
 }
 
 
-void L298N::SetPWMValue(int IN, int Value)
+void L298N::SetPWMValue(int in, int value)
 {
-    if(IN < 1 || IN > 4)
+    if(in < 1 || in > 4)
         return;
 
-    int index = IN - 1;
+    int index = in - 1;
 
     // Wiringpi checks if Value is valid
-    softPwmWrite(Pins[index], Value);
+    softPwmWrite(Pins[index], value);
 }
 
 
-void L298N::SetPinValue(int IN, int Value)
+void L298N::SetPinValue(int in, int value)
 {
-    if(IN < 1 || IN > 4)
+    if(in < 1 || in > 4)
         return;
 
-    int index = IN -1;
+    int index = in -1;
 
-    digitalWrite(Pins[index], Value);
+    digitalWrite(Pins[index], value);
 }
 
 
@@ -68,4 +68,4 @@ L298N::~L298N()
 {
 }
 
-} /* raspboop */
+} /* rbp */

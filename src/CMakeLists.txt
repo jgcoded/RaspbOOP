@@ -12,8 +12,7 @@ set(MODULES
   abstracts/Sensor
   sensors/HCSR04
   sensors/HCSR501
-  com/RBPServer
-  controls/GPIOManager
+  com/Server
 )
 
 set(HEADERS

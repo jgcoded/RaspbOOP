@@ -1,13 +1,13 @@
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
-int Init(PinScheme Scheme)
+int Init(PinScheme scheme)
 {
 
     // Setup wiringPi
-    switch(Scheme)
+    switch(scheme)
     {
         case PinScheme::GPIO:
             wiringPiSetupGpio();
@@ -30,4 +30,4 @@ int Deinit()
     return 1;
 }
 
-} /* raspboop */
+} /* rbp */

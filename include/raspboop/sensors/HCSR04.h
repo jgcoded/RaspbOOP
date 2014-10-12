@@ -3,7 +3,7 @@
 
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief Ultrasonic distance sensor
@@ -48,7 +48,7 @@ namespace raspboop
  * Maximum distance           | **4m**
  * Minimum distance           | **2 cm**
  * Required Trigger pulse     | **10us (microseconds) HIGH signal**
- * 
+ *
  *
  * External links
  * --------------
@@ -91,16 +91,16 @@ public:
      *
      * To properly create an object in raspboop, you must use its
      * factory Create() method. The factory method initializes
-     * the HCSR04's pins using the SetInputPin() and 
+     * the HCSR04's pins using the SetInputPin() and
      * SetOutputPin() methods inherited from Sensor.
      *
-     * \param ECHO The input pin designated to read the sensors ECHO
+     * \param echo The input pin designated to read the sensors ECHO
      * 		  output
-     * \param TRIG The output pin that initiates sensing
+     * \param trig The output pin that initiates sensing
      *
      * \return A pointer to an HCSR04 object with all pins initialized
      */
-    static HCSR04* Create(int ECHO, int TRIG);
+    static HCSR04* Create(int echo, int trig);
 
     /*! \brief HCSR04 Destructor
      */
@@ -108,6 +108,6 @@ public:
 
 };
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_SENSORS_HCSR04_H */

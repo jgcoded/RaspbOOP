@@ -1,9 +1,9 @@
 #ifndef RASPBOOP_ESSENTIALS_PINS_H
 #define	RASPBOOP_ESSENTIALS_PINS_H
 
-namespace raspboop
+namespace rbp
 {
-    
+
 /*! \brief The GPIO pin numbering scheme to use
  *
  * see Init();
@@ -23,9 +23,9 @@ enum class PinScheme
  */
 class WiringPiPins
 {
-    
+
 public:
-    
+
     PIN(GPIO0,  0)
     PIN(GPIO1,  1)
     PIN(GPIO2,  2)
@@ -50,9 +50,9 @@ public:
  */
 class BCMPinsRev1
 {
-    
+
 public:
-    
+
     PIN(GPIO0, 17)
     PIN(GPIO1, 18)
     PIN(GPIO2, 21)    // Model A specific
@@ -77,9 +77,9 @@ public:
  */
 class BCMPinsRev2
 {
-    
+
 public:
-    
+
     PIN(GPIO0, 17)
     PIN(GPIO1, 18)
     PIN(GPIO2, 27)    // Model B specific
@@ -105,9 +105,9 @@ public:
  */
 class WiringPiPinsP5
 {
-    
+
 public:
-    
+
     PIN(GPIO8 , 17)
     PIN(GPIO9 , 18)
     PIN(GPIO10, 19)
@@ -120,16 +120,16 @@ public:
  */
 class BCMPinsP5
 {
-    
+
 public:
-    
+
     PIN(GPIO8 , 28)
     PIN(GPIO9 , 29)
     PIN(GPIO10, 30)
     PIN(GPIO11, 31)
 };
 
-    
-} /* Raspboop */
+
+} /* rbp */
 
 #endif	/* RASPBOOP_ESSENTIALS_PINS_H */

@@ -1,6 +1,6 @@
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 HCSR501::HCSR501()
@@ -10,7 +10,7 @@ HCSR501::HCSR501()
 }
 
 
-HCSR501* HCSR501::Create(int SIGNAL)
+HCSR501* HCSR501::Create(int signal)
 {
     HCSR501* H = (HCSR501*)malloc(sizeof(HCSR501));
 
@@ -20,9 +20,9 @@ HCSR501* HCSR501::Create(int SIGNAL)
 
     new(H) HCSR501;
 
-    H->SignalPin = SIGNAL;
+    H->SignalPin = signal;
 
-    H->SetInputPin(SIGNAL);
+    H->SetInputPin(signal);
 
     return H;
 }
@@ -38,4 +38,4 @@ HCSR501::~HCSR501()
 {
 }
 
-} /* raspboop */
+} /* rbp */

@@ -3,14 +3,14 @@
 
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief An abstract class for devices that can interface with the world
  *
  * Sensors can sense the world and provide valuable data about the
- * state of the current environment. 
- * 
+ * state of the current environment.
+ *
  * Most sensors require an output, or a trigger, GPIO pin that tells
  * the sensor when to sense. An example of this type of sensor is the
  * [HCSR04](@ref HCSR04) ultrasonic distance sensor. However, there
@@ -33,7 +33,7 @@ protected:
      *
      * \param Pin The pin to designate as an output
      */
-    void SetOutputPin(int Pin);
+    void SetOutputPin(int pin);
 
     /*! \brief Set an input pin for the sensor
      *
@@ -42,7 +42,7 @@ protected:
      *
      * \param Pin The pin to designate as in input
      */
-    void SetInputPin(int Pin);
+    void SetInputPin(int pin);
 
 public:
 
@@ -52,7 +52,7 @@ public:
      *
      * This method will retrieve a value from the environment
      * by performing GPIO operations on the input and output
-     * pins of the sensor. The value from the sensor will be 
+     * pins of the sensor. The value from the sensor will be
      * available through an accessor method.
      */
     virtual void Sense()=0;
@@ -61,6 +61,6 @@ public:
 
 }; /* Sensor */
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_INTERFACES_SENSOR_H */

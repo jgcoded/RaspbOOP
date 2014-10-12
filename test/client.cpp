@@ -14,7 +14,7 @@
 #include <cstring>
 #include <algorithm>
 
-using namespace raspboop;
+using namespace rbp;
 using namespace std;
 
 #define SIZE (sizeof(int8_t) + sizeof(int32_t) \

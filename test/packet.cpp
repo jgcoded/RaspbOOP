@@ -5,7 +5,7 @@
 #include <vector>
 #include <stdio.h>
 
-using namespace raspboop;
+using namespace rbp;
 using namespace std;
 
 int main(int argc, char* argv[])

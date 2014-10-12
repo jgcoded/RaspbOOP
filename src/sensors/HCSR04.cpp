@@ -1,6 +1,6 @@
 #include "raspboop/Raspboop.h"
 
-namespace raspboop
+namespace rbp
 {
 
 HCSR04::HCSR04()
@@ -13,11 +13,11 @@ HCSR04::HCSR04()
 }
 
 
-HCSR04* HCSR04::Create(int ECHO, int TRIG)
+HCSR04* HCSR04::Create(int echo, int trig)
 {
 
     // Using the same pins. Should notify user
-    if(ECHO == TRIG)
+    if(echo == trig)
         return NULL;
 
     HCSR04* H = (HCSR04*)malloc(sizeof(HCSR04));
@@ -28,13 +28,13 @@ HCSR04* HCSR04::Create(int ECHO, int TRIG)
 
     new(H) HCSR04;
 
-    H->EchoPin = ECHO;
-    H->TriggerPin = TRIG;
+    H->EchoPin = echo;
+    H->TriggerPin = trig;
 
-    H->SetInputPin(ECHO);
-    H->SetOutputPin(TRIG);
+    H->SetInputPin(echo);
+    H->SetOutputPin(trig);
 
-    digitalWrite(TRIG, LOW);
+    digitalWrite(trig, LOW);
 
     return H;
 }
@@ -67,4 +67,4 @@ HCSR04::~HCSR04()
 {
 }
 
-} /* raspboop */
+} /* rbp */

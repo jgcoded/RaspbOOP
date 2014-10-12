@@ -25,10 +25,9 @@ using std::vector;
 #include "raspboop/boards/L298N.h"
 #include "raspboop/sensors/HCSR04.h"
 #include "raspboop/sensors/HCSR501.h"
-#include "raspboop/controls/GPIOManager.h"
 #include "raspboop/interfaces/Serializable.h"
 #include "raspboop/data/Command.h"
 #include "raspboop/interfaces/Commandable.h"
-#include "raspboop/com/RBPServer.h"
+#include "raspboop/com/Server.h"
 
 #endif /* RASPBOOP_H */

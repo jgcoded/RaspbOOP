@@ -1,17 +1,15 @@
 #include <raspboop/Raspboop.h>
 
-using raspboop::HCSR04;
-using raspboop::HCSR501;
-using raspboop::WiringPiPins;
+using namespace rbp;
 
 int main(int argc, char* argv[])
 {
-    raspboop::Init();
+    rbp::Init();
 
     bool ShouldRun = true;
     HCSR04* DistanceSensor = HCSR04::Create(WiringPiPins::GPIO0,
                                             WiringPiPins::GPIO1);
-    
+
     HCSR501* InfraredSensor = HCSR501::Create(WiringPiPins::GPIO2);
 
     while(ShouldRun)

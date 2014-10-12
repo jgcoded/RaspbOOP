@@ -1,6 +1,6 @@
 #include "raspboop/data/Command.h"
 
-namespace raspboop
+namespace rbp
 {
 
 Command::Command() : mCommandId(-1),
@@ -78,4 +78,4 @@ Command::~Command()
 {
 }
 
-} /* raspboop */
+} /* rbp */
