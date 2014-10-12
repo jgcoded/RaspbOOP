@@ -19,9 +19,9 @@ public:
 
     static Command DecodeDataToCommand(unsigned char* data);
 
-    void SetCommandParameters(std::vector<float> commandParameters);
+    void SetParameters(std::vector<float> commandParameters);
 
-    std::vector<float> GetCommandParameters() const;
+    std::vector<float> GetParameters() const;
 
     void SetCommandId(int8_t commandId);
 

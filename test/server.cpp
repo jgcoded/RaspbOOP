@@ -14,8 +14,8 @@ int main(int argc, char* argv[])
     server.AddCallback([] (Command&& cmd) {
                             cout << cmd.GetComponentId() << endl;
                             cout << cmd.GetCommandId() << endl;
-                            cout << cmd.GetCommandParameters()[0] << endl;
-                            cout << cmd.GetCommandParameters()[1] << endl;
+                            cout << cmd.GetParameters()[0] << endl;
+                            cout << cmd.GetParameters()[1] << endl;
                        });
     // Run for 60 seconds
     sleep(60);

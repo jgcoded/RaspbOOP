@@ -46,12 +46,12 @@ Command Command::DecodeDataToCommand(unsigned char* data)
     return Command(componentId, commandId, cmdParams);
 }
 
-void Command::SetCommandParameters(vector<float> commandParameters)
+void Command::SetParameters(vector<float> commandParameters)
 {
     mCommandParameters = commandParameters;
 }
 
-vector<float> Command::GetCommandParameters() const
+vector<float> Command::GetParameters() const
 {
     return mCommandParameters;
 }
