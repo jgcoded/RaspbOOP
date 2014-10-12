@@ -1,5 +1,5 @@
-#ifndef RASPBOOP_ESSENTIALS_PINS_H
-#define	RASPBOOP_ESSENTIALS_PINS_H
+#ifndef RASPBOOP_ESSENTIALS_TYPES_H
+#define	RASPBOOP_ESSENTIALS_TYPES_H
 
 namespace rbp
 {
@@ -15,8 +15,7 @@ enum class PinScheme
     SYS = 2
 };
 
-#define PIN(x, y) \
-        static const int (x) = (y);
+#define PIN(x, y) static const int (x) = (y);
 
 /*! \brief A convenience class for the P1 GPIO Connector pins
  *  [Pin reference](http://wiringpi.com/pins/)
