@@ -23,7 +23,6 @@ using std::vector;
 #include "raspboop/abstracts/GPIOConsumer.h"
 #include "raspboop/abstracts/Sensor.h"
 #include "raspboop/boards/L298N.h"
-#include "raspboop/com/RBPServer.h"
 #include "raspboop/sensors/HCSR04.h"
 #include "raspboop/sensors/HCSR501.h"
 #include "raspboop/controls/GPIOManager.h"
