@@ -7,17 +7,15 @@ int main(int argc, char* argv[])
 {
     rbp::Init();
 
-    L298N* Controller = L298N::Create(WiringPiPins::GPIO0,
-                                      WiringPiPins::GPIO1,
-                                      WiringPiPins::GPIO2,
-                                      WiringPiPins::GPIO3);
+    L298N controller(WiringPiPins::GPIO0,
+                     WiringPiPins::GPIO1,
+                     WiringPiPins::GPIO2,
+                     WiringPiPins::GPIO3);
 
-    Controller->UseSoftPWM();
+    controller.UseSoftPWM();
 
-    Controller->SetPWMValue(1, 50);
-    Controller->SetPWMValue(4, 50);
-
-    delete Controller;
+    controller.SetPWMValue(1, 50);
+    controller.SetPWMValue(4, 50);
 
     return 0;
 }

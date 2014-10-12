@@ -10,27 +10,16 @@ HCSR501::HCSR501()
 }
 
 
-HCSR501* HCSR501::Create(int signal)
+HCSR501::HCSR501(int signal) :
+         mSignalPin(signal)
 {
-    HCSR501* H = (HCSR501*)malloc(sizeof(HCSR501));
-
-    // Not enough memory. Should notify user
-    if(H == NULL)
-            return NULL;
-
-    new(H) HCSR501;
-
-    H->mSignalPin = signal;
-
-    H->SetInputPin(signal);
-
-    return H;
+    SetInputPin(signal);
 }
 
 
 void HCSR501::Sense()
 {
-    mSignalled = digitalRead(mSignalPin);
+    mSignalled = digitalRead(mSignalPin) == 1;
 }
 
 

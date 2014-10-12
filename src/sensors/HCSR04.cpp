@@ -1,42 +1,35 @@
 #include "raspboop/Raspboop.h"
+#include <exception>
 
 namespace rbp
 {
 
-HCSR04::HCSR04()
+HCSR04::HCSR04() :
+        mEchoPin(-1),
+        mTriggerPin(-1),
+        mEchoStart(0),
+        mEchoEnd(0),
+        mDistance(0)
 {
-    mEchoPin = -1;
-    mTriggerPin = -1;
-    mEchoStart = 0;
-    mEchoEnd = 0;
-    mDistance = 0;
 }
 
 
-HCSR04* HCSR04::Create(int echo, int trig)
+HCSR04::HCSR04(int echo, int trig) :
+        mEchoPin(echo),
+        mTriggerPin(trig),
+        mEchoStart(0),
+        mEchoEnd(0),
+        mDistance(0)
 {
 
     // Using the same pins. Should notify user
     if(echo == trig)
-        return NULL;
+        throw std::logic_error("Echo and trig pins are the same");
 
-    HCSR04* H = (HCSR04*)malloc(sizeof(HCSR04));
-
-    // Not enough memory. Should notify user
-    if(H == NULL)
-        return NULL;
-
-    new(H) HCSR04;
-
-    H->mEchoPin = echo;
-    H->mTriggerPin = trig;
-
-    H->SetInputPin(echo);
-    H->SetOutputPin(trig);
+    SetInputPin(echo);
+    SetOutputPin(trig);
 
     digitalWrite(trig, LOW);
-
-    return H;
 }
 
 

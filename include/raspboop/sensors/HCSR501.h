@@ -64,18 +64,13 @@ public:
 
     /*! \brief Create a usable HCSR501 object
      *
-     * To properly create an object in raspboop, you must use its
-     * factory Create() method. The factory method initializes
-     * the HCSR501's Signal pin using the SetInputPin() method
-     * from Sensor.
+     * Initializes the HCSR501's Signal pin using the SetInputPin()
+     * method from Sensor.
      *
      * \param signal The input pin which will read the value from
      *		  		 the sensor
-     *
-     * \return A pointer to an HCSR501 object with all pins
-     *		   initialized
      */
-    static HCSR501* Create(int signal);
+    HCSR501(int signal);
 
     virtual void Sense();
 

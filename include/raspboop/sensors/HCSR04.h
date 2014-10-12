@@ -89,18 +89,14 @@ public:
 
     /*! \brief Create a usable HCSR04 object
      *
-     * To properly create an object in raspboop, you must use its
-     * factory Create() method. The factory method initializes
-     * the HCSR04's pins using the SetInputPin() and
+     * Initializes the HCSR04's pins using the SetInputPin() and
      * SetOutputPin() methods inherited from Sensor.
      *
      * \param echo The input pin designated to read the sensors ECHO
      * 		  output
      * \param trig The output pin that initiates sensing
-     *
-     * \return A pointer to an HCSR04 object with all pins initialized
      */
-    static HCSR04* Create(int echo, int trig);
+    HCSR04(int echo, int trig);
 
     /*! \brief HCSR04 Destructor
      */

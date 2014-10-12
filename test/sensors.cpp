@@ -1,37 +1,36 @@
 #include <raspboop/Raspboop.h>
+#include <iostream>
 
 using namespace rbp;
+using namespace std;
 
 int main(int argc, char* argv[])
 {
     rbp::Init();
 
-    bool ShouldRun = true;
-    HCSR04* DistanceSensor = HCSR04::Create(WiringPiPins::GPIO0,
-                                            WiringPiPins::GPIO1);
+    bool shouldRun = true;
+    HCSR04 distanceSensor(WiringPiPins::GPIO0,
+                          WiringPiPins::GPIO1);
 
-    HCSR501* InfraredSensor = HCSR501::Create(WiringPiPins::GPIO2);
+    HCSR501 infraredSensor(WiringPiPins::GPIO2);
 
-    while(ShouldRun)
+    while(shouldRun)
     {
 
-        InfraredSensor->Sense();
-        DistanceSensor->Sense();
+        infraredSensor.Sense();
+        distanceSensor.Sense();
 
-        int Motion = InfraredSensor->IsSignalled();
-        float Distance = DistanceSensor->GetDistance();
+        bool motion = infraredSensor.IsSignalled();
+        float distance = distanceSensor.GetDistance();
 
-        printf("Motion Detected: %d\n", Motion);
-        printf("Distance: %0.2f centimeters\n\n", Distance);
+        cout << "Motion Detected: " << motion << endl;
+        cout << "Distance: " << distance << " cm" << endl << endl;
 
-        if(Distance < 20.0f)
-            ShouldRun = false;
+        if(distance < 20.0f)
+            shouldRun = false;
         else
             delay(1000);
     }
-
-    delete InfraredSensor;
-    delete DistanceSensor;
 
     return 0;
 }

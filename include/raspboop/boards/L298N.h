@@ -48,21 +48,16 @@ public:
 
     L298N();
 
-    /*! \brief Creates a pointer to an L298N object
+    /*! \brief Creates an L298N object
      *
-     * To properly create an object in raspboop, you must use its
-     * factory Create() method. The factory method initializes
-     * the L298N's pins using the ConsumePin() method.
+     * Initializes the L298N's pins using the ConsumePin() method.
      *
      * \param in1 The board's IN1 pin
      * \param in2 The board's IN2 pin
      * \param in3 The board's IN3 pin
      * \param in4 The board's IN4 pin
-     *
-     * \return A pointer to an L298N object with all pins
-     * 		   ready to operate.
      */
-    static L298N* Create(int in1, int in2, int in3, int in4);
+    L298N(int in1, int in2, int in3, int in4);
 
     /*! \brief Sets the input pins to software PWM mode
      *

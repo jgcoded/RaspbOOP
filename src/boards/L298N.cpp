@@ -8,28 +8,13 @@ L298N::L298N()
 }
 
 
-L298N* L298N::Create(int in1, int in2, int in3, int in4)
+L298N::L298N(int in1, int in2, int in3, int in4) :
+             mPins({in1, in2, in3, in4})
 {
-
-    L298N* L = (L298N*)malloc(sizeof(L298N));
-
-    // Not enough memory. Should notify user
-    if(L == NULL)
-        return NULL;
-
-    new (L) L298N;
-
-    L->mPins[0] = in1;
-    L->mPins[1] = in2;
-    L->mPins[2] = in3;
-    L->mPins[3] = in4;
-
-    L->ConsumePin(in1, OUTPUT);
-    L->ConsumePin(in2, OUTPUT);
-    L->ConsumePin(in3, OUTPUT);
-    L->ConsumePin(in4, OUTPUT);
-
-    return L;
+    ConsumePin(in1, OUTPUT);
+    ConsumePin(in2, OUTPUT);
+    ConsumePin(in3, OUTPUT);
+    ConsumePin(in4, OUTPUT);
 }
 
 
