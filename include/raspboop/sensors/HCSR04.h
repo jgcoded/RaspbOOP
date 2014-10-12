@@ -64,11 +64,11 @@ namespace rbp
 class HCSR04 : public Sensor
 {
 
-    int EchoPin;
-    int TriggerPin;
-    float EchoStart;
-    float EchoEnd;
-    float Distance;
+    int mEchoPin;
+    int mTriggerPin;
+    float mEchoStart;
+    float mEchoEnd;
+    float mDistance;
 
 public:
 
@@ -85,7 +85,7 @@ public:
      * \return A float representing the distance sensed in
      *		   centimeters
      */
-    float GetDistance() const { return Distance; }
+    float GetDistance() const { return mDistance; }
 
     /*! \brief Create a usable HCSR04 object
      *

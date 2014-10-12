@@ -51,8 +51,8 @@ namespace rbp
 class HCSR501 : public Sensor
 {
 
-    int SignalPin;
-    bool Signalled;
+    int mSignalPin;
+    bool mSignalled;
 
 public:
 
@@ -86,7 +86,7 @@ public:
      */
     bool IsSignalled() const
     {
-            return Signalled;
+            return mSignalled;
     }
 
     /*! \brief HCSR501 destructor

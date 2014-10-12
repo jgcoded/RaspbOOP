@@ -5,8 +5,8 @@ namespace rbp
 
 HCSR501::HCSR501()
 {
-    SignalPin = -1;
-    Signalled = false;
+    mSignalPin = -1;
+    mSignalled = false;
 }
 
 
@@ -20,7 +20,7 @@ HCSR501* HCSR501::Create(int signal)
 
     new(H) HCSR501;
 
-    H->SignalPin = signal;
+    H->mSignalPin = signal;
 
     H->SetInputPin(signal);
 
@@ -30,7 +30,7 @@ HCSR501* HCSR501::Create(int signal)
 
 void HCSR501::Sense()
 {
-    Signalled = digitalRead(SignalPin);
+    mSignalled = digitalRead(mSignalPin);
 }
 
 

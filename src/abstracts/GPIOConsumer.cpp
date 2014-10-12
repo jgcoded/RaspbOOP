@@ -11,13 +11,13 @@ GPIOConsumer::GPIOConsumer()
 void GPIOConsumer::ConsumePin(int pin, int mode)
 {
     pinMode(pin, mode);
-    Pins.push_back(pin);
+    mPins.push_back(pin);
 }
 
 
 void GPIOConsumer::ReleasePins() const
 {
-    for(const int& pin : Pins)
+    for(const int& pin : mPins)
         pinMode(pin, LOW);
 }
 

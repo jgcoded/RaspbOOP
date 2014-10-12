@@ -19,8 +19,7 @@ namespace rbp
  */
 class GPIOConsumer
 {
-
-    vector<int> Pins;
+    vector<int> mPins;
 
     /*! \brief Sets the mode of all pins to an inactive state
      *
@@ -46,7 +45,7 @@ public:
 
     GPIOConsumer();
 
-    vector<int> GetPins() const { return Pins; }
+    vector<int> GetPins() const { return mPins; }
 
     virtual ~GPIOConsumer()=0;
 

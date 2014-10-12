@@ -42,7 +42,7 @@ namespace rbp
 class L298N : public GPIOConsumer
 {
 
-    int Pins[4];
+    int mPins[4];
 
 public:
 
