@@ -3,39 +3,28 @@
 namespace raspboop
 {
 
-Command::Command() 
+Command::Command() : mCommandId(-1),
+                     mComponentId(-1),
+                     mCommandParameters()
 {
-    commandId = -1;
-    componentId = -1;
 }
 
-Command* Command::CreateCommand(int8_t componentId, int8_t commandId, 
-                                           vector<float> commandParameters)
+Command::Command(int8_t componentId, int8_t commandId,
+                    vector<float> commandParameters) :
+                 mCommandId(commandId),
+                 mComponentId(componentId),
+                 mCommandParameters(commandParameters)
 {
-    Command* C;
-    
-    C = (Command*)malloc(sizeof(Command));
-    
-    if(C == NULL)
-        return NULL;
-    
-    new (C) Command;
-    
-    C->componentId = componentId;
-    C->commandId = commandId;
-    C->commandParameters = commandParameters;
-    
-    return C;
 }
 
 void Command::SetCommandParameters(vector<float> commandParameters)
 {
-    commandParameters = commandParameters;
+    mCommandParameters = commandParameters;
 }
 
-vector<float> Command::GetCommandParameters() const 
+vector<float> Command::GetCommandParameters() const
 {
-    return commandParameters;
+    return mCommandParameters;
 }
 
 void Command::SetCommandId(int8_t commandId)
@@ -43,22 +32,23 @@ void Command::SetCommandId(int8_t commandId)
     commandId = commandId;
 }
 
-int Command::GetCommandId() const 
+int Command::GetCommandId() const
 {
-    return commandId;
+    return mCommandId;
 }
 
 void Command::SetComponentId(int8_t componentId)
 {
-    componentId = componentId;
+    mComponentId = componentId;
 }
 
-int Command::GetComponentId() const 
+int Command::GetComponentId() const
 {
-    return componentId;
+    return mComponentId;
 }
 
-Command::~Command() {
+Command::~Command()
+{
 }
 
 } /* raspboop */

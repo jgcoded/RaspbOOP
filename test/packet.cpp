@@ -2,51 +2,42 @@
 #include <iostream>
 #include <cstring>
 #include <algorithm>
+#include <vector>
 #include <stdio.h>
 
-using raspboop::RBPPacket;
-using raspboop::Command;
-
+using namespace raspboop;
 using namespace std;
-
-void PackTestBuffer(unsigned char* data)
-{
-    int8_t componentId = 1;
-    int8_t commandId = 2;
-    
-    // some floats that accompany the command
-    int32_t f1 = RBPPacket::Pack754(5.4f, 32, 8);
-    int32_t f2 = RBPPacket::Pack754(-7.3f, 32, 8);
-    
-    //pack the buffer
-    RBPPacket::Packint8(data, componentId);
-    RBPPacket::Packint8(data + 1, commandId);
-    RBPPacket::Packint32(data + 2, f1);
-    RBPPacket::Packint32(data + 6, f2);
-}
 
 int main(int argc, char* argv[])
 {
-    
-#define SIZE 11
-    //Test out RBPPacket::DecodeDataToCommand
-    
+
+#define SIZE (sizeof(int8_t)*2 + sizeof(float)*2)
     // First create a test buffer that simulates incoming data
+    int8_t componentId = 1;
+    int8_t commandId = 2;
+    float f1 = 5.4f;
+    float f2 = -7.3f;
+
     unsigned char data[SIZE];
+    unsigned char* p;
     memset(data, 0, sizeof(unsigned char) * SIZE);
-    data[SIZE - 1] = '\0';
-    
-    PackTestBuffer(data);
-    
+    p = data;
+
+    //pack the buffer
+    rbpbufset(p, &componentId, sizeof(int8_t));
+    rbpbufset(p, &commandId, sizeof(int8_t));
+    rbpbufset(p, &f1, sizeof(float));
+    rbpbufset(p, &f2, sizeof(float));
+
     // Convert the buffer to a command
-    Command* cmd = RBPPacket::DecodeDataToCommand(data);
-    
-    cout << "Component Id: " << cmd->GetComponentId() << endl;
-    cout << "Command Id: " << cmd->GetCommandId() << endl;
-    cout << "Parameter 1: " << cmd->GetCommandParameters()[0] << endl;
-    cout << "Parameter 2: " << cmd->GetCommandParameters()[1] << endl;
-    
-    delete cmd;
-    
+    Command cmd = RBPPacket::DecodeDataToCommand(data);
+
+    cout << "Two int8_t and 2 floats" << endl;
+    cout << "Buffer size: " << SIZE << endl;
+    cout << "Component Id: " << cmd.GetComponentId() << endl;
+    cout << "Command Id: " << cmd.GetCommandId() << endl;
+    cout << "Parameter 1: " << cmd.GetCommandParameters()[0] << endl;
+    cout << "Parameter 2: " << cmd.GetCommandParameters()[1] << endl;
+
     return 0;
 }

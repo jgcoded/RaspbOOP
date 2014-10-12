@@ -5,16 +5,16 @@
 
 namespace raspboop
 {
-    
+
 class Command {
-    
+
 public:
-    
+
     Command();
-    
-    static Command* CreateCommand(int8_t componentId, int8_t commandId, 
-                                               vector<float> commandParameters);
-    
+
+    Command(int8_t componentId, int8_t commandId,
+                                vector<float> commandParameters);
+
     void SetCommandParameters(vector<float> commandParameters);
 
     vector<float> GetCommandParameters() const;
@@ -26,15 +26,15 @@ public:
     void SetComponentId(int8_t componentId);
 
     int GetComponentId() const;
-    
+
     virtual ~Command();
-    
+
 private:
 
-    int8_t componentId;
-    int8_t commandId;
-    vector<float> commandParameters;
-    
+    int8_t mComponentId;
+    int8_t mCommandId;
+    vector<float> mCommandParameters;
+
 };
 
 } /* raspboop */
