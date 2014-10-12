@@ -15,6 +15,8 @@ public:
     Command(int8_t componentId, int8_t commandId,
                                 vector<float> commandParameters);
 
+    static Command DecodeDataToCommand(unsigned char* data);
+
     void SetCommandParameters(vector<float> commandParameters);
 
     vector<float> GetCommandParameters() const;

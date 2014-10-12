@@ -2,6 +2,7 @@
 #define RASPBOOP_ESSENTIALS_CORE_H
 
 #include "raspboop/Raspboop.h"
+#include <cstring>
 
 namespace raspboop
 {
@@ -23,6 +24,22 @@ int Init(PinScheme Scheme = PinScheme::WIRING);
 
 /*! \todo Implement Deinit() method */
 int Deinit();
+
+/** \brief Advances the dest pointer by size */
+static void* rbpbufset(unsigned char*& dest, const void* source, size_t size)
+{
+    void* v = std::memcpy(dest, source, size);
+    dest += size;
+    return v;
+}
+
+/** \brief Advances the source pointer by size */
+static void* rbpbufget(void* dest, unsigned char* source, size_t size)
+{
+    void* v = std::memcpy(dest, source, size);
+    source += size;
+    return v;
+}
 
 } /* raspboop */
 

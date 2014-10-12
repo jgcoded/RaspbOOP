@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
     rbpbufset(p, &f2, sizeof(float));
 
     // Convert the buffer to a command
-    Command cmd = RBPPacket::DecodeDataToCommand(data);
+    Command cmd = Command::DecodeDataToCommand(data);
 
     cout << "Two int8_t and 2 floats" << endl;
     cout << "Buffer size: " << SIZE << endl;
