@@ -7,8 +7,6 @@
 #include <exception>
 #include <thread>
 
-#define PORT "9034"
-
 using std::int8_t;
 using std::int32_t;
 
@@ -30,7 +28,7 @@ Server::Server() : mSockfd(-1),
 {
 }
 
-void Server::Initialize()
+void Server::Initialize(std::string port)
 {
 
     if(mSockfd > 0)
@@ -44,7 +42,7 @@ void Server::Initialize()
     hints.ai_socktype = SOCK_DGRAM;
     hints.ai_flags = AI_PASSIVE;
 
-    if (getaddrinfo(NULL, PORT, &hints, &servinfo) != 0)
+    if (getaddrinfo(NULL, port.c_str(), &hints, &servinfo) != 0)
         throw std::runtime_error("Unable to get address info");
 
     for(p = servinfo; p!= NULL; p = p->ai_next)

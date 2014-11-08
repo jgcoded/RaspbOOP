@@ -6,6 +6,7 @@
 #include <atomic>
 #include <mutex>
 #include <vector>
+#include <string>
 
 namespace rbp
 {
@@ -17,7 +18,7 @@ public:
 
     Server();
 
-    void Initialize();
+    void Initialize(std::string port = "1357");
 
     void AddCallback(std::function<void(Command&&)> callback);
 

@@ -20,7 +20,7 @@ using namespace std;
 #define SIZE (sizeof(int8_t) + sizeof(int32_t) \
             + sizeof(int8_t)*2 + sizeof(float)*2)
 
-#define SERVERPORT "9034"    // the port users will be connecting to
+#define SERVERPORT "1357"    // the port users will be connecting to
 
 void PackTestBuffer(unsigned char* data)
 {
