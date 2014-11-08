@@ -15,6 +15,13 @@ using std::int32_t;
 namespace rbp
 {
 
+#define RBP_START_OF_PACKET 0x55
+#define RBP_SOP_TYPE_SIZE sizeof(int8_t)
+#define RBP_PACKET_LENGTH_TYPE_SIZE sizeof(int32_t)
+#define RBP_PACKET_HEADER_SIZE RBP_SOP_TYPE_SIZE + RBP_PACKET_LENGTH_TYPE_SIZE
+#define RBP_PACKET_MIN_SIZE 0
+#define RBP_PACKET_MAX_SIZE 1024
+
 Server::Server() : mSockfd(-1),
                    mCallbacks(),
                    mServerMutex(),
@@ -90,40 +97,52 @@ void Server::ServerThread()
 
     struct sockaddr_storage their_addr;
     socklen_t addr_len = sizeof(their_addr);
-    unsigned char header[5];
+    unsigned char header[RBP_PACKET_HEADER_SIZE];
     int bytesRead;
     std::vector<unsigned char> buffer(20);
 
     while(!mStopServer)
     {
-        bytesRead = recvfrom(mSockfd, header, 5, MSG_PEEK, (struct sockaddr*)&their_addr, &addr_len);
+        bytesRead = recvfrom(mSockfd,
+                             header,
+                             RBP_PACKET_HEADER_SIZE,
+                             MSG_PEEK,
+                             (struct sockaddr*)&their_addr,
+                             &addr_len);
+
         if(bytesRead == -1)
             throw std::runtime_error("Receive error: header");
 
         int8_t startOfPacket;
-        int32_t packetSize;
+        int32_t pSize;
         unsigned char* p = header;
 
-        rbpbufget(&startOfPacket, p, sizeof(int8_t));
+        rbpbufget(&startOfPacket, p, RBP_SOP_TYPE_SIZE);
 
-        if(startOfPacket != 0x55)
+        if(startOfPacket != RBP_START_OF_PACKET)
             throw std::logic_error("Invalid start of packet");
 
-        rbpbufget(&packetSize, p, sizeof(int32_t));
+        rbpbufget(&pSize, p, RBP_PACKET_LENGTH_TYPE_SIZE);
 
-        if(packetSize <= 0 || packetSize > 1024)
+        if(pSize <= RBP_PACKET_MIN_SIZE || pSize > RBP_PACKET_MAX_SIZE)
             throw std::length_error("Invalid incoming packet size");
 
-        buffer.resize(packetSize + 5);
+        buffer.resize(pSize + RBP_PACKET_HEADER_SIZE);
 
-        bytesRead = recvfrom(mSockfd, buffer.data(), packetSize + 5, 0, (struct sockaddr*)&their_addr, &addr_len);
+        bytesRead = recvfrom(mSockfd,
+                             buffer.data(),
+                             pSize + RBP_PACKET_HEADER_SIZE,
+                             0,
+                             (struct sockaddr*)&their_addr,
+                             &addr_len);
+
         if(bytesRead == -1)
             throw std::runtime_error("Receive error: buffer");
 
         {
             std::lock_guard<std::mutex> lock(mServerMutex);
             for(auto& callback : mCallbacks)
-                callback(Command::DecodeDataToCommand(buffer.data() + 5));
+                callback(Command::DecodeDataToCommand(buffer.data() + RBP_PACKET_HEADER_SIZE));
         }
 
         buffer.clear();

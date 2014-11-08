@@ -36,8 +36,8 @@ int main(int argc, char* argv[])
     cout << "Buffer size: " << SIZE << endl;
     cout << "Component Id: " << cmd.GetComponentId() << endl;
     cout << "Command Id: " << cmd.GetCommandId() << endl;
-    cout << "Parameter 1: " << cmd.GetCommandParameters()[0] << endl;
-    cout << "Parameter 2: " << cmd.GetCommandParameters()[1] << endl;
+    cout << "Parameter 1: " << cmd.GetParameters()[0] << endl;
+    cout << "Parameter 2: " << cmd.GetParameters()[1] << endl;
 
     return 0;
 }
