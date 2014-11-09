@@ -31,7 +31,6 @@ set(RASPBOOP_LIBRARIES
   pthread
 )
 
-
 # Raspboop include paths
 
 include_directories(
@@ -42,6 +41,7 @@ include_directories(
 # Raspboop CMake Subdirectories
 
 add_subdirectory(src)
+add_subdirectory(qt/RobotStation)
 
 if(RASPBOOP_BUILD_TESTS)
   add_subdirectory(test)
