@@ -22,12 +22,16 @@ include_directories(
   ${X11_LIBRARIES_DIR}
 )
 
-# Get dependencies (wiringPi)
+# Get dependencies
 add_subdirectory(deps)
+
+# System and regex are required for boost.asio
+find_package(Boost 1.57 COMPONENTS system regex REQUIRED)
 
 set(RASPBOOP_LIBRARIES
   ${X11_LIBRARIES}
   ${WIRINGPI}
+  ${Boost_LIBRARIES}
   pthread
 )
 
@@ -36,6 +40,7 @@ set(RASPBOOP_LIBRARIES
 
 include_directories(
   ${CMAKE_SOURCE_DIR}/deps/WiringPi-master/wiringPi
+  ${Boost_INCLUDE_DIR}
   ${CMAKE_SOURCE_DIR}/include
 )
 

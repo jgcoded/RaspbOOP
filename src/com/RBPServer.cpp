@@ -1,73 +1,20 @@
-#include "raspboop/Raspboop.h"
-#include <cstring>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <exception>
-#include <stdexcept>
-#include <thread>
-#include <iostream>
-
-#define RBPPORT "9034"
+#include "raspboop/com/RBPServer.h"
 
 namespace raspboop
 {
 
-RBPServer::RBPServer() : mSockfd(-1),
-                         mCallbacks(),
-                         mServerMutex(),
+RBPServer::RBPServer(int port) : mIOService(),
+                         mSocket(mIOService, udp::endpoint(udp::v4(), port)),
                          mServerRunning(false),
-                         mStopServer(false)
+                         mStopServer(false),
+                         mCommand(new Command)
 {
 }
 
-void RBPServer::Initialize()
-{
-
-    if(mSockfd > 0)
-        close(mSockfd);
-
-    struct addrinfo hints, *servinfo, *p;
-
-    memset(&hints, 0, sizeof(hints));
-
-    hints.ai_family = AF_INET;
-    hints.ai_socktype = SOCK_DGRAM;
-    hints.ai_flags = AI_PASSIVE;
-
-    if (getaddrinfo(NULL, RBPPORT, &hints, &servinfo) != 0)
-        throw std::runtime_error("Unable to get address info");
-
-    for(p = servinfo; p!= NULL; p = p->ai_next)
-    {
-        if((mSockfd = socket(p->ai_family, p->ai_socktype,
-                p->ai_protocol)) == -1)
-            continue;
-
-        if(bind(mSockfd, p->ai_addr, p->ai_addrlen) == -1)
-        {
-            close(mSockfd);
-            continue;
-        }
-
-        break;
-    }
-
-    if(p == NULL)
-        throw std::runtime_error("Unable to bind to an address.");
-
-    freeaddrinfo(servinfo);
-}
-
-void RBPServer::AddCallback(std::function<void(Command&&)> callback)
+void RBPServer::AddCallback(ServerCallback callback)
 {
     if(callback)
-    {
-        std::lock_guard<std::mutex> lock(mServerMutex);
         mCallbacks.push_back(callback);
-    }
 }
 
 void RBPServer::Start()
@@ -75,75 +22,67 @@ void RBPServer::Start()
     if(mServerRunning)
         return;
 
-    if(mSockfd == -1)
-        return;
-
+    mServerRunning = true;
     mStopServer = false;
 
-    std::thread t(&RBPServer::ServerThread, this);
-    t.detach();
+    StartReceive();
+
+    mIOService.run();
 }
 
-void RBPServer::ServerThread()
+void RBPServer::StartReceive()
 {
-    mServerRunning = true;
+    mSocket.async_receive_from(
+        boost::asio::buffer(mCommand->GetData()),
+        mRemoteEndpoint,
+        [this] (const boost::system::error_code& error, std::size_t) {
 
-    struct sockaddr_storage their_addr;
-    socklen_t addr_len = sizeof(their_addr);
-    unsigned char header[5];
-    int bytesRead;
-    vector<unsigned char> buffer(20);
+            if(!error)
+                HandleReceive();
+    });
+}
 
-    while(!mStopServer)
-    {
-        bytesRead = recvfrom(mSockfd, header, 5, MSG_PEEK, (struct sockaddr*)&their_addr, &addr_len);
-        if(bytesRead == -1)
-            throw std::runtime_error("Receive error: header");
+void RBPServer::HandleReceive()
+{
+    if(mCommand->IsValid())
+        mCommand->DecodeDataToCommand();
+    else
+        mCommand->ClearData();
 
-        int8_t startOfPacket;
-        int32_t packetSize;
-        unsigned char* p = header;
+    for(auto& callback : mCallbacks)
+        callback(mCommand, this);
 
-        rbpbufget(&startOfPacket, p, sizeof(int8_t));
+    if(mStopServer)
+        mServerRunning = false;
+    else
+        StartReceive();
+}
 
-        if(startOfPacket != 0x55)
-            throw std::logic_error("Invalid start of packet");
-
-        rbpbufget(&packetSize, p, sizeof(int32_t));
-
-        if(packetSize <= 0 || packetSize > 1024)
-            throw std::length_error("Invalid incoming packet size");
-
-        buffer.resize(packetSize + 5);
-
-        bytesRead = recvfrom(mSockfd, buffer.data(), packetSize + 5, 0, (struct sockaddr*)&their_addr, &addr_len);
-        if(bytesRead == -1)
-            throw std::runtime_error("Receive error: buffer");
-
+void RBPServer::SendData(Serializable* data)
+{
+    mSocket.async_send_to(
+        boost::asio::buffer(data->Serialize()),
+        mRemoteEndpoint,
+        [this, data] (const boost::system::error_code&, std::size_t)
         {
-            std::lock_guard<std::mutex> lock(mServerMutex);
-            for(auto& callback : mCallbacks)
-                callback(Command::DecodeDataToCommand(buffer.data() + 5));
-        }
-
-        buffer.clear();
-    }
-
-    mServerRunning = false;
+            /* Should try to resend */ ;
+        });
 }
 
 void RBPServer::Stop()
 {
     if(mServerRunning)
+    {
         mStopServer = true;
+        mIOService.stop();
+        mSocket.shutdown(udp::socket::shutdown_both);
+        mSocket.close();
+    }
 }
 
 RBPServer::~RBPServer()
 {
-    mStopServer = true;
-
-    if(mSockfd > 0)
-        close(mSockfd);
+    Stop();
 }
 
 } /* raspboop */

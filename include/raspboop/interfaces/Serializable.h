@@ -10,7 +10,7 @@ public:
     
     Serializable();
     
-    virtual unsigned char* Serialize()=0;
+    virtual vector<unsigned char> Serialize()=0;
     
     virtual ~Serializable()=0;
     

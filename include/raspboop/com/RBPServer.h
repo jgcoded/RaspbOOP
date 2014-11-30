@@ -1,10 +1,14 @@
 #ifndef RASPBOOP_COM_RBPSERVER_H
 #define RASPBOOP_COM_RBPSERVER_H
 
-#include <functional>
-#include <atomic>
-#include <mutex>
 #include "raspboop/Raspboop.h"
+
+#include <functional>
+#include <array>
+#include <boost/asio.hpp>
+#include <boost/bind.hpp>
+
+using boost::asio::ip::udp;
 
 namespace raspboop
 {
@@ -14,13 +18,15 @@ class RBPServer
 
 public:
 
-    RBPServer();
+    typedef std::function<void(const Command*, RBPServer*)> ServerCallback;
 
-    void Initialize();
+    RBPServer(int port = 9034);
 
-    void AddCallback(std::function<void(Command&&)> callback);
+    void AddCallback(ServerCallback callback);
 
     void Start();
+
+    void SendData(Serializable* data);
 
     void Stop();
 
@@ -28,16 +34,21 @@ public:
 
 private:
 
-    void ServerThread();
+    void StartReceive();
 
-    int mSockfd;
-    vector<std::function<void(Command&&)>> mCallbacks;
-    std::atomic<bool> mServerRunning;
-    std::atomic<bool> mStopServer;
-    std::mutex mServerMutex;
+    void HandleReceive();
+
+    vector<ServerCallback> mCallbacks;
+
+    bool mServerRunning;
+    bool mStopServer;
+
+    boost::asio::io_service mIOService;
+    udp::socket mSocket;
+    udp::endpoint mRemoteEndpoint;
+    Command* mCommand;
 
 };
-
 
 } /* raspboop */
 
