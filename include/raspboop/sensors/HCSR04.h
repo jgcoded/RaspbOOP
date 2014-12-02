@@ -100,7 +100,7 @@ public:
      *
      * \return A pointer to an HCSR04 object with all pins initialized
      */
-    static HCSR04* Create(int ECHO, int TRIG);
+    static HCSR04* Create(int echo, int trig);
 
     /*! \brief HCSR04 Destructor
      */

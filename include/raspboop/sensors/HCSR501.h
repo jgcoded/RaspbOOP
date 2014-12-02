@@ -75,7 +75,7 @@ public:
      * \return A pointer to an HCSR501 object with all pins
      *		   initialized
      */
-    static HCSR501* Create(int SIGNAL);
+    static HCSR501* Create(int s);
 
     virtual void Sense();
 

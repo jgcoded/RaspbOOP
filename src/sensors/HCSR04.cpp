@@ -13,11 +13,11 @@ HCSR04::HCSR04()
 }
 
 
-HCSR04* HCSR04::Create(int ECHO, int TRIG)
+HCSR04* HCSR04::Create(int e, int t)
 {
 
     // Using the same pins. Should notify user
-    if(ECHO == TRIG)
+    if(e == t)
         return NULL;
 
     HCSR04* H = (HCSR04*)malloc(sizeof(HCSR04));
@@ -28,13 +28,13 @@ HCSR04* HCSR04::Create(int ECHO, int TRIG)
 
     new(H) HCSR04;
 
-    H->EchoPin = ECHO;
-    H->TriggerPin = TRIG;
+    H->EchoPin = e;
+    H->TriggerPin = t;
 
-    H->SetInputPin(ECHO);
-    H->SetOutputPin(TRIG);
+    H->SetInputPin(e);
+    H->SetOutputPin(t);
 
-    digitalWrite(TRIG, LOW);
+    digitalWrite(t, LOW);
 
     return H;
 }
