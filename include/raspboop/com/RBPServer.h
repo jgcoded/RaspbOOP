@@ -7,6 +7,7 @@
 #include <array>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
+#include <memory>
 
 using boost::asio::ip::udp;
 
@@ -24,6 +25,8 @@ public:
 
     void AddCallback(ServerCallback callback);
 
+    void EnableAutodiscovery(std::string interface, std::string group = "239.255.101.32", int port = 30001);
+
     void Start();
 
     void SendData(Serializable* data);
@@ -38,6 +41,8 @@ private:
 
     void HandleReceive();
 
+    void HandleMulticastSend(const boost::system::error_code& error, std::string data);
+
     vector<ServerCallback> mCallbacks;
 
     bool mServerRunning;
@@ -46,7 +51,11 @@ private:
     boost::asio::io_service mIOService;
     udp::socket mSocket;
     udp::endpoint mRemoteEndpoint;
-    Command* mCommand;
+    std::auto_ptr<udp::socket> mMulticastSocket;
+    udp::endpoint mMulticastEndpoint;
+    boost::asio::deadline_timer mTimer;
+
+    std::auto_ptr<Command> mCommand;
 
 };
 

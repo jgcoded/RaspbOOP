@@ -8,7 +8,7 @@ using raspboop::Command;
 int main(int argc, char* argv[])
 {
     RBPServer server;
-
+    server.EnableAutodiscovery("127.0.0.1");
     server.AddCallback([] (const Command* cmd, RBPServer*) {
                             cout << cmd->GetComponentId() << endl;
                             cout << cmd->GetCommandId() << endl;
@@ -17,6 +17,5 @@ int main(int argc, char* argv[])
                        });
 
     server.Start();
-
     return 0;
 }
