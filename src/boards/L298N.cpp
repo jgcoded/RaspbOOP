@@ -7,7 +7,6 @@ L298N::L298N()
 {
 }
 
-
 L298N::L298N(int in1, int in2, int in3, int in4) :
              mPins({in1, in2, in3, in4})
 {
@@ -17,14 +16,12 @@ L298N::L298N(int in1, int in2, int in3, int in4) :
     ConsumePin(in4, OUTPUT);
 }
 
-
 void L298N::UseSoftPWM()
 {
     for(int i = 0; i < 4; ++i)
         if(softPwmCreate(mPins[i], 0, 100) != 0)
             printf("Software PWM creation error: %d\n", errno);
 }
-
 
 void L298N::SetPWMValue(int in, int value)
 {
@@ -37,7 +34,6 @@ void L298N::SetPWMValue(int in, int value)
     softPwmWrite(mPins[index], value);
 }
 
-
 void L298N::SetPinValue(int in, int value)
 {
     if(in < 1 || in > 4)
@@ -47,7 +43,6 @@ void L298N::SetPinValue(int in, int value)
 
     digitalWrite(mPins[index], value);
 }
-
 
 L298N::~L298N()
 {

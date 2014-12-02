@@ -17,17 +17,22 @@ option(RASPBOOP_BUILD_TESTS "Build the Raspboop tests " ON)
 set(CMAKE_CXX_FLAGS "-std=c++0x")
 
 find_package(X11 REQUIRED)
+# System and regex are required for boost.asio
+find_package(Boost 1.57 COMPONENTS system regex REQUIRED)
+
 include_directories(
   ${X11_INCLUDE_DIR}
   ${X11_LIBRARIES_DIR}
+  ${Boost_INCLUDE_DIR}
 )
 
-# Get dependencies (wiringPi)
+# Get dependencies
 add_subdirectory(deps)
 
 set(RASPBOOP_LIBRARIES
   ${X11_LIBRARIES}
   ${WIRINGPI}
+  ${Boost_LIBRARIES}
   pthread
 )
 

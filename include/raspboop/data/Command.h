@@ -4,20 +4,39 @@
 #include "raspboop/Raspboop.h"
 #include <vector>
 #include <stdint.h>
+#include <array>
 
 namespace rbp
 {
 
 class Command {
 
+#define     HEADER_LENGTH        sizeof(unsigned char) + sizeof(int)
+#define     MAX_BODY_LENGTH      130
+#define     MAX_COMMAND_LENGTH   (HEADER_LENGTH + MAX_BODY_LENGTH)
+#define     START_OF_COMMAND     0x55
+#define     COMPONENT_ID_LENGTH  sizeof(unsigned char)
+#define     COMMAND_ID_LENGTH    sizeof(unsigned char)
+#define     PARAMETER_LENGTH     sizeof(float)
+
 public:
+
+    typedef std::array<unsigned char, MAX_COMMAND_LENGTH> Buffer;
 
     Command();
 
     Command(int8_t componentId, int8_t commandId,
                                 std::vector<float> commandParameters);
 
-    static Command DecodeDataToCommand(unsigned char* data);
+    bool DecodeDataToCommand();
+
+    bool IsValid() const;
+
+    Buffer& GetData();
+
+    const Buffer& GetData() const;
+
+    void ClearData();
 
     void SetParameters(std::vector<float> commandParameters);
 
@@ -35,9 +54,11 @@ public:
 
 private:
 
-    int8_t mComponentId;
-    int8_t mCommandId;
+    unsigned char mComponentId;
+    unsigned char mCommandId;
     std::vector<float> mCommandParameters;
+    Buffer mBuffer;
+    int mBodyLength;
 
 };
 

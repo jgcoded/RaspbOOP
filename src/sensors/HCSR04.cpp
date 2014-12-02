@@ -4,16 +4,6 @@
 namespace rbp
 {
 
-HCSR04::HCSR04() :
-        mEchoPin(-1),
-        mTriggerPin(-1),
-        mEchoStart(0),
-        mEchoEnd(0),
-        mDistance(0)
-{
-}
-
-
 HCSR04::HCSR04(int echo, int trig) :
         mEchoPin(echo),
         mTriggerPin(trig),
@@ -26,12 +16,12 @@ HCSR04::HCSR04(int echo, int trig) :
     if(echo == trig)
         throw std::logic_error("Echo and trig pins are the same");
 
+
     SetInputPin(echo);
     SetOutputPin(trig);
 
     digitalWrite(trig, LOW);
 }
-
 
 void HCSR04::Sense()
 {
@@ -54,7 +44,6 @@ void HCSR04::Sense()
 
     mDistance = (mEchoEnd - mEchoStart) * .017f;
 }
-
 
 HCSR04::~HCSR04()
 {

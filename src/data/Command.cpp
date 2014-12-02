@@ -1,13 +1,14 @@
-#include "raspboop/data/Command.h"
+#include "raspboop/Raspboop.h"
 
 using std::vector;
 
 namespace rbp
 {
 
-Command::Command() : mCommandId(-1),
-                     mComponentId(-1),
-                     mCommandParameters()
+Command::Command() : mCommandId(0),
+                     mComponentId(0),
+                     mCommandParameters(),
+                     mBodyLength(-1)
 {
 }
 
@@ -15,35 +16,75 @@ Command::Command(int8_t componentId, int8_t commandId,
                     std::vector<float> commandParameters) :
                  mCommandId(commandId),
                  mComponentId(componentId),
-                 mCommandParameters(commandParameters)
+                 mCommandParameters(commandParameters),
+                 mBodyLength(-1)
 {
 }
 
-Command Command::DecodeDataToCommand(unsigned char* data)
+bool Command::DecodeDataToCommand()
 {
-    int8_t componentId;
-    int8_t commandId;
-    float param1;
-    float param2;
-    vector<float> cmdParams;
+    mCommandParameters.clear();
+    mComponentId = 0;
+    mCommandId = 0;
+    mBodyLength = -1;
 
-    cmdParams.reserve(4);
+    Buffer::const_iterator it = mBuffer.begin() + 1;
 
-    std::memcpy(&componentId, data, sizeof(int8_t));
-    data += sizeof(int8_t);
+    std::memcpy(&mBodyLength, it, sizeof(int));
+    it += sizeof(int);
 
-    std::memcpy(&commandId, data, sizeof(int8_t));
-    data += sizeof(int8_t);
+    std::memcpy(&mComponentId, it, COMPONENT_ID_LENGTH);
+    it += COMPONENT_ID_LENGTH;
 
-    std::memcpy(&param1, data, sizeof(float));
-    data += sizeof(float);
-    std::memcpy(&param2, data, sizeof(float));
-    data += sizeof(float);
+    std::memcpy(&mCommandId, it, COMMAND_ID_LENGTH);
+    it += COMMAND_ID_LENGTH;
 
-    cmdParams.push_back(param1);
-    cmdParams.push_back(param2);
+    // The first two bytes are command and component ids
+    if((mBodyLength - 2) % PARAMETER_LENGTH == 0)
+    {
+        for( ; it != mBuffer.end(); it += PARAMETER_LENGTH)
+        {
+            float param = 0.0f;
+            std::memcpy(&param, it, PARAMETER_LENGTH);
+            mCommandParameters.push_back(param);
+        }
+    } else {
+        return false;
+    }
 
-    return Command(componentId, commandId, cmdParams);
+    return true;
+}
+
+bool Command::IsValid() const
+{
+    Buffer::const_iterator it = mBuffer.begin();
+
+    if(*it != START_OF_COMMAND)
+        return false;
+
+   it++;
+   int bodyLength = 0;
+   std::memcpy(&bodyLength, it, sizeof(int));
+
+   if(bodyLength > MAX_BODY_LENGTH)
+       return false;
+
+    return true;
+}
+
+Command::Buffer& Command::GetData()
+{
+    return mBuffer;
+}
+
+const Command::Buffer& Command::GetData() const
+{
+    return mBuffer;
+}
+
+void Command::ClearData()
+{
+    mBuffer.fill(0);
 }
 
 void Command::SetParameters(vector<float> commandParameters)

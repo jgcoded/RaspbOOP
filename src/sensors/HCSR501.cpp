@@ -9,19 +9,16 @@ HCSR501::HCSR501()
     mSignalled = false;
 }
 
-
 HCSR501::HCSR501(int signal) :
          mSignalPin(signal)
 {
     SetInputPin(signal);
 }
 
-
 void HCSR501::Sense()
 {
     mSignalled = digitalRead(mSignalPin) == 1;
 }
-
 
 HCSR501::~HCSR501()
 {
