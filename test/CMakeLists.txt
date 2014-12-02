@@ -6,7 +6,6 @@ set(TESTS
   boards
   client
   gpiomanager
-  packet
   sensors
   server
 )
