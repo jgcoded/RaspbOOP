@@ -1,4 +1,5 @@
 #include "raspboop/Raspboop.h"
+#include <iostream>
 
 namespace rbp
 {
@@ -27,12 +28,19 @@ void Server::EnableAutodiscovery(std::string interface, std::string group, int p
     boost::asio::ip::address multicastIP =
                 boost::asio::ip::address::from_string(group);
 
+    boost::asio::ip::address interfaceIP =
+                boost::asio::ip::address::from_string(interface);
+
     mMulticastEndpoint = udp::endpoint(multicastIP, port);
 
     mMulticastSocket.reset(new udp::socket(mIOService,
                 mMulticastEndpoint.protocol()));
 
     mMulticastSocket->set_option(udp::socket::reuse_address(true));
+    mMulticastSocket->set_option(boost::asio::ip::multicast::enable_loopback(true));
+    mMulticastSocket->set_option(boost::asio::ip::multicast::hops(5));
+    mMulticastSocket->set_option(boost::asio::socket_base::broadcast(true));
+    mMulticastSocket->set_option(boost::asio::ip::multicast::join_group(multicastIP.to_v4(), interfaceIP.to_v4()));
 
     mMulticastSocket->async_send_to(
                 boost::asio::buffer(interface),
@@ -93,15 +101,23 @@ void Server::HandleReceive()
 {
     if(mCommand->IsValid())
     {
-        mCommand->DecodeDataToCommand();
+        if(mCommand->IsConnectionRequest())
+        {
+            // let the client know we're good to go by echoing received data
+            ServerQuickResponseCode reply(mCommand->GetData().front());
+            SendData(&reply);
 
+        } else {
 
-    for(auto& callback : mCallbacks)
-        callback(mCommand.get(), this);
+            mCommand->DecodeDataToCommand();
 
-    } else {
-        mCommand->ClearData();
+            for(auto& callback : mCallbacks)
+                callback(mCommand.get(), this);
+        }
+
     }
+
+    mCommand->ClearData();
 
     if(mStopServer)
         mServerRunning = false;
@@ -111,12 +127,18 @@ void Server::HandleReceive()
 
 void Server::SendData(Serializable* data)
 {
+    // do not access parameter data unless you protect it
     mSocket.async_send_to(
         boost::asio::buffer(data->Serialize()),
         mRemoteEndpoint,
-        [this, data] (const boost::system::error_code&, std::size_t)
+        [this] (const boost::system::error_code&, std::size_t)
         {
-            /* Should try to resend */ ;
+                    std::cout << "Sent data to: "
+                              << mRemoteEndpoint.address().to_string()
+                              << " "
+                              << mRemoteEndpoint.port()
+                              << std::endl;
+            /* Should try to resend */
         });
 }
 

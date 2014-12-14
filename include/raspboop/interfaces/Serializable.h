@@ -10,11 +10,7 @@ class Serializable {
 
 public:
 
-    Serializable();
-    
     virtual std::vector<unsigned char> Serialize()=0;
-    
-    virtual ~Serializable()=0;
 
 private:
 

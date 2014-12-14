@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>473</width>
-    <height>256</height>
+    <height>278</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -64,7 +64,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="ipAddressText">
            <property name="inputMask">
             <string>000.000.000.000</string>
            </property>
@@ -90,15 +90,18 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEdit_2">
+          <widget class="QLineEdit" name="portText">
            <property name="inputMask">
             <string>00000</string>
            </property>
            <property name="text">
-            <string/>
+            <string>9034</string>
+           </property>
+           <property name="cursorPosition">
+            <number>5</number>
            </property>
            <property name="placeholderText">
-            <string>1357</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -158,6 +161,60 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
+        <layout class="QFormLayout" name="formLayout_2">
+         <property name="verticalSpacing">
+          <number>3</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Multicast IP:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="multicastIPText">
+           <property name="inputMask">
+            <string>000.000.000.000</string>
+           </property>
+           <property name="text">
+            <string>239.255.101.32</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Multicast port:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="multicastPortText">
+           <property name="inputMask">
+            <string>00000</string>
+           </property>
+           <property name="text">
+            <string>30001</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="findMulticastButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Find</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Select a client to connect to:</string>
@@ -165,7 +222,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QListView" name="listView"/>
+        <widget class="QListWidget" name="multicastList"/>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -231,9 +288,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>findMulticastButton</sender>
+   <signal>clicked()</signal>
+   <receiver>RobotConnectDialog</receiver>
+   <slot>multicast_find()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>59</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>138</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>ip_connect()</slot>
   <slot>multicast_connect()</slot>
+  <slot>multicast_find()</slot>
  </slots>
 </ui>

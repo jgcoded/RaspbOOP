@@ -1,5 +1,5 @@
-#include "raspboop/Raspboop.h"
-
+#include "raspboop/data/Command.h"
+#include <iostream>
 using std::vector;
 
 namespace rbp
@@ -8,7 +8,8 @@ namespace rbp
 Command::Command() : mCommandId(0),
                      mComponentId(0),
                      mCommandParameters(),
-                     mBodyLength(-1)
+                     mBodyLength(-1),
+                     mIsConnectPacket(false)
 {
 }
 
@@ -17,7 +18,8 @@ Command::Command(int8_t componentId, int8_t commandId,
                  mCommandId(commandId),
                  mComponentId(componentId),
                  mCommandParameters(commandParameters),
-                 mBodyLength(-1)
+                 mBodyLength(-1),
+                 mIsConnectPacket(false)
 {
 }
 
@@ -55,21 +57,26 @@ bool Command::DecodeDataToCommand()
     return true;
 }
 
-bool Command::IsValid() const
+bool Command::IsValid()
 {
     Buffer::const_iterator it = mBuffer.begin();
 
-    if(*it != START_OF_COMMAND)
-        return false;
+    if(*it == START_OF_COMMAND)
+    {
+       it++;
+       int bodyLength = 0;
+       std::memcpy(&bodyLength, it, sizeof(int));
 
-   it++;
-   int bodyLength = 0;
-   std::memcpy(&bodyLength, it, sizeof(int));
+       if(bodyLength > MAX_BODY_LENGTH)
+           return false;
 
-   if(bodyLength > MAX_BODY_LENGTH)
-       return false;
+       return true;
+    } else if(*it == START_OF_CONNECT) {
+        mIsConnectPacket = true;
+        return true;
+    }
 
-    return true;
+    return false;
 }
 
 Command::Buffer& Command::GetData()
@@ -82,8 +89,18 @@ const Command::Buffer& Command::GetData() const
     return mBuffer;
 }
 
+bool Command::IsConnectionRequest() const
+{
+    return mIsConnectPacket;
+}
+
 void Command::ClearData()
 {
+    mCommandId = -1;
+    mComponentId = -1;
+    mBodyLength = -1;
+    mIsConnectPacket = false;
+    mCommandParameters.clear();
     mBuffer.fill(0);
 }
 
@@ -99,7 +116,7 @@ vector<float> Command::GetParameters() const
 
 void Command::SetCommandId(int8_t commandId)
 {
-    commandId = commandId;
+    mCommandId = commandId;
 }
 
 int Command::GetCommandId() const

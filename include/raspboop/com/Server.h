@@ -19,6 +19,21 @@ class Server
 
 public:
 
+    class ServerQuickResponseCode : public Serializable
+    {
+    public:
+        ServerQuickResponseCode(unsigned char responseCode)
+        {
+            mResponseCode = responseCode;
+        }
+
+        virtual std::vector<unsigned char> Serialize()
+        {
+            return std::vector<unsigned char>({ mResponseCode });
+        }
+
+        unsigned char mResponseCode;
+    };
 
     typedef std::function<void(const Command*, Server*)> ServerCallback;
 

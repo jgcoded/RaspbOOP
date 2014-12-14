@@ -2,6 +2,7 @@
 #define STATIONWINDOW_H
 
 #include <QMainWindow>
+#include "raspboop/data/Command.h"
 
 namespace Ui {
 class StationWindow;
@@ -17,6 +18,9 @@ public:
 
 private slots:
     void connect();
+    void forwardCommand();
+    void actionCommand();
+    void stopCommand();
 
 private:
     void disconnect();

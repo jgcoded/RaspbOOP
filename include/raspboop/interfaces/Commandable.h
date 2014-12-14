@@ -12,11 +12,7 @@ class Commandable {
 
 public:
 
-    Commandable();
-
     virtual void AcceptCommand(const Command& data)=0;
-
-    virtual ~Commandable()=0;
 
 private:
 
