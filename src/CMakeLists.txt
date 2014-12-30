@@ -35,3 +35,15 @@ endforeach(interface)
 
 add_library(raspboop ${HEADERS} ${MODULES})
 target_link_libraries(raspboop ${RASPBOOP_LIBRARIES})
+set_target_properties(raspboop PROPERTIES FOLDER Raspboop)
+
+if(INSTALL_SDK)
+  install(TARGETS raspboop
+          RUNTIME DESTINATION bin
+          LIBRARY DESTINATION lib
+          ARCHIVE DESTINATION lib/static)
+
+  install(DIRECTORY ${RASPBOOP_INC_DIR}
+          DESTINATION include
+          FILES_MATCHING PATTERN "*.h")
+endif()
