@@ -1,6 +1,8 @@
 *build*
 doc/*
 deps/*
+bin/*
+lib/*
 nbproject/*
 *.txt.user
 
