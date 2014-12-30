@@ -19,8 +19,8 @@ class RobotConnectDialog : public QDialog
 public:
     explicit RobotConnectDialog(QWidget *parent = 0);
 
-    QString getIPAddress() { return ipAddress; }
-    int getPort() { return port; }
+    std::string getIPAddress() { return ipAddress; }
+    std::string getPort() { return mPort; }
 
     ~RobotConnectDialog();
 
@@ -31,24 +31,27 @@ private slots:
 
 private:
 
-    void AutoDiscover(std::string multicastIP = "239.255.101.32",
-                                          std::string interfaceIP = "0.0.0.0",
-                                          int multicastPort = 30001);
+    void AutoDiscover(std::string interface = "0.0.0.0",
+                                          std::string group = "239.255.101.33",
+                                          int port = 30001);
 
     void HandleMulticastReceive(const boost::system::error_code& error,
       size_t bytes_recvd);
 
+    void AttemptConnect(std::string ip, std::string port);
+
 #define MAX_DATA 100
 
-    QString ipAddress;
-    int port;
+    std::string ipAddress;
+    std::string mPort;
     Ui::RobotConnectDialog *ui;
     boost::asio::io_service mIOService;
     udp::resolver mResolver;
     udp::socket mSocket;
     udp::endpoint mSocketSender;
     udp::socket mMulticastSocket;
-    udp::endpoint mMulticastSender;
+    boost::asio::ip::address mMulticastGroup;
+    udp::endpoint mMulticastEndpoint;
     char mMulticastData[MAX_DATA];
     char mConnectData[MAX_DATA];
 

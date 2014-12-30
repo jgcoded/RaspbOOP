@@ -2,7 +2,6 @@
 #define RASPBOOP_COM_SERVER_H
 
 #include "raspboop/Raspboop.h"
-
 #include <functional>
 #include <array>
 #include <boost/asio.hpp>
@@ -41,7 +40,7 @@ public:
 
     void AddCallback(ServerCallback callback);
 
-    void EnableAutodiscovery(std::string interface, std::string group = "239.255.101.32", int port = 30001);
+    void EnableAutodiscovery(std::string interface, std::string group = "239.255.101.33", int port = 30001);
 
     void Start();
 
@@ -64,13 +63,14 @@ private:
     bool mServerRunning;
     bool mStopServer;
 
+    int mPort;
     boost::asio::io_service mIOService;
     udp::socket mSocket;
     udp::endpoint mRemoteEndpoint;
     std::auto_ptr<udp::socket> mMulticastSocket;
     udp::endpoint mMulticastEndpoint;
     boost::asio::deadline_timer mTimer;
-
+    boost::asio::ip::address mMulticastGroup;
     std::auto_ptr<Command> mCommand;
 
 };

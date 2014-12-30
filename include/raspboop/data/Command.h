@@ -9,9 +9,10 @@
 namespace rbp
 {
 
-class Command {
+class Command
+{
 
-#define     HEADER_LENGTH        sizeof(unsigned char) + sizeof(int)
+#define     HEADER_LENGTH        2*sizeof(unsigned char)
 #define     MAX_BODY_LENGTH      130
 #define     MAX_COMMAND_LENGTH   (HEADER_LENGTH + MAX_BODY_LENGTH)
 #define     START_OF_COMMAND     0x55
@@ -26,10 +27,14 @@ public:
 
     Command();
 
-    Command(int8_t componentId, int8_t commandId,
+    Command(unsigned char componentId, unsigned char commandId);
+
+    Command(unsigned char componentId, unsigned char commandId,
                                 std::vector<float> commandParameters);
 
     bool DecodeDataToCommand();
+
+    Buffer EncodeCommandToData();
 
     bool IsValid();
 
@@ -45,11 +50,11 @@ public:
 
     std::vector<float> GetParameters() const;
 
-    void SetCommandId(int8_t commandId);
+    void SetCommandId(unsigned char commandId);
 
     int GetCommandId() const;
 
-    void SetComponentId(int8_t componentId);
+    void SetComponentId(unsigned char componentId);
 
     int GetComponentId() const;
 

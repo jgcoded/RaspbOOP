@@ -9,10 +9,10 @@ int main(int argc, char* argv[])
     Server server;
     server.EnableAutodiscovery("0.0.0.0");
     server.AddCallback([] (const Command* cmd, Server*) {
+                            cout << "This command is for component: ";
                             cout << cmd->GetComponentId() << endl;
+                            cout << "The command id is: ";
                             cout << cmd->GetCommandId() << endl;
-                            cout << cmd->GetParameters()[0] << endl;
-                            cout << cmd->GetParameters()[1] << endl;
                        });
 
     server.Start();

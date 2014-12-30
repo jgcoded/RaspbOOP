@@ -7,54 +7,73 @@ namespace rbp
 
 Command::Command() : mCommandId(0),
                      mComponentId(0),
-                     mCommandParameters(),
                      mBodyLength(-1),
+                     mCommandParameters(),
                      mIsConnectPacket(false)
 {
 }
 
-Command::Command(int8_t componentId, int8_t commandId,
+Command::Command(unsigned char componentId, unsigned char commandId) :
+                 mCommandId(commandId),
+                 mComponentId(componentId),
+                 mBodyLength(2),
+                 mCommandParameters()
+{
+}
+
+Command::Command(unsigned char componentId, unsigned char commandId,
                     std::vector<float> commandParameters) :
                  mCommandId(commandId),
                  mComponentId(componentId),
-                 mCommandParameters(commandParameters),
-                 mBodyLength(-1),
                  mIsConnectPacket(false)
 {
+    SetParameters(commandParameters);
 }
 
 bool Command::DecodeDataToCommand()
 {
     mCommandParameters.clear();
-    mComponentId = 0;
-    mCommandId = 0;
-    mBodyLength = -1;
 
-    Buffer::const_iterator it = mBuffer.begin() + 1;
-
-    std::memcpy(&mBodyLength, it, sizeof(int));
-    it += sizeof(int);
-
-    std::memcpy(&mComponentId, it, COMPONENT_ID_LENGTH);
-    it += COMPONENT_ID_LENGTH;
-
-    std::memcpy(&mCommandId, it, COMMAND_ID_LENGTH);
-    it += COMMAND_ID_LENGTH;
+    mBodyLength = mBuffer[1];
+    mComponentId = mBuffer[2];
+    mCommandId = mBuffer[3];
 
     // The first two bytes are command and component ids
-    if((mBodyLength - 2) % PARAMETER_LENGTH == 0)
+    if(mBodyLength != 2 && (mBodyLength - 2) % PARAMETER_LENGTH == 0)
     {
+        Buffer::const_iterator it = mBuffer.begin() + HEADER_LENGTH + 2;
+
         for( ; it != mBuffer.end(); it += PARAMETER_LENGTH)
         {
             float param = 0.0f;
             std::memcpy(&param, it, PARAMETER_LENGTH);
             mCommandParameters.push_back(param);
         }
-    } else {
-        return false;
+        return true;
     }
 
-    return true;
+    return false;
+}
+
+Command::Buffer Command::EncodeCommandToData()
+{
+    Buffer data;
+
+    data[0] = START_OF_COMMAND;
+    data[1] = mBodyLength;
+    data[2] = mComponentId;
+    data[3] = mCommandId;
+
+    size_t i = 4;
+    unsigned char* pData = data.data();
+    std::vector<float>::const_iterator it = it = mCommandParameters.begin();
+    for( ; it != mCommandParameters.end(); it++)
+    {
+        std::memcpy(pData + i, &(*it), PARAMETER_LENGTH);
+        i += PARAMETER_LENGTH;
+    }
+
+    return data;
 }
 
 bool Command::IsValid()
@@ -63,14 +82,13 @@ bool Command::IsValid()
 
     if(*it == START_OF_COMMAND)
     {
-       it++;
-       int bodyLength = 0;
-       std::memcpy(&bodyLength, it, sizeof(int));
-
-       if(bodyLength > MAX_BODY_LENGTH)
+        it++;
+        unsigned char bodyLength = *it;
+        std::cout << (int)bodyLength << std::endl;
+        if(bodyLength > MAX_BODY_LENGTH)
            return false;
 
-       return true;
+        return true;
     } else if(*it == START_OF_CONNECT) {
         mIsConnectPacket = true;
         return true;
@@ -107,6 +125,8 @@ void Command::ClearData()
 void Command::SetParameters(vector<float> commandParameters)
 {
     mCommandParameters = commandParameters;
+    mBodyLength = COMMAND_ID_LENGTH + COMMAND_ID_LENGTH +
+                        mCommandParameters.size() * PARAMETER_LENGTH;
 }
 
 vector<float> Command::GetParameters() const
@@ -114,7 +134,7 @@ vector<float> Command::GetParameters() const
     return mCommandParameters;
 }
 
-void Command::SetCommandId(int8_t commandId)
+void Command::SetCommandId(unsigned char commandId)
 {
     mCommandId = commandId;
 }
@@ -124,7 +144,7 @@ int Command::GetCommandId() const
     return mCommandId;
 }
 
-void Command::SetComponentId(int8_t componentId)
+void Command::SetComponentId(unsigned char componentId)
 {
     mComponentId = componentId;
 }

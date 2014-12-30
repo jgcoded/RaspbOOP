@@ -7,47 +7,73 @@ RobotConnectDialog::RobotConnectDialog(QWidget *parent) :
     ui(new Ui::RobotConnectDialog),
     mIOService(),
     mResolver(mIOService),
-    mSocket(mIOService, udp::endpoint(udp::v4(), 9035)),
+    mSocket(mIOService, udp::endpoint(udp::v4(), 9037)),
     mMulticastSocket(mIOService)
 {
     ui->setupUi(this);
+    mSocket.set_option(udp::socket::reuse_address(true));
+    AutoDiscover();
     mIOService.run();
-    //AutoDiscover();
 }
 
-void RobotConnectDialog::AutoDiscover(std::string multicastIP,
-                                      std::string interfaceIP,
-                                      int multicastPort)
+void RobotConnectDialog::AutoDiscover(std::string interface,
+                                      std::string group,
+                                      int port)
 {
+    if(mMulticastSocket.is_open())
+    {
+        ui->multicastList->clear();
+        mIOService.stop();
+        mMulticastSocket.set_option(
+                    boost::asio::ip::multicast::leave_group(mMulticastGroup));
+        mMulticastSocket.close();
+    }
 
-    address multicastAddress =
-            boost::asio::ip::address::from_string(multicastIP);
+    mMulticastGroup = boost::asio::ip::address::from_string(group);
+    boost::asio::ip::address localIp =
+            boost::asio::ip::address::from_string(interface);
+    mMulticastEndpoint = udp::endpoint(mMulticastGroup, port);
 
-    address interfaceAddress =
-            address::from_string(interfaceIP);
+    mMulticastSocket.open(mMulticastEndpoint.protocol());
 
-    udp::endpoint multicast_endpoint(
-                multicastAddress, multicastPort);
 
-    udp::endpoint listen_endpoint(
-            udp::v4() , multicastPort);
-
-    mMulticastSocket.open(listen_endpoint.protocol());
     mMulticastSocket.set_option(udp::socket::reuse_address(true));
-    mMulticastSocket.bind(multicast_endpoint);
 
-        // Join the multicast group.
-    mMulticastSocket.set_option(udp::socket::reuse_address(true));
+
+    mMulticastSocket.bind(udp::endpoint(localIp, port));
+
+
+    mMulticastSocket.set_option(boost::asio::ip::multicast::join_group(mMulticastGroup.to_v4(), localIp.to_v4()));
+
+
+    mMulticastSocket.set_option(boost::asio::ip::multicast::hops(5));
+
+
     mMulticastSocket.set_option(boost::asio::ip::multicast::enable_loopback(true));
-    mMulticastSocket.set_option(
-        multicast::join_group(multicastAddress.to_v4(), interfaceAddress.to_v4()));
+
+
+    mMulticastSocket.set_option(boost::asio::socket_base::broadcast(true));
+
+
+    boost::asio::socket_base::receive_buffer_size receiveSize(MAX_DATA);
+    mMulticastSocket.set_option(receiveSize);
+    boost::asio::socket_base::send_buffer_size sendSize(MAX_DATA);
+    mMulticastSocket.set_option(sendSize);
+
 
     mMulticastSocket.async_receive_from(
             boost::asio::buffer(mMulticastData, MAX_DATA),
-            mMulticastSender,
-            boost::bind(&RobotConnectDialog::HandleMulticastReceive, this,
+            mMulticastEndpoint,
+            boost::bind(&RobotConnectDialog::HandleMulticastReceive,
+              this,
               boost::asio::placeholders::error,
               boost::asio::placeholders::bytes_transferred));
+
+    if(mIOService.stopped())
+    {
+        mIOService.reset();
+        mIOService.run();
+    }
 }
 
 void RobotConnectDialog::HandleMulticastReceive(const boost::system::error_code& error,
@@ -56,7 +82,35 @@ void RobotConnectDialog::HandleMulticastReceive(const boost::system::error_code&
     if (!error)
     {
         std::string data(mMulticastData);
+        size_t endPos = data.find("END");
+        data = data.substr(0, endPos);
         ui->multicastList->addItem(QString::fromStdString(data));
+    }
+}
+
+void RobotConnectDialog::AttemptConnect(std::string ip, std::string port)
+{
+    try
+    {
+        udp::endpoint endpoint = *mResolver.resolve({udp::v4(), ip, port});
+
+        // We expect the server to echo our greeting
+        const unsigned char greeting[] = { 0x56 };
+        std::memset(mConnectData, 0, MAX_DATA);
+        mSocket.send_to(boost::asio::buffer(greeting), endpoint);
+
+        mSocket.receive_from(boost::asio::buffer(mConnectData, MAX_DATA),
+                                   mSocketSender);
+
+        if(mConnectData[0] == greeting[0])
+        {
+            this->ipAddress = ip;
+            this->mPort = port;
+            this->done(QDialog::Accepted);
+        }
+
+    } catch (std::exception&) {
+
     }
 }
 
@@ -64,42 +118,33 @@ void RobotConnectDialog::ip_connect()
 {
     std::string ip = ui->ipAddressText->text().toStdString();
     std::string port = ui->portText->text().toStdString();
-
-    try
-    {
-        udp::endpoint endpoint = *mResolver.resolve({udp::v4(), ip, port});
-
-        // We expect the server to echo our greeting
-        const unsigned char greeting[] = { 0x56 };
-
-        mSocket.send_to(boost::asio::buffer(greeting), endpoint);
-
-        // The server usually responds quickly so no need for async receive
-        mSocket.receive_from(boost::asio::buffer(mConnectData, MAX_DATA), mSocketSender);
-
-        if(mConnectData[0] == greeting[0])
-            this->done(QDialog::Accepted);
-
-    } catch (std::exception& e) {
-        std::stringstream ss;
-        ss << "Could not connect to " << ip << ": " << e.what();
-        QMessageBox::warning(this,
-                             QString("Connect failed"),
-                             QString::fromStdString(ss.str()));
-    }
+    AttemptConnect(ip, port);
 }
 
 void RobotConnectDialog::multicast_find()
 {
-
+    std::string ip = ui->multicastIPText->text().toStdString();
+    int port = ui->multicastPortText->text().toInt();
+    AutoDiscover("0.0.0.0", ip, port);
 }
 
 void RobotConnectDialog::multicast_connect()
 {
-    this->done(QDialog::Accepted);
+    std::string address =
+            ui->multicastList->currentItem()->text().toStdString();
+
+    size_t portPos = address.find(":") + 1;
+    std::string port = address.substr(portPos);
+    std::string ip = address.substr(0, portPos - 1);
+    AttemptConnect(ip, port);
 }
 
 RobotConnectDialog::~RobotConnectDialog()
 {
+    mMulticastSocket.set_option(
+                boost::asio::ip::multicast::leave_group(mMulticastGroup));
+    mMulticastSocket.close();
+    mSocket.close();
+    mIOService.stop();
     delete ui;
 }

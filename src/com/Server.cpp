@@ -6,6 +6,7 @@ namespace rbp
 
 Server::Server(int port) :
                          mIOService(),
+                         mPort(port),
                          mSocket(mIOService, udp::endpoint(udp::v4(), port)),
                          mServerRunning(false),
                          mStopServer(false),
@@ -25,30 +26,48 @@ void Server::AddCallback(ServerCallback callback)
 
 void Server::EnableAutodiscovery(std::string interface, std::string group, int port)
 {
-    boost::asio::ip::address multicastIP =
-                boost::asio::ip::address::from_string(group);
+    mMulticastSocket.reset(new udp::socket(mIOService));
 
-    boost::asio::ip::address interfaceIP =
-                boost::asio::ip::address::from_string(interface);
+    mMulticastGroup = boost::asio::ip::address::from_string(group);
+    boost::asio::ip::address localIp =boost::asio::ip::address::from_string(interface);
+    mMulticastEndpoint = udp::endpoint(mMulticastGroup, port);
 
-    mMulticastEndpoint = udp::endpoint(multicastIP, port);
+    mMulticastSocket->open(mMulticastEndpoint.protocol());
 
-    mMulticastSocket.reset(new udp::socket(mIOService,
-                mMulticastEndpoint.protocol()));
 
     mMulticastSocket->set_option(udp::socket::reuse_address(true));
-    mMulticastSocket->set_option(boost::asio::ip::multicast::enable_loopback(true));
-    mMulticastSocket->set_option(boost::asio::ip::multicast::hops(5));
-    mMulticastSocket->set_option(boost::asio::socket_base::broadcast(true));
-    mMulticastSocket->set_option(boost::asio::ip::multicast::join_group(multicastIP.to_v4(), interfaceIP.to_v4()));
 
+
+    mMulticastSocket->bind(udp::endpoint(localIp, port));
+
+
+    mMulticastSocket->set_option(boost::asio::ip::multicast::join_group(mMulticastGroup.to_v4(), localIp.to_v4()));
+
+
+    mMulticastSocket->set_option(boost::asio::ip::multicast::hops(5));
+
+
+    mMulticastSocket->set_option(boost::asio::ip::multicast::enable_loopback(true));
+
+
+    mMulticastSocket->set_option(boost::asio::socket_base::broadcast(true));
+
+
+    boost::asio::socket_base::receive_buffer_size receiveSize(100);
+    mMulticastSocket->set_option(receiveSize);
+    boost::asio::socket_base::send_buffer_size sendSize(100);
+    mMulticastSocket->set_option(sendSize);
+
+    std::stringstream ss;
+    ss << interface << ":" << mPort << "END";
+    std::string data = ss.str();
     mMulticastSocket->async_send_to(
-                boost::asio::buffer(interface),
+                boost::asio::buffer(data),
                 mMulticastEndpoint,
                 boost::bind(&Server::HandleMulticastSend,
                 this,
                 boost::asio::placeholders::error,
-                interface));
+                data));
 }
 
 void Server::HandleMulticastSend(const boost::system::error_code& error, std::string data)
@@ -98,7 +117,7 @@ void Server::StartReceive()
 }
 
 void Server::HandleReceive()
-{
+{std::cout << "here" << std::endl;
     if(mCommand->IsValid())
     {
         if(mCommand->IsConnectionRequest())
@@ -148,6 +167,7 @@ void Server::Stop()
     mIOService.stop();
     mSocket.shutdown(udp::socket::shutdown_both);
     mSocket.close();
+    mMulticastSocket->set_option(boost::asio::ip::multicast::leave_group(mMulticastGroup));
     mMulticastSocket->shutdown(udp::socket::shutdown_send);
     mMulticastSocket->close();
     mMulticastSocket.reset();

@@ -2,7 +2,10 @@
 #define STATIONWINDOW_H
 
 #include <QMainWindow>
+#include <boost/asio.hpp>
 #include "raspboop/data/Command.h"
+
+using namespace boost::asio::ip;
 
 namespace Ui {
 class StationWindow;
@@ -23,6 +26,10 @@ private slots:
     void stopCommand();
 
 private:
+    boost::asio::io_service mIOService;
+    udp::resolver mResolver;
+    udp::endpoint mRemoteEndpoint;
+    udp::socket mSocket;
     void disconnect();
     Ui::StationWindow *ui;
 };
