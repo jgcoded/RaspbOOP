@@ -1,7 +1,7 @@
 #include "stationwindow.h"
 #include "ui_stationwindow.h"
 #include "robotconnectdialog.h"
-#include <QMessageBox>
+
 using rbp::Command;
 
 StationWindow::StationWindow(QWidget *parent) :

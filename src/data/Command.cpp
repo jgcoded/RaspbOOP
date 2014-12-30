@@ -1,5 +1,5 @@
 #include "raspboop/data/Command.h"
-#include <iostream>
+
 using std::vector;
 
 namespace rbp
@@ -84,7 +84,7 @@ bool Command::IsValid()
     {
         it++;
         unsigned char bodyLength = *it;
-        std::cout << (int)bodyLength << std::endl;
+
         if(bodyLength > MAX_BODY_LENGTH)
            return false;
 

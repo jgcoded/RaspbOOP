@@ -1,5 +1,4 @@
 #include "raspboop/Raspboop.h"
-#include <iostream>
 
 namespace rbp
 {
@@ -117,7 +116,7 @@ void Server::StartReceive()
 }
 
 void Server::HandleReceive()
-{std::cout << "here" << std::endl;
+{
     if(mCommand->IsValid())
     {
         if(mCommand->IsConnectionRequest())
@@ -152,11 +151,6 @@ void Server::SendData(Serializable* data)
         mRemoteEndpoint,
         [this] (const boost::system::error_code&, std::size_t)
         {
-                    std::cout << "Sent data to: "
-                              << mRemoteEndpoint.address().to_string()
-                              << " "
-                              << mRemoteEndpoint.port()
-                              << std::endl;
             /* Should try to resend */
         });
 }

@@ -1,6 +1,5 @@
 #include "robotconnectdialog.h"
 #include "ui_robotconnectdialog.h"
-#include <QMessageBox>
 
 RobotConnectDialog::RobotConnectDialog(QWidget *parent) :
     QDialog(parent),
