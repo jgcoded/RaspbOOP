@@ -39,12 +39,12 @@ void HCSR501::AcceptCommand(const Command& command)
     }
 }
 
-std::map<std::string, unsigned char> HCSR501::GetCommands()
+std::map<std::string, unsigned char> HCSR501::GetCommands() const
 {
     return mCommands;
 }
 
-unsigned char HCSR501::GetComponentId()
+const unsigned char HCSR501::GetComponentId() const
 {
     return mComponentId;
 }

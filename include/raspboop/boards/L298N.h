@@ -106,9 +106,9 @@ public:
 
     virtual void AcceptCommand(const Command& command);
 
-    virtual std::map<std::string, unsigned char> GetCommands();
+    virtual std::map<std::string, unsigned char> GetCommands() const;
 
-    virtual unsigned char GetComponentId();
+    virtual const unsigned char GetComponentId() const;
 
     virtual void SetComponentId(unsigned char id);
 

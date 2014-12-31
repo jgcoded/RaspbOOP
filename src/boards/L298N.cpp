@@ -79,12 +79,12 @@ void L298N::AcceptCommand(const Command& command)
     }
 }
 
-std::map<std::string, unsigned char> L298N::GetCommands()
+std::map<std::string, unsigned char> L298N::GetCommands() const
 {
     return mCommands;
 }
 
-unsigned char L298N::GetComponentId()
+const unsigned char L298N::GetComponentId() const
 {
     return mComponentId;
 }

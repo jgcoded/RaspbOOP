@@ -20,9 +20,9 @@ public:
      */
     virtual void AcceptCommand(const Command& data)=0;
 
-    virtual std::map<std::string, unsigned char> GetCommands()=0;
+    virtual std::map<std::string, unsigned char> GetCommands() const=0;
 
-    virtual unsigned char GetComponentId()=0;
+    virtual const unsigned char GetComponentId() const=0;
 
     virtual void SetComponentId(unsigned char id)=0;
 
