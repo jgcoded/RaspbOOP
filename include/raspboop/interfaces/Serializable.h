@@ -15,6 +15,7 @@ public:
 
     /*! \brief Returns an array representation of an object
      *
+     * \return The Buffer of data
      */
     virtual std::vector<unsigned char> Serialize()=0;
 
