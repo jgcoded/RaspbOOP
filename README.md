@@ -15,7 +15,6 @@ An Example
 
 ```cpp
 #include <raspboop/Raspboop.h>
-#include <iostream>
 #include <map>
 
 using namespace std;
