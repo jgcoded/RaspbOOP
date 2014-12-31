@@ -1,33 +1,34 @@
-#include "raspboop/Raspboop.h"
+#include "raspboop/essentials/Core.h"
+#include <wiringPi.h>
 
-namespace raspboop
+namespace rbp
 {
 
-int Init(int Scheme)
+int Init(PinScheme scheme)
 {
 
-	// Setup wiringPi
-	switch(Scheme)
-	{
-		case GPIO:
-			wiringPiSetupGpio();
-		break;
+    // Setup wiringPi
+    switch(scheme)
+    {
+        case PinScheme::GPIO:
+            wiringPiSetupGpio();
+        break;
 
-		case SYS:
-			wiringPiSetupSys();
-		break;
+        case PinScheme::SYS:
+            wiringPiSetupSys();
+        break;
 
-		default:
-			wiringPiSetup();
-	}
+        default:
+            wiringPiSetup();
+    }
 
-	return 1;
+    return 1;
 }
 
 int Deinit()
 {
-	/* nothing to deinit so far */
-	return 1;
+    /* nothing to deinit so far */
+    return 1;
 }
 
-} /* raspboop */
+} /* rbp */

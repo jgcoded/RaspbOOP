@@ -1,67 +1,105 @@
-#include "raspboop/Raspboop.h"
+#include "raspboop/boards/L298N.h"
+#include <pthread.h>
+#include <wiringPi.h>
+#include <softPwm.h>
+#include <iostream>
 
-namespace raspboop
+using namespace std;
+
+namespace rbp
 {
 
 L298N::L298N()
 {
+    mCommands.insert(std::make_pair("Set software PWM", SET_USE_PWM));
+    mCommands.insert(std::make_pair("Set PWM Values", SET_PWM_VALUES));
+    mCommands.insert(std::make_pair("Set Pin Values", SET_PIN_VALUES));
 }
 
-L298N* L298N::Create(int IN1, int IN2, int IN3, int IN4)
+L298N::L298N(int in1, int in2, int in3, int in4) :
+             mPins({in1, in2, in3, in4})
 {
-
-	L298N* L = (L298N*)malloc(sizeof(L298N));
-
-	// Not enough memory. Should notify user
-	if(L == NULL)
-		return NULL;
-
-	L->Pins[0] = IN1;
-	L->Pins[1] = IN2;
-	L->Pins[2] = IN3;
-	L->Pins[3] = IN4;
-
-	L->ConsumePin(IN1, OUTPUT);
-	L->ConsumePin(IN2, OUTPUT);
-	L->ConsumePin(IN3, OUTPUT);
-	L->ConsumePin(IN4, OUTPUT);
-
-	return L;
+    ConsumePin(in1, OUTPUT);
+    ConsumePin(in2, OUTPUT);
+    ConsumePin(in3, OUTPUT);
+    ConsumePin(in4, OUTPUT);
 }
 
 void L298N::UseSoftPWM()
 {
-	for(int i = 0; i < 4; ++i) {
-		if(softPwmCreate(Pins[i], 0, 100) != 0) {
-			// error occurred
-			printf("Software PWM creation error: %d\n", errno);
-		}
-	}
+    for(int i = 0; i < 4; ++i)
+        if(softPwmCreate(mPins[i], 0, 100) != 0)
+            cout << "Software PWM creation error: " << errno << endl;
 }
 
-void L298N::SetPWMValue(int IN, int Value)
+void L298N::SetPWMValue(int in, int value)
 {
-	if(IN < 1 || IN > 4)
-		return;
+    if(in < 1 || in > 4)
+        return;
 
-	int index = IN - 1;
+    int index = in - 1;
 
-	// Wiringpi checks if Value is valid
-	softPwmWrite(Pins[index], Value);
+    // Wiringpi checks if Value is valid
+    softPwmWrite(mPins[index], value);
 }
 
-void L298N::SetPinValue(int IN, int Value)
+void L298N::SetPinValue(int in, int value)
 {
-	if(IN < 1 || IN > 4)
-		return;
+    if(in < 1 || in > 4)
+        return;
 
-	int index = IN -1;
+    int index = in -1;
 
-	digitalWrite(Pins[index], Value);
+    digitalWrite(mPins[index], value);
+}
+
+void L298N::AcceptCommand(const Command& command)
+{
+    unsigned char commandId = command.GetCommandId();
+
+    switch(commandId)
+    {
+
+        case SET_USE_PWM:
+            UseSoftPWM();
+        break;
+
+        case SET_PWM_VALUES:
+            for(int i = 1; i < 5; ++i)
+                SetPWMValue(i, (int)command.GetParameterAtIndex(i - 1));
+        break;
+
+        case SET_PIN_VALUES:
+            for(int i = 1; i < 5; ++i)
+                SetPinValue(i, (int)command.GetParameterAtIndex(i - 1));
+        break;
+
+        default:
+        break;
+    }
+}
+
+std::map<std::string, unsigned char> L298N::GetCommands() const
+{
+    return mCommands;
+}
+
+const unsigned char L298N::GetComponentId() const
+{
+    return mComponentId;
+}
+
+void L298N::SetComponentId(unsigned char id)
+{
+    mComponentId = id;
+}
+
+std::vector<unsigned char> L298N::Serialize()
+{
 }
 
 L298N::~L298N()
 {
 }
 
-} /* raspboop */
+} /* rbp */

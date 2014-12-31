@@ -1,67 +1,92 @@
-#include "raspboop/Raspboop.h"
+#include "raspboop/sensors/HCSR04.h"
+#include <exception>
+#include <wiringPi.h>
+#include <stdexcept>
 
-namespace raspboop
+namespace rbp
 {
 
-HCSR04::HCSR04()
-{
-	EchoPin = -1;
-	TriggerPin = -1;
-	EchoStart = 0;
-	EchoEnd = 0;
-	Distance = 0;
-}
-
-HCSR04* HCSR04::Create(int ECHO, int TRIG)
+HCSR04::HCSR04(int echo, int trig) :
+        mEchoPin(echo),
+        mTriggerPin(trig),
+        mEchoStart(0),
+        mEchoEnd(0),
+        mDistance(0)
 {
 
-	// Using the same pins. Should notify user
-	if(ECHO == TRIG)
-		return NULL;
+    mCommands.insert(std::make_pair("Sense distance", SENSE));
 
-	HCSR04* H = (HCSR04*)malloc(sizeof(HCSR04));
+    // Using the same pins. Should notify user
+    if(echo == trig)
+        throw std::logic_error("Echo and trig pins are the same");
 
-	// Not enough memory. Should notify user
-	if(H == NULL)
-		return NULL;
 
-	new(H) HCSR04;
+    SetInputPin(echo);
+    SetOutputPin(trig);
 
-	H->EchoPin = ECHO;
-	H->TriggerPin = TRIG;
-
-	H->SetInputPin(ECHO);
-	H->SetOutputPin(TRIG);
-
-	digitalWrite(TRIG, LOW);
-
-	return H;
+    digitalWrite(trig, LOW);
 }
 
 void HCSR04::Sense()
 {
-	// Pins are not set, should notify user
-	if(EchoPin == -1 || TriggerPin == -1)
-		return;
+    // Pins are not set, should notify user
+    if(mEchoPin == -1 || mTriggerPin == -1)
+            return;
 
-	EchoStart = EchoEnd = 0;
+    mEchoStart = mEchoEnd = 0;
 
-	digitalWrite(TriggerPin, HIGH);
-	// HCSR04 manual states to wait 10 micros when triggered
-	delayMicroseconds(10);
-	digitalWrite(TriggerPin, LOW);
+    digitalWrite(mTriggerPin, HIGH);
+    // HCSR04 manual states to wait 10 micros when triggered
+    delayMicroseconds(10);
+    digitalWrite(mTriggerPin, LOW);
 
-	while(digitalRead(EchoPin) == 0)
-		EchoStart = (float)micros();
+    while(digitalRead(mEchoPin) == 0)
+        mEchoStart = (float)micros();
 
-	while(digitalRead(EchoPin))
-		EchoEnd = (float)micros();
+    while(digitalRead(mEchoPin))
+        mEchoEnd = (float)micros();
 
-	Distance = (EchoEnd - EchoStart) * .017f;
+    mDistance = (mEchoEnd - mEchoStart) * .017f;
+}
+
+void HCSR04::AcceptCommand(const Command& command)
+{
+    unsigned char commandId = command.GetCommandId();
+
+    switch(commandId)
+    {
+
+        case SENSE:
+            Sense();
+        break;
+
+        default:
+        break;
+    }
+}
+
+std::map<std::string, unsigned char> HCSR04::GetCommands() const
+{
+    return mCommands;
+}
+
+const unsigned char HCSR04::GetComponentId() const
+{
+    return mComponentId;
+}
+
+void HCSR04::SetComponentId(unsigned char id)
+{
+    mComponentId = id;
+}
+
+std::vector<unsigned char> HCSR04::Serialize()
+{
+
 }
 
 HCSR04::~HCSR04()
 {
 }
 
-} /* raspboop */
+} /* rbp */

@@ -1,26 +1,21 @@
-#include <stdio.h>
 #include <raspboop/Raspboop.h>
 
-using raspboop::L298N;
+using rbp::L298N;
+using rbp::WiringPiPins;
 
 int main(int argc, char* argv[])
 {
+    rbp::Init();
 
-#define IN1 23
-#define IN2 24
-#define IN3 3
-#define IN4 4
+    L298N controller(WiringPiPins::GPIO0,
+                     WiringPiPins::GPIO1,
+                     WiringPiPins::GPIO2,
+                     WiringPiPins::GPIO3);
 
+    controller.UseSoftPWM();
 
-	raspboop::Init(0);
-	L298N* Controller = L298N::Create(IN1, IN2, IN3, IN4);
+    controller.SetPWMValue(1, 50);
+    controller.SetPWMValue(4, 50);
 
-	Controller->UseSoftPWM();
-
-	Controller->SetPWMValue(1, 50);
-	Controller->SetPWMValue(4, 50);
-
-	delete Controller;
-
-	return 0;
+    return 0;
 }

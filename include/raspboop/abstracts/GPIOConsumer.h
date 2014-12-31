@@ -1,9 +1,11 @@
 #ifndef RASPBOOP_ABSTRACTS_GPIOCONSUMER_H
 #define RASPBOOP_ABSTRACTS_GPIOCONSUMER_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/interfaces/Commandable.h"
+#include "raspboop/interfaces/Serializable.h"
+#include <vector>
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief Abstract class for all GPIO pin utilizers
@@ -17,11 +19,10 @@ namespace raspboop
  * wiringPi `pinMode()` method. In the future, this method will be a friend
  * of the [GPIOManager](@ref GPIOManager) class.
  */
-class GPIOConsumer
+class GPIOConsumer : public Commandable, public Serializable
 {
-    
-    vector<int> Pins;
-    
+    std::vector<int> mPins;
+
     /*! \brief Sets the mode of all pins to an inactive state
      *
      * All children must call this method when it becomes out of scope,
@@ -29,7 +30,7 @@ class GPIOConsumer
      * never any GPIO pins unnecessarily set to *HIGH*
      */
     virtual void ReleasePins() const;
-    
+
 protected:
 
     /*! \brief Reserves a pin and sets its mode
@@ -40,18 +41,18 @@ protected:
      * \param Pin the GPIO pin to set
      * \param Mode The Mode the Pin will be set to
      */
-    void ConsumePin(int Pin, int Mode);
+    void ConsumePin(int pin, int mode);
 
 public:
 
     GPIOConsumer();
-    
-    vector<int> GetPins() const;
-    
+
+    std::vector<int> GetPins() const { return mPins; }
+
     virtual ~GPIOConsumer()=0;
 
 }; /* GPIOConsumer */
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_ABSTRACTS_GPIOCONSUMER_H */

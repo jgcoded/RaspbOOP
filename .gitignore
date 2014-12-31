@@ -1,7 +1,10 @@
-build/*
+*build*
 doc/*
 deps/*
+bin/*
+lib/*
 nbproject/*
+*.txt.user
 
 # Don't ignore CMakeLists
 !*/CMakeLists.txt

@@ -1,42 +1,36 @@
-#include <stdio.h>
 #include <raspboop/Raspboop.h>
+#include <iostream>
 
-using raspboop::HCSR04;
-using raspboop::HCSR501;
+using namespace rbp;
+using namespace std;
 
 int main(int argc, char* argv[])
 {
+    rbp::Init();
 
-#define SIG 6
-#define TRIG 4
-#define ECHO 5
+    bool shouldRun = true;
+    HCSR04 distanceSensor(WiringPiPins::GPIO0,
+                          WiringPiPins::GPIO1);
 
-    raspboop::Init(raspboop::WIRING);
+    HCSR501 infraredSensor(WiringPiPins::GPIO2);
 
-    bool ShouldRun = true;
-    HCSR04* DistanceSensor = HCSR04::Create(ECHO, TRIG);
-    HCSR501* InfraredSensor = HCSR501::Create(SIG);
-
-    while(ShouldRun)
+    while(shouldRun)
     {
 
-        InfraredSensor->Sense();
-        DistanceSensor->Sense();
+        infraredSensor.Sense();
+        distanceSensor.Sense();
 
-        int Motion = InfraredSensor->IsSignalled();
-        float Distance = DistanceSensor->GetDistance();
+        bool motion = infraredSensor.IsSignalled();
+        float distance = distanceSensor.GetDistance();
 
-        printf("Motion Detected: %d\n", Motion);
-        printf("Distance: %0.2f centimeters\n\n", Distance);
+        cout << "Motion Detected: " << motion << endl;
+        cout << "Distance: " << distance << " cm" << endl << endl;
 
-        if(Distance < 20.0f)
-            ShouldRun = false;
+        if(distance < 20.0f)
+            shouldRun = false;
         else
-            delay(1000);
+            sleep(1000);
     }
-
-    delete InfraredSensor;
-    delete DistanceSensor;
 
     return 0;
 }

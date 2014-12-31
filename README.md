@@ -14,48 +14,45 @@ An Example
 ==========
 
 ```cpp
-#include <stdio.h>
 #include <raspboop/Raspboop.h>
+#include <iostream>
+#include <map>
 
-using raspboop::HCSR04;
-using raspboop::HCSR501;
+using namespace std;
+using namespace rbp;
 
 int main(int argc, char* argv[])
 {
+    rbp::Init();
 
-#define SIG 6
-#define TRIG 4
-#define ECHO 5
+    Server server;
+    HCSR04 distanceSensor(WiringPiPins::GPIO0,
+                          WiringPiPins::GPIO1);
 
-	raspboop::Init(raspboop::WIRING);
+    distanceSensor.SetComponentId(0);
 
-	bool ShouldRun = true;
-	HCSR04* DistanceSensor = HCSR04::Create(ECHO, TRIG);
-	HCSR501* InfraredSensor = HCSR501::Create(SIG);
+    map<unsigned char, Commandable*> robotParts;
 
-	while(ShouldRun)
-	{
-		
-		InfraredSensor->Sense();
-		DistanceSensor->Sense();
+    robotParts.insert(make_pair(distanceSensor.GetComponentId(),
+                                dynamic_cast<Commandable*>(&distanceSensor)));
 
-		int Motion = InfraredSensor->IsSignalled();
-		float Distance = DistanceSensor->GetDistance();
+    // Allow clients to find this robot automatically
+    server.EnableAutodiscovery("0.0.0.0");
 
-		printf("Motion Detected: %d", Motion);
-		printf("Distance: %0.2f centimeters", Distance);
+    server.AddCallback([&] (const Command* cmd, Server*) {
 
-		if(Distance < 20.0f)
-			ShouldRun = false;
-		else
-			delay(1000);
-	}
+                            auto search =
+                                    robotParts.find(cmd->GetComponentId());
 
-	delete InfraredSensor;
-	delete DistanceSensor;
+                            if(search != robotParts.end())
+                                search->second->AcceptCommand(*cmd);
+                       });
 
-	return 0;
+    server.Start();
+    return 0;
 }
+
+
 ```
 
 Building & Contributing

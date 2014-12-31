@@ -1,9 +1,9 @@
 #ifndef RASPBOOP_SENSORS_HCSR04_H
 #define RASPBOOP_SENSORS_HCSR04_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/abstracts/Sensor.h"
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief Ultrasonic distance sensor
@@ -48,7 +48,7 @@ namespace raspboop
  * Maximum distance           | **4m**
  * Minimum distance           | **2 cm**
  * Required Trigger pulse     | **10us (microseconds) HIGH signal**
- * 
+ *
  *
  * External links
  * --------------
@@ -64,18 +64,23 @@ namespace raspboop
 class HCSR04 : public Sensor
 {
 
-	int EchoPin;
-	int TriggerPin;
-	float EchoStart;
-	float EchoEnd;
-	float Distance;
+    int mEchoPin;
+    int mTriggerPin;
+    float mEchoStart;
+    float mEchoEnd;
+    float mDistance;
+
+    enum { SENSE=0, };
+
+    unsigned char mComponentId;
+    std::map<std::string, unsigned char> mCommands;
 
 public:
 
-	/* \brief HCSR04 Constructor
-	 *
-	 * Initializes all private member variables to unused values.
-	 */
+    /*! \brief HCSR04 Constructor
+     *
+     * Initializes all private member variables to unused values.
+     */
     HCSR04();
 
     virtual void Sense();
@@ -85,25 +90,28 @@ public:
      * \return A float representing the distance sensed in
      *		   centimeters
      */
-    float GetDistance() const
-	{
-		return Distance;
-	}
+    float GetDistance() const { return mDistance; }
 
     /*! \brief Create a usable HCSR04 object
      *
-     * To properly create an object in raspboop, you must use its
-	 * factory Create() method. The factory method initializes
-	 * the HCSR04's pins using the SetInputPin() and 
-	 * SetOutputPin() methods inherited from Sensor.
-	 *
-	 * \param ECHO The input pin designated to read the sensors ECHO
-	 * 		  output
-	 * \param TRIG The output pin that initiates sensing
-	 *
-	 * \return A pointer to an HCSR04 object with all pins initialized
+     * Initializes the HCSR04's pins using the SetInputPin() and
+     * SetOutputPin() methods inherited from Sensor.
+     *
+     * \param echo The input pin designated to read the sensors ECHO
+     * 		  output
+     * \param trig The output pin that initiates sensing
      */
-    static HCSR04* Create(int ECHO, int TRIG);
+    HCSR04(int echo, int trig);
+
+    virtual void AcceptCommand(const Command& command);
+
+    virtual std::map<std::string, unsigned char> GetCommands() const;
+
+    virtual const unsigned char GetComponentId() const;
+
+    virtual void SetComponentId(unsigned char id);
+
+    virtual std::vector<unsigned char> Serialize();
 
     /*! \brief HCSR04 Destructor
      */
@@ -111,6 +119,6 @@ public:
 
 };
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_SENSORS_HCSR04_H */

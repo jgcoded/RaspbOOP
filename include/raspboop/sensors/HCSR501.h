@@ -1,15 +1,15 @@
 #ifndef RASPBOOP_SENSORS_HCSR501_H
 #define RASPBOOP_SENSORS_HCSR501_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/abstracts/Sensor.h"
 
-namespace raspboop
+namespace rbp
 {
 
 /*! \brief Passive infrared sensor for motion detection
  *
  * The HCSR501 is a passive infrared sensor used for motion detection
- * applications. There are 5 main pins that you will need to be 
+ * applications. There are 5 main pins that you will need to be
  * familiar with:
  *
  * - 5V input
@@ -35,7 +35,7 @@ namespace raspboop
  *
  * External Links
  * --------------
- * 
+ *
  * [Parallax PIR datasheet](http://www.ladyada.net/media/
  * sensors/PIRSensor-V1.2.pdf)
  *
@@ -51,50 +51,60 @@ namespace raspboop
 class HCSR501 : public Sensor
 {
 
-	int SignalPin;
-	bool Signalled;
+    int mSignalPin;
+    bool mSignalled;
+
+    enum { SENSE=0, };
+
+    unsigned char mComponentId;
+    std::map<std::string, unsigned char> mCommands;
 
 public:
 
-	/*! \brief HCSR501 Constructor 
-	 * 
-	 * Initializes private variables to unused values
-	 */
-	HCSR501();
+    /*! \brief HCSR501 Constructor
+     *
+     * Initializes private variables to unused values
+     */
+    HCSR501();
 
-	/*! \brief Create a usable HCSR501 object
-	 *
-	 * To properly create an object in raspboop, you must use its
-	 * factory Create() method. The factory method initializes
-	 * the HCSR501's Signal pin using the SetInputPin() method
-	 * from Sensor.
-	 *
-	 * \param SIGNAL The input pin which will read the value from
-	 *		  		 the sensor
-	 *
-	 * \return A pointer to an HCSR501 object with all pins
-	 *		   initialized
-	 */
-	static HCSR501* Create(int SIGNAL);
+    /*! \brief Create a usable HCSR501 object
+     *
+     * Initializes the HCSR501's Signal pin using the SetInputPin()
+     * method from Sensor.
+     *
+     * \param signal The input pin which will read the value from
+     *		  		 the sensor
+     */
+    HCSR501(int signal);
 
-	virtual void Sense();
+    virtual void Sense();
 
-	/*! \brief Get the value obtained from Sense()
-	 *
-	 * \return A boolean value determining the 
-	 * 		   signal pin's value
-	 */
-	bool IsSignalled() const
-	{
-		return Signalled;
-	}
+    /*! \brief Get the value obtained from Sense()
+     *
+     * \return A boolean value determining the
+     * 		   signal pin's value
+     */
+    bool IsSignalled() const
+    {
+        return mSignalled;
+    }
 
-	/*! \brief HCSR501 destructor
-	 */
-	~HCSR501();
+    virtual void AcceptCommand(const Command& command);
+
+    virtual std::map<std::string, unsigned char> GetCommands() const;
+
+    virtual const unsigned char GetComponentId() const;
+
+    virtual void SetComponentId(unsigned char id);
+
+    virtual std::vector<unsigned char> Serialize();
+
+    /*! \brief HCSR501 destructor
+     */
+    ~HCSR501();
 
 }; /* HCSR501 */
 
-} /* raspboop */
+} /* rbp */
 
 #endif /* RASPBOOP_SENSORS_HCSR501_H */

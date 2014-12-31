@@ -1,27 +1,23 @@
-#include "raspboop/Raspboop.h"
+#include "raspboop/abstracts/GPIOConsumer.h"
+#include "wiringPi.h"
 
-namespace raspboop
+namespace rbp
 {
 
 GPIOConsumer::GPIOConsumer()
 {
 }
 
-void GPIOConsumer::ConsumePin(int Pin, int Mode)
+void GPIOConsumer::ConsumePin(int pin, int mode)
 {
-	pinMode(Pin, Mode);
-        Pins.push_back(Pin);
-}
-
-vector<int> GPIOConsumer::GetPins() const
-{
-    return Pins;
+    pinMode(pin, mode);
+    mPins.push_back(pin);
 }
 
 void GPIOConsumer::ReleasePins() const
 {
-    for(const int& Pin : Pins)
-        pinMode(Pin, LOW);
+    for(const int& pin : mPins)
+        pinMode(pin, LOW);
 }
 
 GPIOConsumer::~GPIOConsumer()
@@ -29,4 +25,4 @@ GPIOConsumer::~GPIOConsumer()
     ReleasePins();
 }
 
-} /* raspboop */
+} /* rbp */
