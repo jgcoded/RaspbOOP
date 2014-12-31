@@ -1,15 +1,21 @@
 #ifndef RASPBOOP_INTERFACES_SERIALIZABLE_H
 #define	RASPBOOP_INTERFACES_SERIALIZABLE_H
 
-#include "raspboop/Raspboop.h"
+#include <vector>
 
 namespace rbp
 {
 
+/*! \brief Interface for objects that can be serialized
+ *
+ */
 class Serializable {
 
 public:
 
+    /*! \brief Returns an array representation of an object
+     *
+     */
     virtual std::vector<unsigned char> Serialize()=0;
 
 private:

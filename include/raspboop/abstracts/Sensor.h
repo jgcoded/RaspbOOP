@@ -1,7 +1,7 @@
 #ifndef RASPBOOP_ABSTRACTS_SENSOR_H
 #define RASPBOOP_ABSTRACTS_SENSOR_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/abstracts/GPIOConsumer.h"
 
 namespace rbp
 {

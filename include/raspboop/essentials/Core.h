@@ -1,7 +1,7 @@
 #ifndef RASPBOOP_ESSENTIALS_CORE_H
 #define RASPBOOP_ESSENTIALS_CORE_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/essentials/Types.h"
 #include <cstring>
 
 namespace rbp

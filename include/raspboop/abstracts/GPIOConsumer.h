@@ -1,7 +1,8 @@
 #ifndef RASPBOOP_ABSTRACTS_GPIOCONSUMER_H
 #define RASPBOOP_ABSTRACTS_GPIOCONSUMER_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/interfaces/Commandable.h"
+#include "raspboop/interfaces/Serializable.h"
 #include <vector>
 
 namespace rbp
@@ -18,7 +19,7 @@ namespace rbp
  * wiringPi `pinMode()` method. In the future, this method will be a friend
  * of the [GPIOManager](@ref GPIOManager) class.
  */
-class GPIOConsumer
+class GPIOConsumer : public Commandable, public Serializable
 {
     std::vector<int> mPins;
 

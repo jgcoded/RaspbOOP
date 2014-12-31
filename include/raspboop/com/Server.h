@@ -1,12 +1,13 @@
 #ifndef RASPBOOP_COM_SERVER_H
 #define RASPBOOP_COM_SERVER_H
 
-#include "raspboop/Raspboop.h"
-#include <functional>
-#include <array>
+#include "raspboop/interfaces/Serializable.h"
+#include "raspboop/data/Command.h"
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
+#include <array>
 #include <memory>
+#include <functional>
 
 using boost::asio::ip::udp;
 

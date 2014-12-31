@@ -1,7 +1,7 @@
 #ifndef RASPBOOP_SENSORS_HCSR501_H
 #define RASPBOOP_SENSORS_HCSR501_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/abstracts/Sensor.h"
 
 namespace rbp
 {
@@ -54,6 +54,11 @@ class HCSR501 : public Sensor
     int mSignalPin;
     bool mSignalled;
 
+    enum { SENSE=0, };
+
+    unsigned char mComponentId;
+    std::map<std::string, unsigned char> mCommands;
+
 public:
 
     /*! \brief HCSR501 Constructor
@@ -81,8 +86,18 @@ public:
      */
     bool IsSignalled() const
     {
-            return mSignalled;
+        return mSignalled;
     }
+
+    virtual void AcceptCommand(const Command& command);
+
+    virtual std::map<std::string, unsigned char> GetCommands();
+
+    virtual unsigned char GetComponentId();
+
+    virtual void SetComponentId(unsigned char id);
+
+    virtual std::vector<unsigned char> Serialize();
 
     /*! \brief HCSR501 destructor
      */

@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
         if(distance < 20.0f)
             shouldRun = false;
         else
-            delay(1000);
+            sleep(1000);
     }
 
     return 0;

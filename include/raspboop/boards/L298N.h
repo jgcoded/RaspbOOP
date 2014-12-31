@@ -1,7 +1,7 @@
 #ifndef RASPBOOP_BOARDS_L298N_BOARD_H
 #define RASPBOOP_BOARDS_L298N_BOARD_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/abstracts/GPIOConsumer.h"
 
 namespace rbp
 {
@@ -42,7 +42,14 @@ namespace rbp
 class L298N : public GPIOConsumer
 {
 
+    enum { SET_USE_PWM=0,
+           SET_PWM_VALUES,
+           SET_PIN_VALUES,
+         };
+
     int mPins[4];
+    unsigned char mComponentId;
+    std::map<std::string, unsigned char> mCommands;
 
 public:
 
@@ -96,6 +103,16 @@ public:
      * \param Value A value of HIGH(1) or LOW(0)
      */
     void SetPinValue(int in, int value);
+
+    virtual void AcceptCommand(const Command& command);
+
+    virtual std::map<std::string, unsigned char> GetCommands();
+
+    virtual unsigned char GetComponentId();
+
+    virtual void SetComponentId(unsigned char id);
+
+    virtual std::vector<unsigned char> Serialize();
 
     ~L298N();
 

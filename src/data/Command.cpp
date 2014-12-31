@@ -154,6 +154,11 @@ int Command::GetComponentId() const
     return mComponentId;
 }
 
+float Command::GetParameterAtIndex(size_t i) const
+{
+    return mCommandParameters[i];
+}
+
 Command::~Command()
 {
 }

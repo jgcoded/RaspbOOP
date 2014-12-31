@@ -1,4 +1,5 @@
-#include "raspboop/Raspboop.h"
+#include "raspboop/abstracts/GPIOConsumer.h"
+#include "wiringPi.h"
 
 namespace rbp
 {

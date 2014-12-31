@@ -1,7 +1,7 @@
 #ifndef RASPBOOP_SENSORS_HCSR04_H
 #define RASPBOOP_SENSORS_HCSR04_H
 
-#include "raspboop/Raspboop.h"
+#include "raspboop/abstracts/Sensor.h"
 
 namespace rbp
 {
@@ -70,9 +70,14 @@ class HCSR04 : public Sensor
     float mEchoEnd;
     float mDistance;
 
+    enum { SENSE=0, };
+
+    unsigned char mComponentId;
+    std::map<std::string, unsigned char> mCommands;
+
 public:
 
-    /* \brief HCSR04 Constructor
+    /*! \brief HCSR04 Constructor
      *
      * Initializes all private member variables to unused values.
      */
@@ -97,6 +102,16 @@ public:
      * \param trig The output pin that initiates sensing
      */
     HCSR04(int echo, int trig);
+
+    virtual void AcceptCommand(const Command& command);
+
+    virtual std::map<std::string, unsigned char> GetCommands();
+
+    virtual unsigned char GetComponentId();
+
+    virtual void SetComponentId(unsigned char id);
+
+    virtual std::vector<unsigned char> Serialize();
 
     /*! \brief HCSR04 Destructor
      */

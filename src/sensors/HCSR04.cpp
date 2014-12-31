@@ -1,5 +1,7 @@
-#include "raspboop/Raspboop.h"
+#include "raspboop/sensors/HCSR04.h"
 #include <exception>
+#include <wiringPi.h>
+#include <stdexcept>
 
 namespace rbp
 {
@@ -11,6 +13,8 @@ HCSR04::HCSR04(int echo, int trig) :
         mEchoEnd(0),
         mDistance(0)
 {
+
+    mCommands.insert(std::make_pair("Sense distance", SENSE));
 
     // Using the same pins. Should notify user
     if(echo == trig)
@@ -43,6 +47,42 @@ void HCSR04::Sense()
         mEchoEnd = (float)micros();
 
     mDistance = (mEchoEnd - mEchoStart) * .017f;
+}
+
+void HCSR04::AcceptCommand(const Command& command)
+{
+    unsigned char commandId = command.GetCommandId();
+
+    switch(commandId)
+    {
+
+        case SENSE:
+            Sense();
+        break;
+
+        default:
+        break;
+    }
+}
+
+std::map<std::string, unsigned char> HCSR04::GetCommands()
+{
+    return mCommands;
+}
+
+unsigned char HCSR04::GetComponentId()
+{
+    return mComponentId;
+}
+
+void HCSR04::SetComponentId(unsigned char id)
+{
+    mComponentId = id;
+}
+
+std::vector<unsigned char> HCSR04::Serialize()
+{
+
 }
 
 HCSR04::~HCSR04()

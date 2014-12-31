@@ -1,4 +1,5 @@
-#include "raspboop/Raspboop.h"
+#include "raspboop/essentials/Core.h"
+#include <wiringPi.h>
 
 namespace rbp
 {

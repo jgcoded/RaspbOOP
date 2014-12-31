@@ -1,10 +1,10 @@
 #ifndef RASPBOOP_DATA_COMMAND_H
 #define	RASPBOOP_DATA_COMMAND_H
 
+#include <cstddef>
 #include <vector>
-#include <stdint.h>
-#include <cstring>
 #include <array>
+#include <cstring>
 
 namespace rbp
 {
@@ -57,6 +57,8 @@ public:
     void SetComponentId(unsigned char componentId);
 
     int GetComponentId() const;
+
+    float GetParameterAtIndex(size_t i) const;
 
     virtual ~Command();
 
