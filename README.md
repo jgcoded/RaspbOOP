@@ -14,48 +14,41 @@ An Example
 ==========
 
 ```cpp
-#include <stdio.h>
 #include <raspboop/Raspboop.h>
+#include <iostream>
+#include <map>
 
-using raspboop::HCSR04;
-using raspboop::HCSR501;
+using namespace std;
+using namespace rbp;
 
 int main(int argc, char* argv[])
 {
+    Server server;
+    HCSR04 distanceSensor(WiringPiPins::GPIO0,
+                          WiringPiPins::GPIO1);
 
-#define SIG 6
-#define TRIG 4
-#define ECHO 5
+    distanceSensor.SetComponentId(0);
 
-	raspboop::Init(raspboop::WIRING);
+    map<unsigned char, Commandable*> robotParts;
+    robotParts.insert(make_pair(distanceSensor.GetComponentId(),
+                                &distanceSensor));
 
-	bool ShouldRun = true;
-	HCSR04* DistanceSensor = HCSR04::Create(ECHO, TRIG);
-	HCSR501* InfraredSensor = HCSR501::Create(SIG);
+    // Allow clients to find this robot automatically
+    server.EnableAutodiscovery("0.0.0.0");
 
-	while(ShouldRun)
-	{
-		
-		InfraredSensor->Sense();
-		DistanceSensor->Sense();
+    server.AddCallback([&] (const Command* cmd, Server*) {
 
-		int Motion = InfraredSensor->IsSignalled();
-		float Distance = DistanceSensor->GetDistance();
+                            auto search =
+                                    robotParts.find(cmd->GetComponentId());
 
-		printf("Motion Detected: %d", Motion);
-		printf("Distance: %0.2f centimeters", Distance);
+                            if(search != robotParts.end())
+                                search->second->AcceptCommand(*cmd);
+                       });
 
-		if(Distance < 20.0f)
-			ShouldRun = false;
-		else
-			delay(1000);
-	}
-
-	delete InfraredSensor;
-	delete DistanceSensor;
-
-	return 0;
+    server.Start();
+    return 0;
 }
+
 ```
 
 Building & Contributing
