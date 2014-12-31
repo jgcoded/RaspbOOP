@@ -5,23 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>Raspboop-bot by jgcoded</title>
+    <title>Raspboop by jgcoded</title>
   </head>
 
   <body>
     <header>
       <div class="inner">
-        <h1>Raspboop-bot</h1>
+        <h1>Raspboop</h1>
         <h2>A Raspberry Pi powered robot library dedicated to simplifying the usage of GPIO pin peripherals.</h2>
-        <a href="https://github.com/jgcoded/RaspbOOP-Bot" class="button"><small>View project on</small>GitHub</a>
+        <a href="https://github.com/jgcoded/RaspbOOP" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
 
@@ -29,84 +29,87 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a name="raspboop-bot" class="anchor" href="#raspboop-bot"><span class="octicon octicon-link"></span></a>RaspbOOP-Bot</h1>
+<a id="raspboop" class="anchor" href="#raspboop" aria-hidden="true"><span class="octicon octicon-link"></span></a>RaspbOOP</h1>
 
 <p>A Raspberry Pi powered robot library with a code base dedicated to employing Object oriented programming practices geared towards abstracting electronic components, boards, and sensors - anything that can be interfaced through the Raspberry Pi's GPIO pins. </p>
 
-<p>Raspboop takes advantage of, and abstracts over, the amazing <a href="http://www.wiringpi.com">WiringPi library</a> for its ease of use and stability.</p>
+<p>Raspboop takes advantage of, and abstracts over, the amazing <a href="https://github.com/WiringPi/WiringPi">WiringPi library</a> for its ease of use and stability.</p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>An integral part of Raspboop is documentation. <a href="http://jgcoded.github.io/RaspbOOP/doc/html/classraspboop_1_1HCSR04.html#details">Checkout out this doc page</a> to get an idea of how Raspboop will make developing with sensors, boards, or any peripheral device that much easier.</p>
 
 <h1>
-<a name="an-example" class="anchor" href="#an-example"><span class="octicon octicon-link"></span></a>An Example</h1>
+<a id="an-example" class="anchor" href="#an-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>An Example</h1>
 
-<div class="highlight highlight-cpp"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="cp">#include &lt;raspboop/Raspboop.h&gt;</span>
+<div class="highlight highlight-cpp"><pre>#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>raspboop/Raspboop.h<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>map<span class="pl-pds">&gt;</span></span>
 
-<span class="k">using</span> <span class="n">raspboop</span><span class="o">::</span><span class="n">HCSR04</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">raspboop</span><span class="o">::</span><span class="n">HCSR501</span><span class="p">;</span>
+<span class="pl-k">using</span> <span class="pl-st">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+<span class="pl-k">using</span> <span class="pl-st">namespace</span> <span class="pl-en">rbp</span><span class="pl-k">;</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
+<span class="pl-st">int</span> <span class="pl-en">main</span>(<span class="pl-st">int</span> argc, <span class="pl-st">char</span>* argv[])
+{
+    <span class="pl-s3">rbp::Init</span>();
 
-<span class="cp">#define SIG 6</span>
-<span class="cp">#define TRIG 4</span>
-<span class="cp">#define ECHO 5</span>
+    Server server;
+    HCSR04 <span class="pl-vo">distanceSensor</span>(WiringPiPins::GPIO0,
+                          WiringPiPins::GPIO1);
 
-    <span class="n">raspboop</span><span class="o">::</span><span class="n">Init</span><span class="p">(</span><span class="n">raspboop</span><span class="o">::</span><span class="n">WIRING</span><span class="p">);</span>
+    distanceSensor.<span class="pl-s3">SetComponentId</span>(<span class="pl-c1">0</span>);
 
-    <span class="kt">bool</span> <span class="n">ShouldRun</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="n">HCSR04</span><span class="o">*</span> <span class="n">DistanceSensor</span> <span class="o">=</span> <span class="n">HCSR04</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">ECHO</span><span class="p">,</span> <span class="n">TRIG</span><span class="p">);</span>
-    <span class="n">HCSR501</span><span class="o">*</span> <span class="n">InfraredSensor</span> <span class="o">=</span> <span class="n">HCSR501</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">SIG</span><span class="p">);</span>
+    map&lt;<span class="pl-st">unsigned</span> <span class="pl-st">char</span>, Commandable*&gt; robotParts;
 
-    <span class="k">while</span><span class="p">(</span><span class="n">ShouldRun</span><span class="p">)</span>
-    <span class="p">{</span>
+    robotParts.<span class="pl-s3">insert</span>(<span class="pl-s3">make_pair</span>(distanceSensor.<span class="pl-s3">GetComponentId</span>(),
+                                <span class="pl-k">dynamic_cast</span>&lt;Commandable*&gt;(&amp;distanceSensor)));
 
-        <span class="n">InfraredSensor</span><span class="o">-&gt;</span><span class="n">Sense</span><span class="p">();</span>
-        <span class="n">DistanceSensor</span><span class="o">-&gt;</span><span class="n">Sense</span><span class="p">();</span>
+    <span class="pl-c">// Allow clients to find this robot automatically</span>
+    server.<span class="pl-s3">EnableAutodiscovery</span>(<span class="pl-s1"><span class="pl-pds">"</span>0.0.0.0<span class="pl-pds">"</span></span>);
 
-        <span class="kt">int</span> <span class="n">Motion</span> <span class="o">=</span> <span class="n">InfraredSensor</span><span class="o">-&gt;</span><span class="n">IsSignalled</span><span class="p">();</span>
-        <span class="kt">float</span> <span class="n">Distance</span> <span class="o">=</span> <span class="n">DistanceSensor</span><span class="o">-&gt;</span><span class="n">GetDistance</span><span class="p">();</span>
+    server.<span class="pl-s3">AddCallback</span>([&amp;] (<span class="pl-s">const</span> Command* cmd, Server*) {
 
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Motion Detected: %d"</span><span class="p">,</span> <span class="n">Motion</span><span class="p">);</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Distance: %0.2f centimeters"</span><span class="p">,</span> <span class="n">Distance</span><span class="p">);</span>
+                            <span class="pl-st">auto</span> search =
+                                    robotParts.<span class="pl-s3">find</span>(cmd-&gt;<span class="pl-s3">GetComponentId</span>());
 
-        <span class="k">if</span><span class="p">(</span><span class="n">Distance</span> <span class="o">&lt;</span> <span class="mf">20.0f</span><span class="p">)</span>
-            <span class="n">ShouldRun</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="k">else</span>
-            <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-    <span class="p">}</span>
+                            <span class="pl-k">if</span>(search != robotParts.<span class="pl-s3">end</span>())
+                                search-&gt;second-&gt;<span class="pl-s3">AcceptCommand</span>(*cmd);
+                       });
 
-    <span class="k">delete</span> <span class="n">InfraredSensor</span><span class="p">;</span>
-    <span class="k">delete</span> <span class="n">DistanceSensor</span><span class="p">;</span>
+    server.<span class="pl-s3">Start</span>();
+    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
+}
 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
 </pre></div>
 
 <h1>
-<a name="building--contributing" class="anchor" href="#building--contributing"><span class="octicon octicon-link"></span></a>Building &amp; Contributing</h1>
+<a id="building--contributing" class="anchor" href="#building--contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building &amp; Contributing</h1>
 
 <p>RaspbOOP-Bot uses <strong>CMake</strong> to generate the necessary build files. You can also generate build files for your preferred IDE/Compiler.</p>
 
-<p>You will also need a <strong>Raspberry Pi</strong>, although it is recommended to develop on your preferred *nix platform, and then test new code on the Raspberry Pi.</p>
+<p>You will also need a <strong>Raspberry Pi</strong>, although it is recommended to develop on your preferred *nix platform, and then test new code on the Raspberry Pi.
+Raspboop automatically downloads and uses the newest version of wiringPi for you.</p>
 
 <p>You will also need <strong>git</strong>.</p>
+
+<h1>
+<a id="licensing" class="anchor" href="#licensing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Licensing</h1>
+
+<p>Unless otherwise stated, all files and all subsequent files relative to the path of this README are licensed under
+<strong><em>The MIT License (MIT)</em></strong>. A copy of THE MIT License (MIT) can be found in the same directory as the README.</p>
         </section>
 
         <aside id="sidebar">
-          <a href="doc/html/index.html" class="button">
-            <small>View</small>
-            <p style="font-size: 19px">Documentation</p>
-          </a>
-          <a href="https://github.com/jgcoded/RaspbOOP-Bot/zipball/master" class="button">
+          <a href="https://github.com/jgcoded/RaspbOOP/zipball/master" class="button">
             <small>Download</small>
             .zip file
           </a>
-          <a href="https://github.com/jgcoded/RaspbOOP-Bot/tarball/master" class="button">
+          <a href="https://github.com/jgcoded/RaspbOOP/tarball/master" class="button">
             <small>Download</small>
             .tar.gz file
           </a>
 
-          <p class="repo-owner"><a href="https://github.com/jgcoded/RaspbOOP-Bot">Raspboop-Bot</a> is maintained by <a href="https://github.com/jgcoded">jgcoded</a>.</p>
+          <p class="repo-owner"><a href="https://github.com/jgcoded/RaspbOOP"></a> is maintained by <a href="https://github.com/jgcoded">jgcoded</a>.</p>
 
           <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
         </aside>
