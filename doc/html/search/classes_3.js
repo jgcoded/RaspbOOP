@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['sensor',['Sensor',['../classraspboop_1_1Sensor.html',1,'raspboop']]]
+  ['hcsr04',['HCSR04',['../classrbp_1_1HCSR04.html',1,'rbp']]],
+  ['hcsr501',['HCSR501',['../classrbp_1_1HCSR501.html',1,'rbp']]]
 ];

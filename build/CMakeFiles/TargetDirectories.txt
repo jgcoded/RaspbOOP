@@ -1,0 +1,7 @@
+/home/jgcoded/projects/RaspbOOP/build/test/CMakeFiles/boards.dir
+/home/jgcoded/projects/RaspbOOP/build/test/CMakeFiles/sensors.dir
+/home/jgcoded/projects/RaspbOOP/build/test/CMakeFiles/client.dir
+/home/jgcoded/projects/RaspbOOP/build/src/CMakeFiles/raspboop.dir
+/home/jgcoded/projects/RaspbOOP/build/test/CMakeFiles/server.dir
+/home/jgcoded/projects/RaspbOOP/build/qt/RobotStation/CMakeFiles/RobotStation.dir
+/home/jgcoded/projects/RaspbOOP/build/qt/RobotStation/CMakeFiles/RobotStation_automoc.dir

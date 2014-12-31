@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['getdistance',['GetDistance',['../classraspboop_1_1HCSR04.html#ad242d219ab8b6adbf1d684416ba47cb9',1,'raspboop::HCSR04']]],
-  ['gpioconsumer',['GPIOConsumer',['../classraspboop_1_1GPIOConsumer.html',1,'raspboop']]],
-  ['gpiomanager',['GPIOManager',['../classraspboop_1_1GPIOManager.html',1,'raspboop']]]
+  ['bcmpinsp5',['BCMPinsP5',['../classrbp_1_1BCMPinsP5.html',1,'rbp']]],
+  ['bcmpinsrev1',['BCMPinsRev1',['../classrbp_1_1BCMPinsRev1.html',1,'rbp']]],
+  ['bcmpinsrev2',['BCMPinsRev2',['../classrbp_1_1BCMPinsRev2.html',1,'rbp']]]
 ];

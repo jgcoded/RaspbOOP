@@ -1,0 +1,5 @@
+-I/home/jgcoded/projects/RaspbOOP/qt/RobotStation
+-I/home/jgcoded/projects/RaspbOOP/qt/RobotStation/build
+-o
+/home/jgcoded/projects/RaspbOOP/qt/RobotStation/build/moc_robotconnectdialog.cpp
+/home/jgcoded/projects/RaspbOOP/qt/RobotStation/robotconnectdialog.h

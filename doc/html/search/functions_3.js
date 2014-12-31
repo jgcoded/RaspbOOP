@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['issignalled',['IsSignalled',['../classraspboop_1_1HCSR501.html#a06f7b6c117ee5acf76592a3f89159a3e',1,'raspboop::HCSR501']]]
+  ['enableautodiscovery',['EnableAutodiscovery',['../classrbp_1_1Server.html#aab0491afac0864f0677766101b069778',1,'rbp::Server']]],
+  ['encodecommandtodata',['EncodeCommandToData',['../classrbp_1_1Command.html#a44ecd677116909a1f8cbcbf139bebe7a',1,'rbp::Command']]]
 ];

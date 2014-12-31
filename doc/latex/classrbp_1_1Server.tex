@@ -1,0 +1,128 @@
+\hypertarget{classrbp_1_1Server}{}\section{rbp\+:\+:Server Class Reference}
+\label{classrbp_1_1Server}\index{rbp\+::\+Server@{rbp\+::\+Server}}
+
+
+\hyperlink{classrbp_1_1Server}{Server} class used to receive Commands.  
+
+
+
+
+{\ttfamily \#include $<$Server.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classrbp_1_1Server_1_1ServerQuickResponseCode}{Server\+Quick\+Response\+Code}
+\begin{DoxyCompactList}\small\item\em A convenience class used to quickly send a response code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classrbp_1_1Server_a8119bb8694bfa5cc978c38373ab23852}{}typedef std\+::function$<$ void(const \hyperlink{classrbp_1_1Command}{Command} $\ast$, \hyperlink{classrbp_1_1Server}{Server} $\ast$)$>$ {\bfseries Server\+Callback}\label{classrbp_1_1Server_a8119bb8694bfa5cc978c38373ab23852}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classrbp_1_1Server_aeabc2e895aeae85e9d34acc6c3b2bc8f}{Server} (int port=9034)
+\begin{DoxyCompactList}\small\item\em Instantiates a \hyperlink{classrbp_1_1Server}{Server} with a specified port. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1Server_a37deb0bbb0098f2148e7c21d6764c79a}{Add\+Callback} (Server\+Callback callback)
+\begin{DoxyCompactList}\small\item\em Add a callback which will be invokes when a new, valid \hyperlink{classrbp_1_1Command}{Command} is received. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1Server_aab0491afac0864f0677766101b069778}{Enable\+Autodiscovery} (std\+::string interface, std\+::string group=\char`\"{}239.\+255.\+101.\+33\char`\"{}, int port=30001)
+\begin{DoxyCompactList}\small\item\em Begins multicasting the \hyperlink{classrbp_1_1Server}{Server}\textquotesingle{}s I\+P and port. \end{DoxyCompactList}\item 
+\hypertarget{classrbp_1_1Server_a64d00e53482b431692144df3fdc2b445}{}void \hyperlink{classrbp_1_1Server_a64d00e53482b431692144df3fdc2b445}{Start} ()\label{classrbp_1_1Server_a64d00e53482b431692144df3fdc2b445}
+
+\begin{DoxyCompactList}\small\item\em Starts receiving data and begins multicasting if enabled. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1Server_a250e72cfa217fb8d6a31593f0eca6276}{Send\+Data} (\hyperlink{classrbp_1_1Serializable}{Serializable} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Sends a \hyperlink{classrbp_1_1Serializable}{Serializable} to the most recent client. \end{DoxyCompactList}\item 
+\hypertarget{classrbp_1_1Server_a6a085077d0b2f48443428aa01e753798}{}void \hyperlink{classrbp_1_1Server_a6a085077d0b2f48443428aa01e753798}{Stop} ()\label{classrbp_1_1Server_a6a085077d0b2f48443428aa01e753798}
+
+\begin{DoxyCompactList}\small\item\em Stops receiving data and stops multicasting if enabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classrbp_1_1Server}{Server} class used to receive Commands. 
+
+The \hyperlink{classrbp_1_1Server}{Server} class uses U\+D\+P Sockets to exchange information as encoded and decoded by the \hyperlink{classrbp_1_1Command}{Command} class and the Raspboop Transmission Protocol.
+
+The \hyperlink{classrbp_1_1Server}{Server} class also provides automatic discovery functionality through a Multicast sockets. Invoke \hyperlink{classrbp_1_1Server_aab0491afac0864f0677766101b069778}{Enable\+Autodiscovery()} to start Multicasting. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classrbp_1_1Server_aeabc2e895aeae85e9d34acc6c3b2bc8f}{}\index{rbp\+::\+Server@{rbp\+::\+Server}!Server@{Server}}
+\index{Server@{Server}!rbp\+::\+Server@{rbp\+::\+Server}}
+\subsubsection[{Server}]{\setlength{\rightskip}{0pt plus 5cm}rbp\+::\+Server\+::\+Server (
+\begin{DoxyParamCaption}
+\item[{int}]{port = {\ttfamily 9034}}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Server_aeabc2e895aeae85e9d34acc6c3b2bc8f}
+
+
+Instantiates a \hyperlink{classrbp_1_1Server}{Server} with a specified port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & The port to bind to. Default is 9034 \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1Server_a37deb0bbb0098f2148e7c21d6764c79a}{}\index{rbp\+::\+Server@{rbp\+::\+Server}!Add\+Callback@{Add\+Callback}}
+\index{Add\+Callback@{Add\+Callback}!rbp\+::\+Server@{rbp\+::\+Server}}
+\subsubsection[{Add\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+Server\+::\+Add\+Callback (
+\begin{DoxyParamCaption}
+\item[{Server\+Callback}]{callback}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Server_a37deb0bbb0098f2148e7c21d6764c79a}
+
+
+Add a callback which will be invokes when a new, valid \hyperlink{classrbp_1_1Command}{Command} is received. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & The callback to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{classrbp_1_1Server_aab0491afac0864f0677766101b069778}{}\index{rbp\+::\+Server@{rbp\+::\+Server}!Enable\+Autodiscovery@{Enable\+Autodiscovery}}
+\index{Enable\+Autodiscovery@{Enable\+Autodiscovery}!rbp\+::\+Server@{rbp\+::\+Server}}
+\subsubsection[{Enable\+Autodiscovery}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+Server\+::\+Enable\+Autodiscovery (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{interface, }
+\item[{std\+::string}]{group = {\ttfamily \char`\"{}239.255.101.33\char`\"{}}, }
+\item[{int}]{port = {\ttfamily 30001}}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Server_aab0491afac0864f0677766101b069778}
+
+
+Begins multicasting the \hyperlink{classrbp_1_1Server}{Server}\textquotesingle{}s I\+P and port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em interface} & The I\+P of the machine on which the server is running \\
+\hline
+{\em group} & The I\+P of the multicast group. Default is 239.\+255.\+101.\+33 \\
+\hline
+{\em port} & The port of the multicast group. Default is 30001 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classrbp_1_1Server_a250e72cfa217fb8d6a31593f0eca6276}{}\index{rbp\+::\+Server@{rbp\+::\+Server}!Send\+Data@{Send\+Data}}
+\index{Send\+Data@{Send\+Data}!rbp\+::\+Server@{rbp\+::\+Server}}
+\subsubsection[{Send\+Data}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+Server\+::\+Send\+Data (
+\begin{DoxyParamCaption}
+\item[{{\bf Serializable} $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Server_a250e72cfa217fb8d6a31593f0eca6276}
+
+
+Sends a \hyperlink{classrbp_1_1Serializable}{Serializable} to the most recent client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The \hyperlink{classrbp_1_1Serializable}{Serializable} to send \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/com/Server.\+h\item 
+src/com/Server.\+cpp\end{DoxyCompactItemize}

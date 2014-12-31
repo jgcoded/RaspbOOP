@@ -1,0 +1,117 @@
+\hypertarget{classrbp_1_1Commandable}{}\section{rbp\+:\+:Commandable Class Reference}
+\label{classrbp_1_1Commandable}\index{rbp\+::\+Commandable@{rbp\+::\+Commandable}}
+
+
+Interface for objects that can accept Commands.  
+
+
+
+
+{\ttfamily \#include $<$Commandable.\+h$>$}
+
+Inheritance diagram for rbp\+:\+:Commandable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrbp_1_1Commandable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classrbp_1_1Commandable_a4a4214731d3e04b5590f805dd5f459f4}{Accept\+Command} (const \hyperlink{classrbp_1_1Command}{Command} \&data)=0
+\begin{DoxyCompactList}\small\item\em Accepts a \hyperlink{classrbp_1_1Command}{Command} and performs an operation if the command exists within \hyperlink{classrbp_1_1Commandable_a8e6d397d308b8c075942bc1c8d6d7ca2}{Get\+Commands()} \end{DoxyCompactList}\item 
+virtual std\+::map$<$ std\+::string, unsigned char $>$ \hyperlink{classrbp_1_1Commandable_a8e6d397d308b8c075942bc1c8d6d7ca2}{Get\+Commands} () const =0
+\begin{DoxyCompactList}\small\item\em Get a map of a human readable string and its respective command I\+D. \end{DoxyCompactList}\item 
+virtual const unsigned char \hyperlink{classrbp_1_1Commandable_a9f4e9e2b747133cdf1600f8bb82c4b02}{Get\+Component\+Id} () const =0
+\begin{DoxyCompactList}\small\item\em Get the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1Commandable_a19fb2e619697c9b9b77a638747cc4288}{Set\+Component\+Id} (unsigned char id)=0
+\begin{DoxyCompactList}\small\item\em Set the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for objects that can accept Commands. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1Commandable_a4a4214731d3e04b5590f805dd5f459f4}{}\index{rbp\+::\+Commandable@{rbp\+::\+Commandable}!Accept\+Command@{Accept\+Command}}
+\index{Accept\+Command@{Accept\+Command}!rbp\+::\+Commandable@{rbp\+::\+Commandable}}
+\subsubsection[{Accept\+Command}]{\setlength{\rightskip}{0pt plus 5cm}virtual void rbp\+::\+Commandable\+::\+Accept\+Command (
+\begin{DoxyParamCaption}
+\item[{const {\bf Command} \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classrbp_1_1Commandable_a4a4214731d3e04b5590f805dd5f459f4}
+
+
+Accepts a \hyperlink{classrbp_1_1Command}{Command} and performs an operation if the command exists within \hyperlink{classrbp_1_1Commandable_a8e6d397d308b8c075942bc1c8d6d7ca2}{Get\+Commands()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The command to accept \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classrbp_1_1L298N_afa20e1274df6fb59a3d162e38b2408ea}{rbp\+::\+L298\+N}, \hyperlink{classrbp_1_1HCSR04_a5f7030ea092c72991fab902e1a2384f5}{rbp\+::\+H\+C\+S\+R04}, and \hyperlink{classrbp_1_1HCSR501_aac9cd8d47aa9df19fb04ed3972e89179}{rbp\+::\+H\+C\+S\+R501}.
+
+\hypertarget{classrbp_1_1Commandable_a8e6d397d308b8c075942bc1c8d6d7ca2}{}\index{rbp\+::\+Commandable@{rbp\+::\+Commandable}!Get\+Commands@{Get\+Commands}}
+\index{Get\+Commands@{Get\+Commands}!rbp\+::\+Commandable@{rbp\+::\+Commandable}}
+\subsubsection[{Get\+Commands}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::map$<$std\+::string, unsigned char$>$ rbp\+::\+Commandable\+::\+Get\+Commands (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classrbp_1_1Commandable_a8e6d397d308b8c075942bc1c8d6d7ca2}
+
+
+Get a map of a human readable string and its respective command I\+D. 
+
+\begin{DoxyReturn}{Returns}
+A map of command names and respective I\+Ds 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classrbp_1_1L298N_ad3bae353e3d17675672286a68ced9d24}{rbp\+::\+L298\+N}, \hyperlink{classrbp_1_1HCSR04_ab418091c846e7256c6d937eb4cea60d0}{rbp\+::\+H\+C\+S\+R04}, and \hyperlink{classrbp_1_1HCSR501_a620a899944b11bf631e3616895fa5a77}{rbp\+::\+H\+C\+S\+R501}.
+
+\hypertarget{classrbp_1_1Commandable_a9f4e9e2b747133cdf1600f8bb82c4b02}{}\index{rbp\+::\+Commandable@{rbp\+::\+Commandable}!Get\+Component\+Id@{Get\+Component\+Id}}
+\index{Get\+Component\+Id@{Get\+Component\+Id}!rbp\+::\+Commandable@{rbp\+::\+Commandable}}
+\subsubsection[{Get\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}virtual const unsigned char rbp\+::\+Commandable\+::\+Get\+Component\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classrbp_1_1Commandable_a9f4e9e2b747133cdf1600f8bb82c4b02}
+
+
+Get the physical component\textquotesingle{}s I\+D. 
+
+\begin{DoxyReturn}{Returns}
+The physical component\textquotesingle{}s I\+D 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classrbp_1_1L298N_af4c1a48847326d4f962594cacbcdfa9c}{rbp\+::\+L298\+N}, \hyperlink{classrbp_1_1HCSR04_ac4bfc202a0d42469017bac7aedf03d77}{rbp\+::\+H\+C\+S\+R04}, and \hyperlink{classrbp_1_1HCSR501_a144ca65c1248656a016564493d59fe47}{rbp\+::\+H\+C\+S\+R501}.
+
+\hypertarget{classrbp_1_1Commandable_a19fb2e619697c9b9b77a638747cc4288}{}\index{rbp\+::\+Commandable@{rbp\+::\+Commandable}!Set\+Component\+Id@{Set\+Component\+Id}}
+\index{Set\+Component\+Id@{Set\+Component\+Id}!rbp\+::\+Commandable@{rbp\+::\+Commandable}}
+\subsubsection[{Set\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}virtual void rbp\+::\+Commandable\+::\+Set\+Component\+Id (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classrbp_1_1Commandable_a19fb2e619697c9b9b77a638747cc4288}
+
+
+Set the physical component\textquotesingle{}s I\+D. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The I\+D to use \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classrbp_1_1L298N_ae2557785a6795a727c6526baade4c174}{rbp\+::\+L298\+N}, \hyperlink{classrbp_1_1HCSR04_a32db67ffcb0adac730ed32523ceec111}{rbp\+::\+H\+C\+S\+R04}, and \hyperlink{classrbp_1_1HCSR501_a12e4d4dbdfce36157af3042fe65cbb50}{rbp\+::\+H\+C\+S\+R501}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/interfaces/Commandable.\+h\end{DoxyCompactItemize}

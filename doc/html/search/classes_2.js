@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['l298n',['L298N',['../classraspboop_1_1L298N.html',1,'raspboop']]]
+  ['gpioconsumer',['GPIOConsumer',['../classrbp_1_1GPIOConsumer.html',1,'rbp']]]
 ];

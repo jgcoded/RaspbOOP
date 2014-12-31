@@ -1,0 +1,244 @@
+\hypertarget{classrbp_1_1HCSR501}{}\section{rbp\+:\+:H\+C\+S\+R501 Class Reference}
+\label{classrbp_1_1HCSR501}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+
+
+Passive infrared sensor for motion detection.  
+
+
+
+
+{\ttfamily \#include $<$H\+C\+S\+R501.\+h$>$}
+
+Inheritance diagram for rbp\+:\+:H\+C\+S\+R501\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrbp_1_1HCSR501}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classrbp_1_1HCSR501_ae6fa939683256d390886b07ef2b2861e}{H\+C\+S\+R501} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classrbp_1_1HCSR501}{H\+C\+S\+R501} Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classrbp_1_1HCSR501_a061fd4c0a4e51ad6118add781b523cbb}{H\+C\+S\+R501} (int signal)
+\begin{DoxyCompactList}\small\item\em Create a usable \hyperlink{classrbp_1_1HCSR501}{H\+C\+S\+R501} object. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1HCSR501_a9b0e9b6f210d269b67a1ec94e3b62359}{Sense} ()
+\begin{DoxyCompactList}\small\item\em Performs the sensor\textquotesingle{}s sensing operation. \end{DoxyCompactList}\item 
+bool \hyperlink{classrbp_1_1HCSR501_a61d40d80c544ffaf3ab75adcd03fdcb3}{Is\+Signalled} () const 
+\begin{DoxyCompactList}\small\item\em Get the value obtained from \hyperlink{classrbp_1_1HCSR501_a9b0e9b6f210d269b67a1ec94e3b62359}{Sense()} \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1HCSR501_aac9cd8d47aa9df19fb04ed3972e89179}{Accept\+Command} (const \hyperlink{classrbp_1_1Command}{Command} \&command)
+\begin{DoxyCompactList}\small\item\em Accepts a \hyperlink{classrbp_1_1Command}{Command} and performs an operation if the command exists within \hyperlink{classrbp_1_1HCSR501_a620a899944b11bf631e3616895fa5a77}{Get\+Commands()} \end{DoxyCompactList}\item 
+virtual std\+::map$<$ std\+::string, unsigned char $>$ \hyperlink{classrbp_1_1HCSR501_a620a899944b11bf631e3616895fa5a77}{Get\+Commands} () const 
+\begin{DoxyCompactList}\small\item\em Get a map of a human readable string and its respective command I\+D. \end{DoxyCompactList}\item 
+virtual const unsigned char \hyperlink{classrbp_1_1HCSR501_a144ca65c1248656a016564493d59fe47}{Get\+Component\+Id} () const 
+\begin{DoxyCompactList}\small\item\em Get the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1HCSR501_a12e4d4dbdfce36157af3042fe65cbb50}{Set\+Component\+Id} (unsigned char id)
+\begin{DoxyCompactList}\small\item\em Set the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ unsigned char $>$ \hyperlink{classrbp_1_1HCSR501_a6aa46721ed0dcba774435a24ac17072e}{Serialize} ()
+\begin{DoxyCompactList}\small\item\em Returns an array representation of an object. \end{DoxyCompactList}\item 
+\hypertarget{classrbp_1_1HCSR501_a9ba22950944715359016ed2f81e5a9ea}{}\hyperlink{classrbp_1_1HCSR501_a9ba22950944715359016ed2f81e5a9ea}{$\sim$\+H\+C\+S\+R501} ()\label{classrbp_1_1HCSR501_a9ba22950944715359016ed2f81e5a9ea}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classrbp_1_1HCSR501}{H\+C\+S\+R501} destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Passive infrared sensor for motion detection. 
+
+The \hyperlink{classrbp_1_1HCSR501}{H\+C\+S\+R501} is a passive infrared sensor used for motion detection applications. There are 5 main pins that you will need to be familiar with\+:
+
+
+\begin{DoxyItemize}
+\item 5\+V input
+\item Signal
+\item Gnd
+\item retriggering pin
+\item non-\/retriggering pin
+\end{DoxyItemize}
+
+\subsection*{Helpful information }
+
+There are two modes to the sensor\+: retriggering, and non-\/retriggering. In retriggering mode, signal outputs high as long as motion is detected. In non-\/retriggering mode, signal will output as H\+I\+G\+H only every second or so that motion is detected.
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Quick Stats }&{\bf Value  }\\\cline{1-2}
+Vcc &{\bfseries 5-\/16\+V} \\\cline{1-2}
+Logical voltage &{\bfseries 3\+V3} \\\cline{1-2}
+Sensing range &{\bfseries 7 meters} \\\cline{1-2}
+\end{TabularC}
+\subsubsection*{External Links }
+
+\href{http://www.ladyada.net/media/
+sensors/PIRSensor-V1.2.pdf}{\tt Parallax P\+I\+R datasheet}
+
+\href{http://elecfreaks.com/store/download/
+datasheet/sensor/DYP-ME003/Specification.pdf}{\tt Elec Freaks datasheet}
+
+\href{http://
+www.ladyada.net/learn/sensors/pir.html}{\tt P\+I\+R motion sensors tutorial by Lady\+Ada.\+net}
+
+\href{http://robotic-controls.com/learn/sensors/pir-sensor-hc-sr501}{\tt Supplementary Arduino code and tutorial} 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classrbp_1_1HCSR501_ae6fa939683256d390886b07ef2b2861e}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!H\+C\+S\+R501@{H\+C\+S\+R501}}
+\index{H\+C\+S\+R501@{H\+C\+S\+R501}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{H\+C\+S\+R501}]{\setlength{\rightskip}{0pt plus 5cm}rbp\+::\+H\+C\+S\+R501\+::\+H\+C\+S\+R501 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1HCSR501_ae6fa939683256d390886b07ef2b2861e}
+
+
+\hyperlink{classrbp_1_1HCSR501}{H\+C\+S\+R501} Constructor. 
+
+Initializes private variables to unused values \hypertarget{classrbp_1_1HCSR501_a061fd4c0a4e51ad6118add781b523cbb}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!H\+C\+S\+R501@{H\+C\+S\+R501}}
+\index{H\+C\+S\+R501@{H\+C\+S\+R501}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{H\+C\+S\+R501}]{\setlength{\rightskip}{0pt plus 5cm}rbp\+::\+H\+C\+S\+R501\+::\+H\+C\+S\+R501 (
+\begin{DoxyParamCaption}
+\item[{int}]{signal}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1HCSR501_a061fd4c0a4e51ad6118add781b523cbb}
+
+
+Create a usable \hyperlink{classrbp_1_1HCSR501}{H\+C\+S\+R501} object. 
+
+Initializes the \hyperlink{classrbp_1_1HCSR501}{H\+C\+S\+R501}\textquotesingle{}s Signal pin using the \hyperlink{classrbp_1_1Sensor_a2e3a00de93b77ecf39b4bfee79279c3c}{Set\+Input\+Pin()} method from \hyperlink{classrbp_1_1Sensor}{Sensor}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em signal} & The input pin which will read the value from the sensor \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1HCSR501_aac9cd8d47aa9df19fb04ed3972e89179}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!Accept\+Command@{Accept\+Command}}
+\index{Accept\+Command@{Accept\+Command}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{Accept\+Command}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+H\+C\+S\+R501\+::\+Accept\+Command (
+\begin{DoxyParamCaption}
+\item[{const {\bf Command} \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR501_aac9cd8d47aa9df19fb04ed3972e89179}
+
+
+Accepts a \hyperlink{classrbp_1_1Command}{Command} and performs an operation if the command exists within \hyperlink{classrbp_1_1HCSR501_a620a899944b11bf631e3616895fa5a77}{Get\+Commands()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The command to accept \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a4a4214731d3e04b5590f805dd5f459f4}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1HCSR501_a620a899944b11bf631e3616895fa5a77}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!Get\+Commands@{Get\+Commands}}
+\index{Get\+Commands@{Get\+Commands}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{Get\+Commands}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$ std\+::string, unsigned char $>$ rbp\+::\+H\+C\+S\+R501\+::\+Get\+Commands (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR501_a620a899944b11bf631e3616895fa5a77}
+
+
+Get a map of a human readable string and its respective command I\+D. 
+
+\begin{DoxyReturn}{Returns}
+A map of command names and respective I\+Ds 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a8e6d397d308b8c075942bc1c8d6d7ca2}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1HCSR501_a144ca65c1248656a016564493d59fe47}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!Get\+Component\+Id@{Get\+Component\+Id}}
+\index{Get\+Component\+Id@{Get\+Component\+Id}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{Get\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char rbp\+::\+H\+C\+S\+R501\+::\+Get\+Component\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR501_a144ca65c1248656a016564493d59fe47}
+
+
+Get the physical component\textquotesingle{}s I\+D. 
+
+\begin{DoxyReturn}{Returns}
+The physical component\textquotesingle{}s I\+D 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a9f4e9e2b747133cdf1600f8bb82c4b02}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1HCSR501_a61d40d80c544ffaf3ab75adcd03fdcb3}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!Is\+Signalled@{Is\+Signalled}}
+\index{Is\+Signalled@{Is\+Signalled}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{Is\+Signalled}]{\setlength{\rightskip}{0pt plus 5cm}bool rbp\+::\+H\+C\+S\+R501\+::\+Is\+Signalled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classrbp_1_1HCSR501_a61d40d80c544ffaf3ab75adcd03fdcb3}
+
+
+Get the value obtained from \hyperlink{classrbp_1_1HCSR501_a9b0e9b6f210d269b67a1ec94e3b62359}{Sense()} 
+
+\begin{DoxyReturn}{Returns}
+A boolean value determining the signal pin\textquotesingle{}s value 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1HCSR501_a9b0e9b6f210d269b67a1ec94e3b62359}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!Sense@{Sense}}
+\index{Sense@{Sense}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{Sense}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+H\+C\+S\+R501\+::\+Sense (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR501_a9b0e9b6f210d269b67a1ec94e3b62359}
+
+
+Performs the sensor\textquotesingle{}s sensing operation. 
+
+This method will retrieve a value from the environment by performing G\+P\+I\+O operations on the input and output pins of the sensor. The value from the sensor will be available through an accessor method. 
+
+Implements \hyperlink{classrbp_1_1Sensor_ab9d45316bf67d871fddc7aa048e89c49}{rbp\+::\+Sensor}.
+
+\hypertarget{classrbp_1_1HCSR501_a6aa46721ed0dcba774435a24ac17072e}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{Serialize}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ unsigned char $>$ rbp\+::\+H\+C\+S\+R501\+::\+Serialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR501_a6aa46721ed0dcba774435a24ac17072e}
+
+
+Returns an array representation of an object. 
+
+\begin{DoxyReturn}{Returns}
+The Buffer of data 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Serializable_a349896f5c3356330f914621033fda0bb}{rbp\+::\+Serializable}.
+
+\hypertarget{classrbp_1_1HCSR501_a12e4d4dbdfce36157af3042fe65cbb50}{}\index{rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}!Set\+Component\+Id@{Set\+Component\+Id}}
+\index{Set\+Component\+Id@{Set\+Component\+Id}!rbp\+::\+H\+C\+S\+R501@{rbp\+::\+H\+C\+S\+R501}}
+\subsubsection[{Set\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+H\+C\+S\+R501\+::\+Set\+Component\+Id (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR501_a12e4d4dbdfce36157af3042fe65cbb50}
+
+
+Set the physical component\textquotesingle{}s I\+D. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The I\+D to use \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a19fb2e619697c9b9b77a638747cc4288}{rbp\+::\+Commandable}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/sensors/H\+C\+S\+R501.\+h\item 
+src/sensors/H\+C\+S\+R501.\+cpp\end{DoxyCompactItemize}

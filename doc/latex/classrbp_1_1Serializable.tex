@@ -1,0 +1,53 @@
+\hypertarget{classrbp_1_1Serializable}{}\section{rbp\+:\+:Serializable Class Reference}
+\label{classrbp_1_1Serializable}\index{rbp\+::\+Serializable@{rbp\+::\+Serializable}}
+
+
+Interface for objects that can be serialized.  
+
+
+
+
+{\ttfamily \#include $<$Serializable.\+h$>$}
+
+Inheritance diagram for rbp\+:\+:Serializable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.022942cm]{classrbp_1_1Serializable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ unsigned char $>$ \hyperlink{classrbp_1_1Serializable_a349896f5c3356330f914621033fda0bb}{Serialize} ()=0
+\begin{DoxyCompactList}\small\item\em Returns an array representation of an object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for objects that can be serialized. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1Serializable_a349896f5c3356330f914621033fda0bb}{}\index{rbp\+::\+Serializable@{rbp\+::\+Serializable}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!rbp\+::\+Serializable@{rbp\+::\+Serializable}}
+\subsubsection[{Serialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual std\+::vector$<$unsigned char$>$ rbp\+::\+Serializable\+::\+Serialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classrbp_1_1Serializable_a349896f5c3356330f914621033fda0bb}
+
+
+Returns an array representation of an object. 
+
+\begin{DoxyReturn}{Returns}
+The Buffer of data 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classrbp_1_1L298N_a9f05ae8fd5d1d15584f4afe4f59e0f1f}{rbp\+::\+L298\+N}, \hyperlink{classrbp_1_1HCSR04_aa4a535b88dfdf50a75a2374193038c32}{rbp\+::\+H\+C\+S\+R04}, \hyperlink{classrbp_1_1HCSR501_a6aa46721ed0dcba774435a24ac17072e}{rbp\+::\+H\+C\+S\+R501}, and \hyperlink{classrbp_1_1Server_1_1ServerQuickResponseCode_a1b1aad62ce4446ec6aeb203ea67e9833}{rbp\+::\+Server\+::\+Server\+Quick\+Response\+Code}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/interfaces/Serializable.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,256 @@
+\hypertarget{classrbp_1_1HCSR04}{}\section{rbp\+:\+:H\+C\+S\+R04 Class Reference}
+\label{classrbp_1_1HCSR04}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+
+
+Ultrasonic distance sensor.  
+
+
+
+
+{\ttfamily \#include $<$H\+C\+S\+R04.\+h$>$}
+
+Inheritance diagram for rbp\+:\+:H\+C\+S\+R04\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrbp_1_1HCSR04}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classrbp_1_1HCSR04_aedc0e7fb482ff9c231693199acdef08a}{H\+C\+S\+R04} ()
+\begin{DoxyCompactList}\small\item\em \hyperlink{classrbp_1_1HCSR04}{H\+C\+S\+R04} Constructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1HCSR04_a8f8cc45655cacfb94ade5078c40ab1ba}{Sense} ()
+\begin{DoxyCompactList}\small\item\em Performs the sensor\textquotesingle{}s sensing operation. \end{DoxyCompactList}\item 
+float \hyperlink{classrbp_1_1HCSR04_aab17c63c05ffe5f351acc0112d6275cf}{Get\+Distance} () const 
+\begin{DoxyCompactList}\small\item\em Get the distance calculated from the sensor. \end{DoxyCompactList}\item 
+\hyperlink{classrbp_1_1HCSR04_a38f9bdcdff148fa58ee1c50661d9349f}{H\+C\+S\+R04} (int echo, int trig)
+\begin{DoxyCompactList}\small\item\em Create a usable \hyperlink{classrbp_1_1HCSR04}{H\+C\+S\+R04} object. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1HCSR04_a5f7030ea092c72991fab902e1a2384f5}{Accept\+Command} (const \hyperlink{classrbp_1_1Command}{Command} \&command)
+\begin{DoxyCompactList}\small\item\em Accepts a \hyperlink{classrbp_1_1Command}{Command} and performs an operation if the command exists within \hyperlink{classrbp_1_1HCSR04_ab418091c846e7256c6d937eb4cea60d0}{Get\+Commands()} \end{DoxyCompactList}\item 
+virtual std\+::map$<$ std\+::string, unsigned char $>$ \hyperlink{classrbp_1_1HCSR04_ab418091c846e7256c6d937eb4cea60d0}{Get\+Commands} () const 
+\begin{DoxyCompactList}\small\item\em Get a map of a human readable string and its respective command I\+D. \end{DoxyCompactList}\item 
+virtual const unsigned char \hyperlink{classrbp_1_1HCSR04_ac4bfc202a0d42469017bac7aedf03d77}{Get\+Component\+Id} () const 
+\begin{DoxyCompactList}\small\item\em Get the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1HCSR04_a32db67ffcb0adac730ed32523ceec111}{Set\+Component\+Id} (unsigned char id)
+\begin{DoxyCompactList}\small\item\em Set the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ unsigned char $>$ \hyperlink{classrbp_1_1HCSR04_aa4a535b88dfdf50a75a2374193038c32}{Serialize} ()
+\begin{DoxyCompactList}\small\item\em Returns an array representation of an object. \end{DoxyCompactList}\item 
+\hypertarget{classrbp_1_1HCSR04_ab5d6f623fccd8bb1dd782df8945a381d}{}\hyperlink{classrbp_1_1HCSR04_ab5d6f623fccd8bb1dd782df8945a381d}{$\sim$\+H\+C\+S\+R04} ()\label{classrbp_1_1HCSR04_ab5d6f623fccd8bb1dd782df8945a381d}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classrbp_1_1HCSR04}{H\+C\+S\+R04} Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Ultrasonic distance sensor. 
+
+The \hyperlink{classrbp_1_1HCSR04}{H\+C\+S\+R04} is an ultrasonic distance sensor. By emitting an ultrasonic sound, the distance between the sensor and another object can be calculated through the formula\+:
+
+d = t $\ast$ 340 /2
+
+where, {\itshape d} is distance in meters, {\itshape t} is time in seconds, {\itshape 340} is the speed of sound in m/s
+
+We divide by two because the sound had to travel back to the sensor.
+
+\subsection*{Helpful information }
+
+
+\begin{DoxyItemize}
+\item The sensor has 4 pins
+\begin{DoxyItemize}
+\item {\bfseries Vcc} input 5\+V here
+\item {\bfseries Trig} Input used to tell the sensor when to send the sound
+\item {\bfseries Echo} The output from the sensor
+\item {\bfseries G\+N\+D} Connect this to ground
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+{\bfseries I\+M\+P\+O\+R\+T\+A\+N\+T I\+N\+F\+O\+R\+M\+A\+T\+I\+O\+N\+:} The Raspberry Pi\textquotesingle{}s pins operate at 3\+V3 volt logic. This means that you must use a voltage divider on the Echo pin when reading in a value. I recommend using two resistors whose values are 1.\+5x apart. For more detailed instructions on how to do this, visit\+: \href{http://www.bytecreation.com/blog/2013/10/13/
+ raspberry-pi-ultrasonic-sensor-hc-sr04}{\tt bytecreation.\+com}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Quick Stats }&{\bf Value  }\\\cline{1-2}
+Operating Voltage &{\bfseries 5\+V} \\\cline{1-2}
+Operating Current &{\bfseries 15 m\+A} \\\cline{1-2}
+Soundwave frequency &{\bfseries 40 Hz} \\\cline{1-2}
+Maximum distance &{\bfseries 4m} \\\cline{1-2}
+Minimum distance &{\bfseries 2 cm} \\\cline{1-2}
+Required Trigger pulse &{\bfseries 10us (microseconds) H\+I\+G\+H signal} \\\cline{1-2}
+\end{TabularC}
+
+
+\subsubsection*{External links }
+
+\href{http://users.ece.utexas.edu/~valvano/Datasheets/
+HCSR04b.pdf}{\tt Datasheet}
+
+\href{http://www.bytecreation.com/blog/2013/10/13/
+raspberry-pi-ultrasonic-sensor-hc-sr04}{\tt Blog post\+:} Good article that details the steps necessary to use this sensor with a raspberry pi and a voltage divider. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classrbp_1_1HCSR04_aedc0e7fb482ff9c231693199acdef08a}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!H\+C\+S\+R04@{H\+C\+S\+R04}}
+\index{H\+C\+S\+R04@{H\+C\+S\+R04}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{H\+C\+S\+R04}]{\setlength{\rightskip}{0pt plus 5cm}rbp\+::\+H\+C\+S\+R04\+::\+H\+C\+S\+R04 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1HCSR04_aedc0e7fb482ff9c231693199acdef08a}
+
+
+\hyperlink{classrbp_1_1HCSR04}{H\+C\+S\+R04} Constructor. 
+
+Initializes all private member variables to unused values. \hypertarget{classrbp_1_1HCSR04_a38f9bdcdff148fa58ee1c50661d9349f}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!H\+C\+S\+R04@{H\+C\+S\+R04}}
+\index{H\+C\+S\+R04@{H\+C\+S\+R04}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{H\+C\+S\+R04}]{\setlength{\rightskip}{0pt plus 5cm}rbp\+::\+H\+C\+S\+R04\+::\+H\+C\+S\+R04 (
+\begin{DoxyParamCaption}
+\item[{int}]{echo, }
+\item[{int}]{trig}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1HCSR04_a38f9bdcdff148fa58ee1c50661d9349f}
+
+
+Create a usable \hyperlink{classrbp_1_1HCSR04}{H\+C\+S\+R04} object. 
+
+Initializes the \hyperlink{classrbp_1_1HCSR04}{H\+C\+S\+R04}\textquotesingle{}s pins using the \hyperlink{classrbp_1_1Sensor_a2e3a00de93b77ecf39b4bfee79279c3c}{Set\+Input\+Pin()} and \hyperlink{classrbp_1_1Sensor_aab6baaef855fd31dab94e5b28386410a}{Set\+Output\+Pin()} methods inherited from \hyperlink{classrbp_1_1Sensor}{Sensor}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em echo} & The input pin designated to read the sensors E\+C\+H\+O output \\
+\hline
+{\em trig} & The output pin that initiates sensing \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1HCSR04_a5f7030ea092c72991fab902e1a2384f5}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!Accept\+Command@{Accept\+Command}}
+\index{Accept\+Command@{Accept\+Command}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{Accept\+Command}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+H\+C\+S\+R04\+::\+Accept\+Command (
+\begin{DoxyParamCaption}
+\item[{const {\bf Command} \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR04_a5f7030ea092c72991fab902e1a2384f5}
+
+
+Accepts a \hyperlink{classrbp_1_1Command}{Command} and performs an operation if the command exists within \hyperlink{classrbp_1_1HCSR04_ab418091c846e7256c6d937eb4cea60d0}{Get\+Commands()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The command to accept \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a4a4214731d3e04b5590f805dd5f459f4}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1HCSR04_ab418091c846e7256c6d937eb4cea60d0}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!Get\+Commands@{Get\+Commands}}
+\index{Get\+Commands@{Get\+Commands}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{Get\+Commands}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$ std\+::string, unsigned char $>$ rbp\+::\+H\+C\+S\+R04\+::\+Get\+Commands (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR04_ab418091c846e7256c6d937eb4cea60d0}
+
+
+Get a map of a human readable string and its respective command I\+D. 
+
+\begin{DoxyReturn}{Returns}
+A map of command names and respective I\+Ds 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a8e6d397d308b8c075942bc1c8d6d7ca2}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1HCSR04_ac4bfc202a0d42469017bac7aedf03d77}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!Get\+Component\+Id@{Get\+Component\+Id}}
+\index{Get\+Component\+Id@{Get\+Component\+Id}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{Get\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char rbp\+::\+H\+C\+S\+R04\+::\+Get\+Component\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR04_ac4bfc202a0d42469017bac7aedf03d77}
+
+
+Get the physical component\textquotesingle{}s I\+D. 
+
+\begin{DoxyReturn}{Returns}
+The physical component\textquotesingle{}s I\+D 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a9f4e9e2b747133cdf1600f8bb82c4b02}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1HCSR04_aab17c63c05ffe5f351acc0112d6275cf}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!Get\+Distance@{Get\+Distance}}
+\index{Get\+Distance@{Get\+Distance}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{Get\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}float rbp\+::\+H\+C\+S\+R04\+::\+Get\+Distance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classrbp_1_1HCSR04_aab17c63c05ffe5f351acc0112d6275cf}
+
+
+Get the distance calculated from the sensor. 
+
+\begin{DoxyReturn}{Returns}
+A float representing the distance sensed in centimeters 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1HCSR04_a8f8cc45655cacfb94ade5078c40ab1ba}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!Sense@{Sense}}
+\index{Sense@{Sense}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{Sense}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+H\+C\+S\+R04\+::\+Sense (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR04_a8f8cc45655cacfb94ade5078c40ab1ba}
+
+
+Performs the sensor\textquotesingle{}s sensing operation. 
+
+This method will retrieve a value from the environment by performing G\+P\+I\+O operations on the input and output pins of the sensor. The value from the sensor will be available through an accessor method. 
+
+Implements \hyperlink{classrbp_1_1Sensor_ab9d45316bf67d871fddc7aa048e89c49}{rbp\+::\+Sensor}.
+
+\hypertarget{classrbp_1_1HCSR04_aa4a535b88dfdf50a75a2374193038c32}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{Serialize}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ unsigned char $>$ rbp\+::\+H\+C\+S\+R04\+::\+Serialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR04_aa4a535b88dfdf50a75a2374193038c32}
+
+
+Returns an array representation of an object. 
+
+\begin{DoxyReturn}{Returns}
+The Buffer of data 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Serializable_a349896f5c3356330f914621033fda0bb}{rbp\+::\+Serializable}.
+
+\hypertarget{classrbp_1_1HCSR04_a32db67ffcb0adac730ed32523ceec111}{}\index{rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}!Set\+Component\+Id@{Set\+Component\+Id}}
+\index{Set\+Component\+Id@{Set\+Component\+Id}!rbp\+::\+H\+C\+S\+R04@{rbp\+::\+H\+C\+S\+R04}}
+\subsubsection[{Set\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+H\+C\+S\+R04\+::\+Set\+Component\+Id (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1HCSR04_a32db67ffcb0adac730ed32523ceec111}
+
+
+Set the physical component\textquotesingle{}s I\+D. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The I\+D to use \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a19fb2e619697c9b9b77a638747cc4288}{rbp\+::\+Commandable}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/sensors/H\+C\+S\+R04.\+h\item 
+src/sensors/H\+C\+S\+R04.\+cpp\end{DoxyCompactItemize}

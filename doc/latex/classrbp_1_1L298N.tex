@@ -1,0 +1,263 @@
+\hypertarget{classrbp_1_1L298N}{}\section{rbp\+:\+:L298\+N Class Reference}
+\label{classrbp_1_1L298N}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+
+
+\hyperlink{classrbp_1_1L298N}{L298\+N} Motor controller.  
+
+
+
+
+{\ttfamily \#include $<$L298\+N.\+h$>$}
+
+Inheritance diagram for rbp\+:\+:L298\+N\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classrbp_1_1L298N}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classrbp_1_1L298N_aa825d425be63819ee0ec35fac3fcdecf}{L298\+N} (int in1, int in2, int in3, int in4)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classrbp_1_1L298N}{L298\+N} object. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1L298N_ac618a203bef8bb8afbe194740be501a5}{Use\+Soft\+P\+W\+M} ()
+\begin{DoxyCompactList}\small\item\em Sets the input pins to software P\+W\+M mode. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1L298N_a5fcc1b9a3c9f2812e8adefb49cb704ef}{Set\+P\+W\+M\+Value} (int in, int value)
+\begin{DoxyCompactList}\small\item\em Sets a pin\textquotesingle{}s software P\+W\+M value. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1L298N_a65f4f98d23ddae3d659ce3f5084cbd1e}{Set\+Pin\+Value} (int in, int value)
+\begin{DoxyCompactList}\small\item\em Set a pin\textquotesingle{}s value to either H\+I\+G\+H or L\+O\+W. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1L298N_afa20e1274df6fb59a3d162e38b2408ea}{Accept\+Command} (const \hyperlink{classrbp_1_1Command}{Command} \&command)
+\begin{DoxyCompactList}\small\item\em Accepts a \hyperlink{classrbp_1_1Command}{Command} and performs an operation if the command exists within \hyperlink{classrbp_1_1L298N_ad3bae353e3d17675672286a68ced9d24}{Get\+Commands()} \end{DoxyCompactList}\item 
+virtual std\+::map$<$ std\+::string, unsigned char $>$ \hyperlink{classrbp_1_1L298N_ad3bae353e3d17675672286a68ced9d24}{Get\+Commands} () const 
+\begin{DoxyCompactList}\small\item\em Get a map of a human readable string and its respective command I\+D. \end{DoxyCompactList}\item 
+virtual const unsigned char \hyperlink{classrbp_1_1L298N_af4c1a48847326d4f962594cacbcdfa9c}{Get\+Component\+Id} () const 
+\begin{DoxyCompactList}\small\item\em Get the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classrbp_1_1L298N_ae2557785a6795a727c6526baade4c174}{Set\+Component\+Id} (unsigned char id)
+\begin{DoxyCompactList}\small\item\em Set the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ unsigned char $>$ \hyperlink{classrbp_1_1L298N_a9f05ae8fd5d1d15584f4afe4f59e0f1f}{Serialize} ()
+\begin{DoxyCompactList}\small\item\em Returns an array representation of an object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classrbp_1_1L298N}{L298\+N} Motor controller. 
+
+This class is meant to support the \hyperlink{classrbp_1_1L298N}{L298\+N} motor controller board. In most cases, the Enable A, B, and 5\+V pins are connected by default through jumpers on most model \#236 board.
+
+\subsection*{Helpful information }
+
+
+\begin{DoxyItemize}
+\item This board is able to control two motors at the same time.
+\item Do not input a voltage into the 5\+V terminal
+\begin{DoxyItemize}
+\item If the voltage in the 12\+V terminal is greater than 12\+V, then you can use the 5\+V terminal as a power source.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Quick Stats }&{\bf Value  }\\\cline{1-2}
+Maximum input voltage &{\bfseries 46\+V} \\\cline{1-2}
+Continuous output current &{\bfseries 2 Amps} \\\cline{1-2}
+Maximum output current &{\bfseries 3 Amps} \\\cline{1-2}
+Logical voltage &{\bfseries 5\+V} \\\cline{1-2}
+Max Logical current &{\bfseries 36 m\+A} \\\cline{1-2}
+Maximum output &{\bfseries 25 W} \\\cline{1-2}
+\end{TabularC}
+\subsubsection*{External links }
+
+\href{http://www.st.com/st-web-ui/static/active/en/
+ resource/technical/document/datasheet/CD00000240.pdf}{\tt Datasheet}
+
+\href{http://zapterra.com/systems/articles/electronics/
+ l298-motor-driver-tutorial-arduino/}{\tt Blog post\+:} Very informative and detailed blog post. Recommended if you need an introduction to the chip. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classrbp_1_1L298N_aa825d425be63819ee0ec35fac3fcdecf}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!L298\+N@{L298\+N}}
+\index{L298\+N@{L298\+N}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{L298\+N}]{\setlength{\rightskip}{0pt plus 5cm}rbp\+::\+L298\+N\+::\+L298\+N (
+\begin{DoxyParamCaption}
+\item[{int}]{in1, }
+\item[{int}]{in2, }
+\item[{int}]{in3, }
+\item[{int}]{in4}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1L298N_aa825d425be63819ee0ec35fac3fcdecf}
+
+
+Creates an \hyperlink{classrbp_1_1L298N}{L298\+N} object. 
+
+Initializes the \hyperlink{classrbp_1_1L298N}{L298\+N}\textquotesingle{}s pins using the \hyperlink{classrbp_1_1GPIOConsumer_ad705c79a02dcee7b0719ea2981d85866}{Consume\+Pin()} method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em in1} & The board\textquotesingle{}s I\+N1 pin \\
+\hline
+{\em in2} & The board\textquotesingle{}s I\+N2 pin \\
+\hline
+{\em in3} & The board\textquotesingle{}s I\+N3 pin \\
+\hline
+{\em in4} & The board\textquotesingle{}s I\+N4 pin \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1L298N_afa20e1274df6fb59a3d162e38b2408ea}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!Accept\+Command@{Accept\+Command}}
+\index{Accept\+Command@{Accept\+Command}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{Accept\+Command}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+L298\+N\+::\+Accept\+Command (
+\begin{DoxyParamCaption}
+\item[{const {\bf Command} \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1L298N_afa20e1274df6fb59a3d162e38b2408ea}
+
+
+Accepts a \hyperlink{classrbp_1_1Command}{Command} and performs an operation if the command exists within \hyperlink{classrbp_1_1L298N_ad3bae353e3d17675672286a68ced9d24}{Get\+Commands()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The command to accept \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a4a4214731d3e04b5590f805dd5f459f4}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1L298N_ad3bae353e3d17675672286a68ced9d24}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!Get\+Commands@{Get\+Commands}}
+\index{Get\+Commands@{Get\+Commands}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{Get\+Commands}]{\setlength{\rightskip}{0pt plus 5cm}std\+::map$<$ std\+::string, unsigned char $>$ rbp\+::\+L298\+N\+::\+Get\+Commands (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1L298N_ad3bae353e3d17675672286a68ced9d24}
+
+
+Get a map of a human readable string and its respective command I\+D. 
+
+\begin{DoxyReturn}{Returns}
+A map of command names and respective I\+Ds 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a8e6d397d308b8c075942bc1c8d6d7ca2}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1L298N_af4c1a48847326d4f962594cacbcdfa9c}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!Get\+Component\+Id@{Get\+Component\+Id}}
+\index{Get\+Component\+Id@{Get\+Component\+Id}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{Get\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char rbp\+::\+L298\+N\+::\+Get\+Component\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1L298N_af4c1a48847326d4f962594cacbcdfa9c}
+
+
+Get the physical component\textquotesingle{}s I\+D. 
+
+\begin{DoxyReturn}{Returns}
+The physical component\textquotesingle{}s I\+D 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a9f4e9e2b747133cdf1600f8bb82c4b02}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1L298N_a9f05ae8fd5d1d15584f4afe4f59e0f1f}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{Serialize}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ unsigned char $>$ rbp\+::\+L298\+N\+::\+Serialize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1L298N_a9f05ae8fd5d1d15584f4afe4f59e0f1f}
+
+
+Returns an array representation of an object. 
+
+\begin{DoxyReturn}{Returns}
+The Buffer of data 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classrbp_1_1Serializable_a349896f5c3356330f914621033fda0bb}{rbp\+::\+Serializable}.
+
+\hypertarget{classrbp_1_1L298N_ae2557785a6795a727c6526baade4c174}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!Set\+Component\+Id@{Set\+Component\+Id}}
+\index{Set\+Component\+Id@{Set\+Component\+Id}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{Set\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+L298\+N\+::\+Set\+Component\+Id (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classrbp_1_1L298N_ae2557785a6795a727c6526baade4c174}
+
+
+Set the physical component\textquotesingle{}s I\+D. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The I\+D to use \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classrbp_1_1Commandable_a19fb2e619697c9b9b77a638747cc4288}{rbp\+::\+Commandable}.
+
+\hypertarget{classrbp_1_1L298N_a65f4f98d23ddae3d659ce3f5084cbd1e}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!Set\+Pin\+Value@{Set\+Pin\+Value}}
+\index{Set\+Pin\+Value@{Set\+Pin\+Value}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{Set\+Pin\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+L298\+N\+::\+Set\+Pin\+Value (
+\begin{DoxyParamCaption}
+\item[{int}]{in, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1L298N_a65f4f98d23ddae3d659ce3f5084cbd1e}
+
+
+Set a pin\textquotesingle{}s value to either H\+I\+G\+H or L\+O\+W. 
+
+This is equivalent to calling wiring\+Pi\textquotesingle{}s digital\+Write() method
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\+N} & Value of 1 $\sim$ 4 that represents the physical I\+N pin on the board \\
+\hline
+{\em Value} & A value of H\+I\+G\+H(1) or L\+O\+W(0) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classrbp_1_1L298N_a5fcc1b9a3c9f2812e8adefb49cb704ef}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!Set\+P\+W\+M\+Value@{Set\+P\+W\+M\+Value}}
+\index{Set\+P\+W\+M\+Value@{Set\+P\+W\+M\+Value}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{Set\+P\+W\+M\+Value}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+L298\+N\+::\+Set\+P\+W\+M\+Value (
+\begin{DoxyParamCaption}
+\item[{int}]{in, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1L298N_a5fcc1b9a3c9f2812e8adefb49cb704ef}
+
+
+Sets a pin\textquotesingle{}s software P\+W\+M value. 
+
+This method uses wiring\+Pi\textquotesingle{}s \href{http://wiringpi.com/reference/
+software-pwm-library/}{\tt software P\+W\+M library} to set the software P\+W\+M on the pin to a value. You must first call the Use\+Soft\+Pwm() method before using this method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\+N} & Value of 1 $\sim$ 4 that represents the physical I\+N pin on the board \\
+\hline
+{\em Value} & A value from 0 to 100 \\
+\hline
+\end{DoxyParams}
+\hypertarget{classrbp_1_1L298N_ac618a203bef8bb8afbe194740be501a5}{}\index{rbp\+::\+L298\+N@{rbp\+::\+L298\+N}!Use\+Soft\+P\+W\+M@{Use\+Soft\+P\+W\+M}}
+\index{Use\+Soft\+P\+W\+M@{Use\+Soft\+P\+W\+M}!rbp\+::\+L298\+N@{rbp\+::\+L298\+N}}
+\subsubsection[{Use\+Soft\+P\+W\+M}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+L298\+N\+::\+Use\+Soft\+P\+W\+M (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1L298N_ac618a203bef8bb8afbe194740be501a5}
+
+
+Sets the input pins to software P\+W\+M mode. 
+
+Uses wiring\+Pi\textquotesingle{}s \href{http://wiringpi.com/
+reference/software-pwm-library/}{\tt software P\+W\+M library} to set the pins provided in the Create() factory method to a software P\+W\+M mode
+
+{\bfseries Note\+:} Software P\+W\+M operates on seperate threads, and each thread consumes about 0.\+5\% C\+P\+U, according to the wiring\+Pi reference. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/boards/L298\+N.\+h\item 
+src/boards/L298\+N.\+cpp\end{DoxyCompactItemize}

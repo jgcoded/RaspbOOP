@@ -1,0 +1,65 @@
+\hypertarget{classrbp_1_1GPIOConsumer}{}\section{rbp\+:\+:G\+P\+I\+O\+Consumer Class Reference}
+\label{classrbp_1_1GPIOConsumer}\index{rbp\+::\+G\+P\+I\+O\+Consumer@{rbp\+::\+G\+P\+I\+O\+Consumer}}
+
+
+Abstract class for all G\+P\+I\+O pin utilizers.  
+
+
+
+
+{\ttfamily \#include $<$G\+P\+I\+O\+Consumer.\+h$>$}
+
+Inheritance diagram for rbp\+:\+:G\+P\+I\+O\+Consumer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrbp_1_1GPIOConsumer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classrbp_1_1GPIOConsumer_a7cfe130a22c2c65526ba5fc8ff067786}{}std\+::vector$<$ int $>$ {\bfseries Get\+Pins} () const \label{classrbp_1_1GPIOConsumer_a7cfe130a22c2c65526ba5fc8ff067786}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classrbp_1_1GPIOConsumer_ad705c79a02dcee7b0719ea2981d85866}{Consume\+Pin} (int pin, int mode)
+\begin{DoxyCompactList}\small\item\em Reserves a pin and sets its mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstract class for all G\+P\+I\+O pin utilizers. 
+
+If a class will interface with the Raspberry Pi\textquotesingle{}s G\+P\+I\+O pins, then it must inherit from this class. This is to ensure that all children will be forced to use the {\ttfamily Release\+Pins()} method, which sets the value of any active pins to an inactive state.
+
+Also, the {\ttfamily \hyperlink{classrbp_1_1GPIOConsumer_ad705c79a02dcee7b0719ea2981d85866}{Consume\+Pin()}} method provides a layer of abstraction over the wiring\+Pi {\ttfamily pin\+Mode()} method. In the future, this method will be a friend of the G\+P\+I\+O\+Manager class. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1GPIOConsumer_ad705c79a02dcee7b0719ea2981d85866}{}\index{rbp\+::\+G\+P\+I\+O\+Consumer@{rbp\+::\+G\+P\+I\+O\+Consumer}!Consume\+Pin@{Consume\+Pin}}
+\index{Consume\+Pin@{Consume\+Pin}!rbp\+::\+G\+P\+I\+O\+Consumer@{rbp\+::\+G\+P\+I\+O\+Consumer}}
+\subsubsection[{Consume\+Pin}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+G\+P\+I\+O\+Consumer\+::\+Consume\+Pin (
+\begin{DoxyParamCaption}
+\item[{int}]{pin, }
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classrbp_1_1GPIOConsumer_ad705c79a02dcee7b0719ea2981d85866}
+
+
+Reserves a pin and sets its mode. 
+
+Uses wiring\+Pi\textquotesingle{}s {\itshape pin\+Mode()} method to set the value of the {\itshape Pin} to the {\itshape Mode} parameter.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Pin} & the G\+P\+I\+O pin to set \\
+\hline
+{\em Mode} & The Mode the Pin will be set to \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/abstracts/G\+P\+I\+O\+Consumer.\+h\item 
+src/abstracts/G\+P\+I\+O\+Consumer.\+cpp\end{DoxyCompactItemize}

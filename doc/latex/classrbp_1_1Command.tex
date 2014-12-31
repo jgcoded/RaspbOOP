@@ -1,0 +1,322 @@
+\hypertarget{classrbp_1_1Command}{}\section{rbp\+:\+:Command Class Reference}
+\label{classrbp_1_1Command}\index{rbp\+::\+Command@{rbp\+::\+Command}}
+
+
+Encapsulates data into a command.  
+
+
+
+
+{\ttfamily \#include $<$Command.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classrbp_1_1Command_aac0655813a2cc70a11b6410a9356a1ff}{}typedef std\+::array$<$ unsigned char, M\+A\+X\+\_\+\+C\+O\+M\+M\+A\+N\+D\+\_\+\+L\+E\+N\+G\+T\+H $>$ {\bfseries Buffer}\label{classrbp_1_1Command_aac0655813a2cc70a11b6410a9356a1ff}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classrbp_1_1Command_a1303846c9259f11544a315708ee7f995}{Command} (unsigned char component\+Id, unsigned char command\+Id)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classrbp_1_1Command}{Command} with an empty parameter list. \end{DoxyCompactList}\item 
+\hyperlink{classrbp_1_1Command_a9e1d534af5ad4b89880f4e5185a537a6}{Command} (unsigned char component\+Id, unsigned char command\+Id, std\+::vector$<$ float $>$ command\+Parameters)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classrbp_1_1Command}{Command} with the specified parameter list. \end{DoxyCompactList}\item 
+bool \hyperlink{classrbp_1_1Command_a5099ef6ecdb5aff8945e9faa216cebf6}{Decode\+Data\+To\+Command} ()
+\begin{DoxyCompactList}\small\item\em Decodes data and sets private members. \end{DoxyCompactList}\item 
+Buffer \hyperlink{classrbp_1_1Command_a44ecd677116909a1f8cbcbf139bebe7a}{Encode\+Command\+To\+Data} ()
+\begin{DoxyCompactList}\small\item\em Encodes private members into a buffer. \end{DoxyCompactList}\item 
+bool \hyperlink{classrbp_1_1Command_a163f68862717f9a1fe648dbc0ed793b2}{Is\+Valid} ()
+\begin{DoxyCompactList}\small\item\em Check if the data is formatted to R\+T\+P specification. \end{DoxyCompactList}\item 
+Buffer \& \hyperlink{classrbp_1_1Command_a653885df9002af1fdeb916dc567a931f}{Get\+Data} ()
+\begin{DoxyCompactList}\small\item\em Get a non-\/const reference to the class buffer. \end{DoxyCompactList}\item 
+const Buffer \& \hyperlink{classrbp_1_1Command_a0c77a911ee6c10c4cd65c037d42b07e2}{Get\+Data} () const 
+\begin{DoxyCompactList}\small\item\em Get a const reference to the class buffer. \end{DoxyCompactList}\item 
+bool \hyperlink{classrbp_1_1Command_a0142edcedaf6eca67e9862b53071e64c}{Is\+Connection\+Request} () const 
+\begin{DoxyCompactList}\small\item\em Checks if the internal Buffer object is a connection request. \end{DoxyCompactList}\item 
+\hypertarget{classrbp_1_1Command_aade1df23a736c998e6d0dd4757a3b5b3}{}void \hyperlink{classrbp_1_1Command_aade1df23a736c998e6d0dd4757a3b5b3}{Clear\+Data} ()\label{classrbp_1_1Command_aade1df23a736c998e6d0dd4757a3b5b3}
+
+\begin{DoxyCompactList}\small\item\em Clears the internal Buffer object data. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1Command_adfa0956e61e8479efc702c177a610f19}{Set\+Parameters} (std\+::vector$<$ float $>$ command\+Parameters)
+\begin{DoxyCompactList}\small\item\em Set the \hyperlink{classrbp_1_1Command}{Command}\textquotesingle{}s parameter list. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \hyperlink{classrbp_1_1Command_a80043c44270ebca1cf7e034679802199}{Get\+Parameters} () const 
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{classrbp_1_1Command}{Command}\textquotesingle{}s parameter list. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1Command_af9c2d6072e683cfc39415d1d169cb7aa}{Set\+Command\+Id} (unsigned char command\+Id)
+\begin{DoxyCompactList}\small\item\em Set the command id of the \hyperlink{classrbp_1_1Command}{Command}. \end{DoxyCompactList}\item 
+int \hyperlink{classrbp_1_1Command_a624afad6a285be15cca2eaec837531a5}{Get\+Command\+Id} () const 
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{classrbp_1_1Command}{Command} I\+D. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1Command_a75abecaa8268985abd4abfc3196eb792}{Set\+Component\+Id} (unsigned char component\+Id)
+\begin{DoxyCompactList}\small\item\em Sets the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+int \hyperlink{classrbp_1_1Command_ab02c129eb464b07ec2da3314220805ad}{Get\+Component\+Id} () const 
+\begin{DoxyCompactList}\small\item\em Get the physical component\textquotesingle{}s I\+D. \end{DoxyCompactList}\item 
+float \hyperlink{classrbp_1_1Command_af73fe264ef6130b40993851f6e39def0}{Get\+Parameter\+At\+Index} (size\+\_\+t i) const 
+\begin{DoxyCompactList}\small\item\em Gets a parameter at the specified index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Encapsulates data into a command. 
+
+This class is responsible for the encoding and decoding of data into and out of the Raspboop Transmission Protocol (R\+T\+P). The R\+T\+P is formatted as follows\+:
+
+\{ S\+T\+A\+R\+T O\+F P\+A\+C\+K\+E\+T, B\+O\+D\+Y L\+E\+N\+G\+T\+H, C\+O\+M\+P\+O\+N\+E\+N\+T I\+D, C\+O\+M\+M\+A\+N\+D I\+D, P\+A\+R\+A\+M\+E\+T\+E\+R\+S... \}
+
+\begin{TabularC}{3}
+\hline
+\rowcolor{lightgray}{\bf Name }&{\bf Definition }&{\bf Memory Usage  }\\\cline{1-3}
+S\+T\+A\+R\+T O\+F P\+A\+C\+K\+E\+T &An arbitrary value that starts every packet &1 byte \\\cline{1-3}
+B\+O\+D\+Y L\+E\+N\+G\+T\+H &The size of the remaining portion of the data &1 byte \\\cline{1-3}
+C\+O\+M\+P\+O\+N\+E\+N\+T I\+D &An I\+D representing a physical component &1 byte \\\cline{1-3}
+C\+O\+M\+M\+A\+N\+D I\+D &The I\+D of a Component\textquotesingle{}s command &1 byte \\\cline{1-3}
+P\+A\+R\+A\+M\+E\+T\+E\+R\+S &An array of floats &8$\ast$x bytes \\\cline{1-3}
+\end{TabularC}
+
+\begin{DoxyItemize}
+\item The R\+T\+P also specifies another arbitrary value that can commence a packet of data\+: a C\+O\+N\+N\+E\+C\+T\+I\+O\+N R\+E\+Q\+U\+E\+S\+T
+\end{DoxyItemize}
+
+\hyperlink{classrbp_1_1Command}{Command} takes care of formatting the data into the R\+T\+P specification. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classrbp_1_1Command_a1303846c9259f11544a315708ee7f995}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Command@{Command}}
+\index{Command@{Command}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Command}]{\setlength{\rightskip}{0pt plus 5cm}rbp\+::\+Command\+::\+Command (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{component\+Id, }
+\item[{unsigned char}]{command\+Id}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_a1303846c9259f11544a315708ee7f995}
+
+
+Creates a \hyperlink{classrbp_1_1Command}{Command} with an empty parameter list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+Id} & The I\+D of the physical component \\
+\hline
+{\em command\+Id} & The I\+D of a Component\textquotesingle{}s command \\
+\hline
+\end{DoxyParams}
+\hypertarget{classrbp_1_1Command_a9e1d534af5ad4b89880f4e5185a537a6}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Command@{Command}}
+\index{Command@{Command}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Command}]{\setlength{\rightskip}{0pt plus 5cm}rbp\+::\+Command\+::\+Command (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{component\+Id, }
+\item[{unsigned char}]{command\+Id, }
+\item[{std\+::vector$<$ float $>$}]{command\+Parameters}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_a9e1d534af5ad4b89880f4e5185a537a6}
+
+
+Creates a \hyperlink{classrbp_1_1Command}{Command} with the specified parameter list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+Id} & The I\+D of the physical component \\
+\hline
+{\em command\+Id} & The I\+D of a Component\textquotesingle{}s command \\
+\hline
+{\em command\+Parameters} & Initial values of the command \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1Command_a5099ef6ecdb5aff8945e9faa216cebf6}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Decode\+Data\+To\+Command@{Decode\+Data\+To\+Command}}
+\index{Decode\+Data\+To\+Command@{Decode\+Data\+To\+Command}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Decode\+Data\+To\+Command}]{\setlength{\rightskip}{0pt plus 5cm}bool rbp\+::\+Command\+::\+Decode\+Data\+To\+Command (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_a5099ef6ecdb5aff8945e9faa216cebf6}
+
+
+Decodes data and sets private members. 
+
+\begin{DoxyReturn}{Returns}
+True on success, False on failure 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_a44ecd677116909a1f8cbcbf139bebe7a}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Encode\+Command\+To\+Data@{Encode\+Command\+To\+Data}}
+\index{Encode\+Command\+To\+Data@{Encode\+Command\+To\+Data}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Encode\+Command\+To\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Command\+::\+Buffer rbp\+::\+Command\+::\+Encode\+Command\+To\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_a44ecd677116909a1f8cbcbf139bebe7a}
+
+
+Encodes private members into a buffer. 
+
+\begin{DoxyReturn}{Returns}
+a Buffer with data formatted to R\+T\+P specification 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_a624afad6a285be15cca2eaec837531a5}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Get\+Command\+Id@{Get\+Command\+Id}}
+\index{Get\+Command\+Id@{Get\+Command\+Id}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Get\+Command\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int rbp\+::\+Command\+::\+Get\+Command\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classrbp_1_1Command_a624afad6a285be15cca2eaec837531a5}
+
+
+Get the \hyperlink{classrbp_1_1Command}{Command} I\+D. 
+
+\begin{DoxyReturn}{Returns}
+The \hyperlink{classrbp_1_1Command}{Command} I\+D 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_ab02c129eb464b07ec2da3314220805ad}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Get\+Component\+Id@{Get\+Component\+Id}}
+\index{Get\+Component\+Id@{Get\+Component\+Id}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Get\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}int rbp\+::\+Command\+::\+Get\+Component\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classrbp_1_1Command_ab02c129eb464b07ec2da3314220805ad}
+
+
+Get the physical component\textquotesingle{}s I\+D. 
+
+\begin{DoxyReturn}{Returns}
+The physical component\textquotesingle{}s I\+D 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_a653885df9002af1fdeb916dc567a931f}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Get\+Data@{Get\+Data}}
+\index{Get\+Data@{Get\+Data}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Get\+Data}]{\setlength{\rightskip}{0pt plus 5cm}Command\+::\+Buffer \& rbp\+::\+Command\+::\+Get\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_a653885df9002af1fdeb916dc567a931f}
+
+
+Get a non-\/const reference to the class buffer. 
+
+\begin{DoxyReturn}{Returns}
+Internal Buffer object 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_a0c77a911ee6c10c4cd65c037d42b07e2}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Get\+Data@{Get\+Data}}
+\index{Get\+Data@{Get\+Data}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Get\+Data}]{\setlength{\rightskip}{0pt plus 5cm}const Command\+::\+Buffer \& rbp\+::\+Command\+::\+Get\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classrbp_1_1Command_a0c77a911ee6c10c4cd65c037d42b07e2}
+
+
+Get a const reference to the class buffer. 
+
+\begin{DoxyReturn}{Returns}
+Internal Buffer object 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_af73fe264ef6130b40993851f6e39def0}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Get\+Parameter\+At\+Index@{Get\+Parameter\+At\+Index}}
+\index{Get\+Parameter\+At\+Index@{Get\+Parameter\+At\+Index}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Get\+Parameter\+At\+Index}]{\setlength{\rightskip}{0pt plus 5cm}float rbp\+::\+Command\+::\+Get\+Parameter\+At\+Index (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{i}
+\end{DoxyParamCaption}
+) const}\label{classrbp_1_1Command_af73fe264ef6130b40993851f6e39def0}
+
+
+Gets a parameter at the specified index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The index\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The parameter at index i 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_a80043c44270ebca1cf7e034679802199}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Get\+Parameters@{Get\+Parameters}}
+\index{Get\+Parameters@{Get\+Parameters}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Get\+Parameters}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ float $>$ rbp\+::\+Command\+::\+Get\+Parameters (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classrbp_1_1Command_a80043c44270ebca1cf7e034679802199}
+
+
+Get the \hyperlink{classrbp_1_1Command}{Command}\textquotesingle{}s parameter list. 
+
+\begin{DoxyReturn}{Returns}
+The parameter list 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_a0142edcedaf6eca67e9862b53071e64c}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Is\+Connection\+Request@{Is\+Connection\+Request}}
+\index{Is\+Connection\+Request@{Is\+Connection\+Request}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Is\+Connection\+Request}]{\setlength{\rightskip}{0pt plus 5cm}bool rbp\+::\+Command\+::\+Is\+Connection\+Request (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classrbp_1_1Command_a0142edcedaf6eca67e9862b53071e64c}
+
+
+Checks if the internal Buffer object is a connection request. 
+
+\begin{DoxyReturn}{Returns}
+True if the buffer object data begins with the connection request value 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_a163f68862717f9a1fe648dbc0ed793b2}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Is\+Valid@{Is\+Valid}}
+\index{Is\+Valid@{Is\+Valid}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Is\+Valid}]{\setlength{\rightskip}{0pt plus 5cm}bool rbp\+::\+Command\+::\+Is\+Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_a163f68862717f9a1fe648dbc0ed793b2}
+
+
+Check if the data is formatted to R\+T\+P specification. 
+
+\begin{DoxyReturn}{Returns}
+True on success, False on failure 
+\end{DoxyReturn}
+\hypertarget{classrbp_1_1Command_af9c2d6072e683cfc39415d1d169cb7aa}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Set\+Command\+Id@{Set\+Command\+Id}}
+\index{Set\+Command\+Id@{Set\+Command\+Id}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Set\+Command\+Id}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+Command\+::\+Set\+Command\+Id (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{command\+Id}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_af9c2d6072e683cfc39415d1d169cb7aa}
+
+
+Set the command id of the \hyperlink{classrbp_1_1Command}{Command}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+Id} & The command I\+D \\
+\hline
+\end{DoxyParams}
+\hypertarget{classrbp_1_1Command_a75abecaa8268985abd4abfc3196eb792}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Set\+Component\+Id@{Set\+Component\+Id}}
+\index{Set\+Component\+Id@{Set\+Component\+Id}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Set\+Component\+Id}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+Command\+::\+Set\+Component\+Id (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{component\+Id}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_a75abecaa8268985abd4abfc3196eb792}
+
+
+Sets the physical component\textquotesingle{}s I\+D. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+I\+D} & The component\textquotesingle{}s I\+D \\
+\hline
+\end{DoxyParams}
+\hypertarget{classrbp_1_1Command_adfa0956e61e8479efc702c177a610f19}{}\index{rbp\+::\+Command@{rbp\+::\+Command}!Set\+Parameters@{Set\+Parameters}}
+\index{Set\+Parameters@{Set\+Parameters}!rbp\+::\+Command@{rbp\+::\+Command}}
+\subsubsection[{Set\+Parameters}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+Command\+::\+Set\+Parameters (
+\begin{DoxyParamCaption}
+\item[{std\+::vector$<$ float $>$}]{command\+Parameters}
+\end{DoxyParamCaption}
+)}\label{classrbp_1_1Command_adfa0956e61e8479efc702c177a610f19}
+
+
+Set the \hyperlink{classrbp_1_1Command}{Command}\textquotesingle{}s parameter list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command\+Parameters} & The parameter list \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/data/Command.\+h\item 
+src/data/Command.\+cpp\end{DoxyCompactItemize}

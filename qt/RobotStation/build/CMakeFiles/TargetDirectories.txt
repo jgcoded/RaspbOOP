@@ -1,0 +1,2 @@
+/home/jgcoded/projects/RaspbOOP/qt/RobotStation/build/CMakeFiles/RobotStation.dir
+/home/jgcoded/projects/RaspbOOP/qt/RobotStation/build/CMakeFiles/RobotStation_automoc.dir

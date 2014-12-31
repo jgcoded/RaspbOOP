@@ -1,0 +1,98 @@
+\hypertarget{classrbp_1_1Sensor}{}\section{rbp\+:\+:Sensor Class Reference}
+\label{classrbp_1_1Sensor}\index{rbp\+::\+Sensor@{rbp\+::\+Sensor}}
+
+
+An abstract class for devices that can interface with the world.  
+
+
+
+
+{\ttfamily \#include $<$Sensor.\+h$>$}
+
+Inheritance diagram for rbp\+:\+:Sensor\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classrbp_1_1Sensor}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classrbp_1_1Sensor_ab9d45316bf67d871fddc7aa048e89c49}{Sense} ()=0
+\begin{DoxyCompactList}\small\item\em Performs the sensor\textquotesingle{}s sensing operation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classrbp_1_1Sensor_aab6baaef855fd31dab94e5b28386410a}{Set\+Output\+Pin} (int pin)
+\begin{DoxyCompactList}\small\item\em Set an output pin for the sensor. \end{DoxyCompactList}\item 
+void \hyperlink{classrbp_1_1Sensor_a2e3a00de93b77ecf39b4bfee79279c3c}{Set\+Input\+Pin} (int pin)
+\begin{DoxyCompactList}\small\item\em Set an input pin for the sensor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An abstract class for devices that can interface with the world. 
+
+Sensors can sense the world and provide valuable data about the state of the current environment.
+
+Most sensors require an output, or a trigger, G\+P\+I\+O pin that tells the sensor when to sense. An example of this type of sensor is the \hyperlink{classrbp_1_1HCSR04}{H\+C\+S\+R04} ultrasonic distance sensor. However, there are sensors that persistently report its value back to a G\+P\+I\+O pin. An example of this type of sensor is the \hyperlink{classrbp_1_1HCSR501}{H\+C\+S\+R501} passive infrared sensor.
+
+In both cases, there is a need for either an output pin and/or an input pin. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classrbp_1_1Sensor_ab9d45316bf67d871fddc7aa048e89c49}{}\index{rbp\+::\+Sensor@{rbp\+::\+Sensor}!Sense@{Sense}}
+\index{Sense@{Sense}!rbp\+::\+Sensor@{rbp\+::\+Sensor}}
+\subsubsection[{Sense}]{\setlength{\rightskip}{0pt plus 5cm}virtual void rbp\+::\+Sensor\+::\+Sense (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classrbp_1_1Sensor_ab9d45316bf67d871fddc7aa048e89c49}
+
+
+Performs the sensor\textquotesingle{}s sensing operation. 
+
+This method will retrieve a value from the environment by performing G\+P\+I\+O operations on the input and output pins of the sensor. The value from the sensor will be available through an accessor method. 
+
+Implemented in \hyperlink{classrbp_1_1HCSR04_a8f8cc45655cacfb94ade5078c40ab1ba}{rbp\+::\+H\+C\+S\+R04}, and \hyperlink{classrbp_1_1HCSR501_a9b0e9b6f210d269b67a1ec94e3b62359}{rbp\+::\+H\+C\+S\+R501}.
+
+\hypertarget{classrbp_1_1Sensor_a2e3a00de93b77ecf39b4bfee79279c3c}{}\index{rbp\+::\+Sensor@{rbp\+::\+Sensor}!Set\+Input\+Pin@{Set\+Input\+Pin}}
+\index{Set\+Input\+Pin@{Set\+Input\+Pin}!rbp\+::\+Sensor@{rbp\+::\+Sensor}}
+\subsubsection[{Set\+Input\+Pin}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+Sensor\+::\+Set\+Input\+Pin (
+\begin{DoxyParamCaption}
+\item[{int}]{pin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classrbp_1_1Sensor_a2e3a00de93b77ecf39b4bfee79279c3c}
+
+
+Set an input pin for the sensor. 
+
+Consumes a pin to be designated as an input. This is usually the pin that will be receiving data from the sensor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Pin} & The pin to designate as in input \\
+\hline
+\end{DoxyParams}
+\hypertarget{classrbp_1_1Sensor_aab6baaef855fd31dab94e5b28386410a}{}\index{rbp\+::\+Sensor@{rbp\+::\+Sensor}!Set\+Output\+Pin@{Set\+Output\+Pin}}
+\index{Set\+Output\+Pin@{Set\+Output\+Pin}!rbp\+::\+Sensor@{rbp\+::\+Sensor}}
+\subsubsection[{Set\+Output\+Pin}]{\setlength{\rightskip}{0pt plus 5cm}void rbp\+::\+Sensor\+::\+Set\+Output\+Pin (
+\begin{DoxyParamCaption}
+\item[{int}]{pin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classrbp_1_1Sensor_aab6baaef855fd31dab94e5b28386410a}
+
+
+Set an output pin for the sensor. 
+
+Consumes a pin to be designated as an output. This is usually the pin that triggers sensing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Pin} & The pin to designate as an output \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/raspboop/abstracts/Sensor.\+h\item 
+src/abstracts/Sensor.\+cpp\end{DoxyCompactItemize}
