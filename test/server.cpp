@@ -7,6 +7,8 @@ using namespace rbp;
 
 int main(int argc, char* argv[])
 {
+    rbp::Init();
+
     Server server;
     HCSR04 distanceSensor(WiringPiPins::GPIO0,
                           WiringPiPins::GPIO1);
@@ -14,8 +16,9 @@ int main(int argc, char* argv[])
     distanceSensor.SetComponentId(0);
 
     map<unsigned char, Commandable*> robotParts;
+
     robotParts.insert(make_pair(distanceSensor.GetComponentId(),
-                                &distanceSensor));
+                                dynamic_cast<Commandable*>(&distanceSensor)));
 
     // Allow clients to find this robot automatically
     server.EnableAutodiscovery("0.0.0.0");
