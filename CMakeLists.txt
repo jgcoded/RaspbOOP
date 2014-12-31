@@ -3,7 +3,7 @@ project(Raspboop)
 
 # Version
 set(RASPBOOP_VERSION_MAJOR 0)
-set(RASPBOOP_VERSION_MINOR 0)
+set(RASPBOOP_VERSION_MINOR 1)
 
 set(RASPBOOP_TARGET raspboop)
 
