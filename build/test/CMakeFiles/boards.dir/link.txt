@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++0x   CMakeFiles/boards.dir/boards.cpp.o  -o ../../bin/boards -rdynamic ../../bin/libraspboop.so -lSM -lICE -lX11 -lXext -lwiringPi /usr/local/lib/libboost_system.so /usr/local/lib/libboost_regex.so -lpthread -Wl,-rpath,/home/jgcoded/projects/RaspbOOP/bin:/usr/local/lib 
