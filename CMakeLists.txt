@@ -46,7 +46,6 @@ include_directories(
 
 # WiringPi
 set(WPI_TARGET ${CMAKE_SOURCE_DIR}/wiringPi)
-
 find_library(WIRINGPI wiringPi PATHS ${WPI_TARGET}/wiringPi)
 
 if(EXISTS ${WPI_TARGET} AND WIRINGPI_NOTFOUND)
@@ -59,6 +58,7 @@ if(EXISTS ${WPI_TARGET} AND WIRINGPI_NOTFOUND)
   find_library(WIRINGPI wiringPi PATHS ${WPI_TARGET}/wiringPi)
 endif()
 
+include_directories(${WPI_TARGET})
 message(STATUS "Using wiringPi library: ${WIRINGPI}")
 
 set(RBP_LIBRARIES
