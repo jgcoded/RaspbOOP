@@ -34,7 +34,7 @@ foreach(interface ${INTERFACES})
 endforeach(interface)
 
 add_library(raspboop ${HEADERS} ${MODULES})
-target_link_libraries(raspboop ${RASPBOOP_LIBRARIES})
+target_link_libraries(raspboop ${RBP_LIBRARIES})
 set_target_properties(raspboop PROPERTIES FOLDER Raspboop)
 
 if(INSTALL_SDK)
@@ -43,7 +43,7 @@ if(INSTALL_SDK)
           LIBRARY DESTINATION lib
           ARCHIVE DESTINATION lib/static)
 
-  install(DIRECTORY ${RASPBOOP_INC_DIR}
+  install(DIRECTORY ${RBP_INC_DIR}
           DESTINATION include
           FILES_MATCHING PATTERN "*.h")
 endif()
